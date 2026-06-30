@@ -1,0 +1,408 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #fff; }
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+   
+   
+    background-color: #f8f9fa; /* হালকা অফ-হোয়াইট রঙ */
+    border-bottom: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    border: 2px solid transparent;
+    margin-left: auto;
+    margin-right: auto;
+    /* সর্বনিম্ন ৫০px, আদর্শ ৭০px (স্ক্রিন বড় হলে), সর্বোচ্চ ৭০px */
+   /* ৭০px থেকে  heigশুরু হবে, এবং স্ক্রিনের ১% এর সাথে অনুপাতে কমতে থাকবে */
+   /* ৭০px থেকে শুরু হবে, এবং স্ক্রিনের ১% এর সাথে অনুপাতে কমতে থাকবে */
+    height: clamp(50px, 70px - 2vw, 70px);
+    /* position: fixed; এটা আপাতত মুছে ফেলুন */
+}
+.logo-wrapper {
+    display: flex;
+    justify-content: center; /* ইমেজ বামে থাকবে */
+    border: 2px solid transparent;
+    width: 30%;
+    height: 100%;
+    align-items: center;
+}
+
+   
+.logo-img {
+ width: auto;    /* এখানে সাইজ বাড়িয়ে বা কমিয়ে লোগো ছোট-বড় করতে পারবে */
+  height: 100%;
+    display: block;
+    margin-left: 0 !important;      /* বামদিকের মার্জিন জিরো */
+    margin-right: auto !important;  /* ডানদিকের মার্জিন অটো, যা লোগোকে বামে ঠেলে দেবে */
+    position: static;
+  
+   
+   
+}
+
+/* ন্যাভবার কন্টেইনারকে ফ্লেক্সিবল করার জন্য */
+.brand-container {
+    display: flex;
+    align-items: center;       /* আইকন এবং টেক্সটকে লম্বালম্বিভাবে একই লাইনে রাখতে */
+                  /* আইকন ও লেখার মাঝের দূরত্ব */
+  margin: 0;
+  padding: 0;
+  position: relative;
+    flex-shrink: 0;
+    border: 2px solid transparent !important;
+   height: 100%;
+   width: 20%;
+   justify-content: flex-start;
+   
+}
+
+.brand-text {
+    font-size: 18px;
+    font-weight: 1000;
+    color: #00264d;
+    margin-left: 0;
+    margin-bottom: 5px;
+
+    align-items: center;
+  margin-left: 5px;
+  border: .5px solid transparent;
+   
+    /* শ্যাডোর কোড */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.text-group {
+    display: flex;
+
+    width: 70%;
+    border: 2px solid transparent;
+    height: 100%;
+    align-items: flex-start;
+    position: relative;
+   
+justify-content: center;
+    flex-direction: column; /* নিচে নামানোর জন্য */
+    flex-wrap: wrap;        /* অতিরিক্ত প্রপার্টি যা বাধ্য করবে নিচে নামাতে */
+}
+.slogan-group {
+    height: 25%;
+    width: 97%;
+    border: .5px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+ 
+
+}
+/* স্লোগানটিকে জোর করে নতুন লাইনে নিতে */
+.slogan {
+    flex: 0 0 100%;         /* এটি স্লোগানকে পুরো লাইনের দখল নিতে বলবে */
+    display: block;         /* ব্লক লেভেল এলিমেন্ট করা */
+ 
+    font-size: 7px;
+ 
+}
+
+/* মেনু লিঙ্কের বেসিক স্টাইল */
+.nav-menu a {
+    text-decoration: none;
+    color: #333333;
+    padding: 10px 15px;
+    transition: all 0.3s ease; /* এটি ইফেক্টটিকে মসৃণ (smooth) করবে */
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    display: inline-block;
+    font-family: 'Segoe UI', Tahoma, sans-serif; /* আধুনিক ক্লিন ফন্ট */
+}
+
+/* হোভার ইফেক্ট */
+.nav-menu a:hover {
+    color: #ffffff;            /* মাউস নিলে টেক্সট কালার সাদা হবে */
+    background-color: #00264d; /* মাউস নিলে ব্যাকগ্রাউন্ড গাঢ় নীল হবে */
+    cursor: pointer;           /* কার্সারটি হাতের চিহ্ন দেখাবে */
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 8vw; /* এই সংখ্যাটি বাড়িয়ে বা কমিয়ে দূরত্ব ঠিক করতে পারবেন */
+   
+    
+    font-size: 0.1rem !important;
+    flex-shrink: 1;
+    min-width: 0;
+    width: 50%;
+  border: 2px solid transparent;
+}
+.about-us {
+   
+    font-size: .7rem !important;
+}
+.services-areas, .why-us {
+    
+    font-size: .7rem !important;
+}
+.nav-buttons{
+    margin-left: auto; 
+
+    /* বাটন কন্টেইনারের সাইজ কন্ট্রোল */
+    display: flex;
+    flex-shrink: 1;      /* স্ক্রিন ছোট হলে এটি ছোট হতে পারবে */
+    
+    /* অন্যান্য */
+    justify-content: space-between; /* কন্টেইনারের ভিতরের বাটনগুলোকে ডানে রাখবে */
+    gap: 2%;
+   /* ৭০px থেকে শুরু হবে, এবং স্ক্রিনের ১% এর সাথে অনুপাতে কমতে থাকবে */
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    border: 2px solid transparent;
+    height: 75%;
+    width: 30%;
+  
+    margin-right: 1%;
+    
+}
+/* বাটনগুলোর কমন এবং বেসিক স্টাইল */
+.login-btn, .join-btn {
+    text-decoration: none;
+   
+    border-radius: 10px; /* সম্পূর্ণ গোলাকার বাটন */
+    font-weight: 1000; /* বোল্ড ফন্ট */
+   font-size: 15px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* স্মুথ এবং প্রিমিয়াম অ্যানিমেশন */
+    
+    align-items: center;
+    justify-content: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    border: none;
+    flex: 1;
+    min-width: 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* হালকা শ্যাডো */
+    
+}
+
+/* লগইন বাটন (আধুনিক আউটলাইন স্টাইল) */
+.login-btn {
+    background-color: transparent;
+    border: 2px solid #00264d; /* লোগোর রঙের সাথে মিলিয়ে বর্ডার */
+    color: #00264d;
+   
+}
+
+.login-btn:hover {
+    background-color: #00264d; /* হোভারে ব্যাকগ্রাউন্ড নীল হবে */
+    color: #ffffff; /* টেক্সট সাদা হবে */
+    box-shadow: 0 6px 12px rgba(0, 38, 77, 0.3); /* নীল রঙের গভীর শ্যাডো */
+    transform: translateY(-3px); /* সামান্য উপরে উঠবে */
+}
+
+/* জয়েন করুন বাটন (উজ্জ্বল এবং আকর্ষণীয় গোল্ডেন স্টাইল) */
+.join-btn {
+    background: linear-gradient(45deg, #ffcc00, #ff9900); /* সুন্দর গ্রেডিয়েন্ট কালার */
+    color: #000000;
+    position: relative;
+    overflow: hidden; /* শাইন ইফেক্টের জন্য জরুরি */
+}
+
+/* জয়েন বাটনের জন্য একটি উজ্জ্বল শাইন ইফেক্ট */
+.join-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+}
+
+.join-btn:hover::after {
+    left: 130%; /* মাউস নিলে শাইন ইফেক্টটি পাশ দিয়ে চলে যাবে */
+}
+
+.join-btn:hover {
+    background: linear-gradient(45deg, #ff9900, #ffcc00); /* গ্রেডিয়েন্ট উল্টে যাবে */
+    box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4); /* গোল্ডেন রঙের গভীর শ্যাডো */
+    transform: translateY(-3px) scale(1.03); /* সামান্য উপরে উঠবে এবং বড় হবে */
+}
+
+
+/* পুরো ন্যাভবারকে আরেকটু প্রিমিয়াম করার জন্য */
+
+
+/* মেনু লিঙ্কের নিচে হালকা আন্ডারলাইন ইফেক্ট (মাউস নিলে আসবে) */
+.nav-menu a {
+    position: relative;
+}
+
+.nav-menu a::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00264d;
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::before {
+    width: 100%; /* হোভার করলে নিচে দাগ আসবে */
+}
+
+    
+    
+    .nav-buttons button {
+        padding: 5px 8px; /* বাটন প্যাডিং কমান */
+        font-size: 0.7rem;
+        flex: 1;
+    }
+
+    .logo img {
+        width: 80px; /* লোগো ছোট করুন */
+    }
+   
+    
+/* পিসিতেও দেখার জন্য */
+.hamburger {
+    display: flex !important; /* মিডিয়া কোয়েরির ভেতরে থাকলে তা সরিয়ে দিন */
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px; /* লাইনগুলোর দূরত্ব */
+    width: 30px; 
+    height: 30px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    margin-right: 5px; /* লোগোর সাথে গ্যাপ */
+    order: -1; /* এটি নিশ্চিত করবে যে এটি সবকিছুর আগে (বামে) থাকবে */
+}
+
+/* লাইনগুলোর ডিজাইন */
+.hamburger span {
+    display: block !important; /* এটি থাকলেই লাইন আসবে */
+    width: 90%;
+    height: 3px;
+    background-color:#333333; /* রঙের জন্য কালো */
+    border-radius: 2px;
+}
+@media (min-width: 821px) {
+    
+/* ন্যাভবার কন্টেইনারকে ফ্লেক্সিবল করার জন্য */
+.brand-container {
+    display: flex;
+    align-items: center;       /* আইকন এবং টেক্সটকে লম্বালম্বিভাবে একই লাইনে রাখতে */
+                  /* আইকন ও লেখার মাঝের দূরত্ব */
+  margin: 0;
+  padding: 0;
+  position: relative;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+   height: 100%;
+   width: 20%;
+   justify-content: flex-start;
+}
+.logo-wrapper {
+    display: flex;
+    justify-content: center; /* ইমেজ বামে থাকবে */
+    border: 2px solid transparent;
+    width: 15%;
+    height: 100%;
+    align-items: center;
+}
+.brand-text {
+    font-size: 18px;
+    font-weight: 1000;
+    color: #00264d;
+    margin-left: 0;
+    margin-bottom: 5px;
+
+    align-items: center;
+  margin-left: 0;
+  border: .5px solid transparent;
+   
+    /* শ্যাডোর কোড */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.text-group {
+    display: flex;
+
+    width: 70%;
+    border: 2px solid transparent;
+    height: 100%;
+    align-items: flex-start;
+    position: relative;
+   
+justify-content: center;
+    flex-direction: column; /* নিচে নামানোর জন্য */
+    flex-wrap: wrap;        /* অতিরিক্ত প্রপার্টি যা বাধ্য করবে নিচে নামাতে */
+}
+.slogan-group {
+    height: 25%;
+    width: 97%;
+    border: .5px solid transparent;
+  position: absolute;
+  bottom: 0;
+ left: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+ 
+
+}
+
+.hamburger span {
+  
+    display: none !important;
+   
+}
+
+}
+@media (max-width: 821px) {
+.services-areas {
+display: none !important;
+}
+.why-us {
+display: none !important;
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+   gap: 1vw;
+   margin-left: 9%;
+   
+    font-size: 2px;
+    flex-shrink: 1;
+    min-width: 0;
+    width: 30%;
+  border: 2px solid transparent;
+}
+.services, .home {
+   
+    font-size: .7rem !important;
+}
+
+}
+@media (max-width:359px) {
+    .nav-menu {
+        display: none;
+    }
+}
+@media (min-width:760px) {
+.nav-menu {
+    gap: 6vw;
+}
+}

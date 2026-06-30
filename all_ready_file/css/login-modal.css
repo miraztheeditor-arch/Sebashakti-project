@@ -1,0 +1,42 @@
+.modal-overlay { display: none;
+     position: fixed;
+     top: 0; left: 0;
+      width: 100%;
+       height: 100%;
+        background: rgba(0,0,0,0.6);
+         z-index: 9999; }
+.modal-container { background: white;
+        margin-top: 500px;
+     width: 350px; margin: 8% auto; padding: 30px; border-radius: 15px; position: relative; text-align: center; }
+.close-cross { position: absolute; top: 10px; right: 20px; font-size: 25px; cursor: pointer; }
+.full-input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+.full-btn { width: 100%; padding: 12px; margin-top: 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+.blue-btn { background: #007bff; color: white; }
+.google-btn { background: #db4437; color: white; }
+.signup-link { margin-top: 15px; }
+.signup-link span { color: #007bff; cursor: pointer; text-decoration: underline; }
+
+/* শেকিং ইফেক্ট */
+.shake-red { border: 2px solid red !important; animation: shake 0.3s; }
+@keyframes shake { 0%, 100% {transform: translateX(0);} 25% {transform: translateX(-5px);} 75% {transform: translateX(5px);} }
+/* নীল বাটনের হোভার ইফেক্ট */
+.blue-btn {
+    transition: background 0.3s ease; /* মসৃণ পরিবর্তনের জন্য */
+}
+.blue-btn:hover {
+    background: #0056b3; /* মাউস নিলে গাঢ় নীল হবে */
+}
+
+/* গুগল/জিমেইল বাটনের হোভার ইফেক্ট */
+.google-btn {
+    transition: background 0.3s ease;
+}
+.google-btn:hover {
+    background: #c13529; /* মাউস নিলে গাঢ় লাল হবে */
+}
+@media (max-width:821px) {
+    .modal-container{
+        margin-top: 50% !important;
+       
+    }
+}

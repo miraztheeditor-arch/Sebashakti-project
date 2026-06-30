@@ -1,0 +1,85 @@
+
+.section {
+     padding: 40px 5%;
+     }
+.scroll-wrapper {
+     display: flex;
+      gap: 20px;
+       overflow-x: auto;
+        padding-bottom: 10px; }
+.box {
+     min-width: 150px;
+      text-align: center;
+       border: 1px solid #ddd;
+        padding: 20px; 
+       
+    }
+.box-wide {
+     min-width: 250px;
+      text-align: center;
+       border: 1px solid #ddd;
+       padding: 20px;
+     }
+.img-space {
+     width: 60px;
+      height: 60px;
+       background: #eee;
+        margin: 0 auto 10px; 
+        border: 1px dashed #999;
+       
+     }
+     .electrical-img {
+        height: 100%;
+        width: 100%;
+     }
+     .plambing-img {
+        height: 100%;
+        width: 100%;
+     }
+     .air-condition-img {
+        height: 100%;
+        width: 100%;
+     }
+     .cleaning-img {
+        height: 100%;
+        width: 100%;
+     }
+     .home-repire-img {
+        height: 100%;
+        width: 100%;
+     }
+      .computer-service-img {
+        height: 100%;
+        width: 100%;
+     }
+       .refrigaretor-service-img {
+        height: 100%;
+        width: 100%;
+     }
+      .motor-service-img {
+        height: 100%;
+        width: 100%;
+     }
+      .oven-service-img {
+        height: 100%;
+        width: 100%;
+     }
+     .popup-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+     
+    justify-content: center; align-items: center;
+    z-index: 1000;
+}
+.popup-content {
+    background: white; padding: 30px; border-radius: 12px;
+    position: relative; width: 350px; text-align: center;
+    font-weight: 500;
+}
+.close-btn {
+    position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 24px;
+}
+
+
+
+

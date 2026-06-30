@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/signup-form.css">
+      
+</head>
+<body>
+     <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="../../images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
+
+<div class="nav-menu">
+<a href="index.html" class="home">হোম</a>
+       <a href="why-us.html" class="why-us">কেন আমাদের বেছে নেবেন?</a>
+         <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+          <a href="services.html" class="help">রেজিস্ট্রেশন সহায়তা</a>
+        </div>
+           <div class="nav-buttons">
+          <a href="FAQ.html" class="FAQ">FAQ</a>
+        </div>
+        
+        
+    </nav>
+    <div class="signup-container">
+    <h2>রেজিস্ট্রেশন করুন</h2>
+   <form id="signupForm">
+    <!-- নাম -->
+    <div class="input-group">
+        <input type="text" id="name" placeholder=" " minlength="3" maxlength="50" required 
+       pattern="[A-Za-z\u0980-\u09FF\s]{3,}" 
+       title="দয়া করে আপনার সঠিক নাম লিখুন (অন্তত ৩টি অক্ষর)">
+        <label for="name">আপনার নাম</label>
+        <span id="nameErrorMessage" style="color: red; display: none; font-size: 12px;">আপনার নামটি সঠিক নয়</span>
+    </div>
+
+    <!-- ফোন বা ইমেইল -->
+    <div class="input-group">
+        <input type="tel" id="phone" placeholder=" " required>
+        <label for="contact">ফোন নম্বর বা ইমেইল</label>
+        <span id="phoneEmailErrorMessage" style="color: red; display: none; font-size: 12px;">দয়া করে সঠিক ফোন নম্বর বা ইমেইল ঠিকানা প্রদান করুন।</span>
+    </div>
+
+    <!-- পাসওয়ার্ড -->
+    <div class="input-group">
+      <input type="password" id="pass" placeholder=" " minlength="8"required>
+        <label for="pass">পাসওয়ার্ড (কমপক্ষে ৮ অক্ষর)</label>
+        <span id="togglePassword">👁️</span>
+         <div id="passwordSection" style="margin: 10px 0;">
+    <div id="passwordErrorWrapper" style="display: none; color:red; font-size: 13px; margin-bottom: 5px;">
+        আপনার পাসওয়ার্ড ফরম্যাট সঠিক নয়। 
+        <button type="button" id="toggleGuideBtn" style="cursor: pointer; background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; border-radius: 4px; padding: 2px 8px; font-size: 11px;">
+            দেখুন
+        </button>
+    </div>
+
+    <div id="passwordGuide" style="display: none; font-size: 12px; color: #333; background: #fff3cd; padding: 10px; border: 1px solid #ffeeba; border-radius: 5px;">
+        <strong>পাসওয়ার্ডের নিয়ম:</strong><br>
+        • অন্তত ৮টি ক্যারেক্টার হতে হবে<br>
+        • বড় ও ছোট হাতের অক্ষর (যেমন: A, a)<br>
+        • অন্তত একটি সংখ্যা (যেমন: 1, 9)<br>
+        • একটি বিশেষ চিহ্ন (@$!%*?&)<br>
+        <em>উদাহরণ: Abc@1234</em>
+    </div>
+</div>
+    </div>
+<div class="edit-info-container">
+    <button type="button" id="editContactBtn" class="edit-btn">
+        <span class="edit-icon">✎</span> তথ্য পরিবর্তন করুন
+    </button>
+</div>
+
+<div id="otpSection" style="display: none; margin-top: 20px;">
+    <div class="otp-boundary">
+        <h3 style="margin-bottom: 10px;">ওটিপি যাচাইকরণ</h3>
+        <p id="otpInstruction" style="font-size: 14px; margin-bottom: 15px;">আপনার নম্বরে পাঠানো ৬ সংখ্যার কোডটি লিখুন:</p>
+        
+        <div class="otp-input-wrapper">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+            <input type="text" class="otp-box" maxlength="1" inputmode="numeric">
+        </div>
+       <p id="timerText">
+    ওটিপি পাননি? 
+    <span id="resendBtn" class="disabled">Resend (60s)</span>
+</p>
+    </div>
+</div>
+</form>
+<div id="otp-error" style="color: red; font-size: 14px; text-align: center; margin: 15px 0; display: none;"></div>
+        <div class="terms-container">
+    <div class="terms-header">
+        <input type="checkbox" id="terms">
+        <label for="terms">আমি <span class="terms-toggle" onclick="toggleTerms(event)">সার্ভিস নীতিমালা</span> পড়েছি ও সম্মত।</label>
+    </div>
+<div id="terms-content" class="terms-dropdown" display="none" style="text-align: left; padding: 20px; font-family: sans-serif; line-height: 1.6; font-size: 15px; color: #333; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; max-height: 400px; overflow-y: auto;">
+    
+    <h3 style="text-align: center; color: #2c3e50;">আমাদের সার্ভিস নীতিমালা (Terms of Service)</h3>
+    <p>আমাদের প্ল্যাটফর্মটি ক্লায়েন্ট এবং দক্ষ টেকনিশিয়ানদের মধ্যে একটি সেতুবন্ধন। এই প্ল্যাটফর্ম ব্যবহারের মাধ্যমে আপনি নিচের শর্তাবলীতে সম্মত হচ্ছেন:</p>
+
+    <p><strong>১. প্ল্যাটফর্মের ভূমিকা:</strong><br>
+    আমরা একটি সংযোগকারী মাধ্যম। টেকনিশিয়ানরা স্বাধীনভাবে বিড করেন এবং ক্লায়েন্ট তাদের অভিজ্ঞতা ও প্রোফাইল যাচাই করে কাজ প্রদান করেন। কাজের গুণমান ও ব্যক্তিগত চুক্তির দায়ভার সংশ্লিষ্ট পক্ষসমূহের।</p>
+
+    <p><strong>২. বিড ও কাজের দায়িত্ব:</strong></p>
+    <ul style="margin-top: -10px;">
+        <li>কোনো কাজ এক্সেপ্ট করার পর টেকনিশিয়ান নির্ধারিত সময়ে কাজ সম্পন্ন করতে বাধ্য।</li>
+        <li><strong>ক্যান্সেল নীতি:</strong> কাজ এক্সেপ্ট করার পর যে পক্ষই তা বাতিল করতে চাক না কেন, তাকে অবশ্যই একটি যুক্তিযুক্ত কারণ দেখাতে হবে। যথাযথ কারণ ছাড়া কাজ বাতিল করলে, পরবর্তী কাজ পাওয়ার ক্ষেত্রে ঐ পক্ষকে প্ল্যাটফর্মের নিয়ম অনুযায়ী জরিমানা বা খেসারতের দায়ভার বহন করতে হবে।</li>
+    </ul>
+
+    <p><strong>৩. প্ল্যাটফর্মের সুরক্ষা ও পেমেন্ট:</strong></p>
+    <ul style="margin-top: -10px;">
+        <li><strong>নিরাপদ লেনদেন:</strong> সকল লেনদেন অবশ্যই আমাদের প্ল্যাটফর্মের মাধ্যমে করতে হবে। প্ল্যাটফর্মের বাইরে কোনো লেনদেনের চেষ্টা করলে উভয় পক্ষই (ক্লায়েন্ট ও টেকনিশিয়ান) সমানভাবে দায়ী থাকবেন। এমন ক্ষেত্রে অ্যাকাউন্ট সাসপেনশনসহ প্ল্যাটফর্ম কর্তৃক নির্ধারিত শাস্তিমূলক ব্যবস্থা (পেনাল্টি) উভয়কেই ভোগ করতে হবে।</li>
+    </ul>
+
+    <p><strong>৪. নিরাপত্তা ও আচরণবিধি:</strong></p>
+    <ul style="margin-top: -10px;">
+        <li>আমরা সকল টেকনিশিয়ানের তথ্য যাচাইয়ের সর্বোচ্চ চেষ্টা করি। তবুও, ক্লায়েন্টকে অনুরোধ করা হচ্ছে টেকনিশিয়ানের পরিচয় নিশ্চিত হয়েই সেবা গ্রহণ করুন। ক্লায়েন্টের ঠিকানায় সেবা গ্রহণের ক্ষেত্রে ব্যক্তিগত নিরাপত্তার দায়ভার সংশ্লিষ্ট ক্লায়েন্টের।</li>
+        <li>কোনো পক্ষই কোনো ধরণের অশ্লীল ভাষা, কোনো ধরণের অশোভন আচরণ, মিথ্যা তথ্য প্রদান বা আইনবিরোধী কর্মকাণ্ডে লিপ্ত হতে পারবে না। এমন অভিযোগ প্রমাণিত হলে সংশ্লিষ্ট ইউজারকে চিরতরে প্ল্যাটফর্ম থেকে নিষিদ্ধ করা হবে। </li>
+    </ul>
+
+    <p><strong>৫. নীতিমালার আপডেট:</strong><br>
+    সেবার মান উন্নয়নে আমাদের নীতিমালা যেকোনো সময় পরিবর্তিত হতে পারে, যা ওয়েবসাইটে আপডেট করা হবে।</p>
+
+</div>
+</div>
+<form id="signupForm">
+        <button type="submit" class="submit-btn">সাবমিট</button>
+    </form>
+
+    <div class="divider">অথবা</div>
+    <button class="google-btn">গুগল দিয়ে সাইন আপ (Coming Soon)</button>
+</div>
+<script src="../js/signup-form.js"></script>
+</body>
+</html>

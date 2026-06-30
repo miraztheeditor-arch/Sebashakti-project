@@ -3,12 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebashakti Project</title>
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="all_ready_file/css/style.css">
+      <link rel="stylesheet" href="all_ready_file/css/join-modal.css">
+        <link rel="stylesheet" href="all_ready_file/css/login-modal.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
 
-    <h1>আমার সেবাশক্তি প্রজেক্ট</h1>
-    <p>এটি আমার প্রথম ওয়েবসাইট।</p>
+<div class="nav-menu">
+<a href="why-us.html" class="why-us">কেন আমাদের বেছে নেবেন?</a>
+        <a href="services-areas.html" class="services-areas">সার্ভিস এরিয়া</a>
+        <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+        </div>
+        <div class="nav-buttons">
+          <button class="login-btn" onclick="openLoginModal()">লগইন</button>
+          <button class="join-btn" onclick="openJoinModal()">Sign Up</button>
+        </div>
+        
+    </nav>
+     <header class="hero">
+        <div class="hero-left">
+            <h1 class="hero-text">আপনার বাড়ির সমস্যা? সমাধান আমাদের কাছে!</h1>
+            <div class="search-wrap">
+                 <input type="text" class="search-input" placeholder="কোন সার্ভিস খুঁজছেন?  ">
+                  <button class="search-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    </svg>
+                 </button> 
+            </div> 
+        </div>
+        <div class="hero-right">
+            <div class="image-box">
+                <img src="images/hero.jpg" alt="image" class="hero-img">
+            </div>
+        </div>
+    </header>
 
+    
+    <section class="section">
+        <h2>জনপ্রিয় সার্ভিস ক্যাটাগরি</h2>
+        <div class="scroll-wrapper" id="services">
+            <div class="box" onclick="openPopup('ইলেকট্রিক্যাল', 'আপনার বাড়ির যেকোনো ইলেকট্রিক্যাল সমস্যা যেমন—ওয়্যারিং, শর্ট সার্কিট, সুইচবোর্ড মেরামত, নতুন ফ্যান বা লাইট ইনস্টলেশনের জন্য আমাদের অভিজ্ঞ ইলেকট্রিশিয়ান সর্বদা প্রস্তুত। আপনার নিরাপত্তা এবং নির্ভুল কাজের নিশ্চয়তা দিতে আমরা প্রতিশ্রুতিবদ্ধ। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"> <img src="images/electrical.jpg" alt="image" class="electrical-img"></div><p>ইলেকট্রিক্যাল</p></div>
+            <div class="box" onclick="openPopup('প্লাম্বিং সার্ভিস', 'পানির কল লিকেজ, পাইপলাইন সমস্যা, বাথরুম ফিটিংস কিংবা পানির পাম্পের যেকোনো জটিল সমস্যার দ্রুত ও নির্ভরযোগ্য সমাধান পেতে আমাদের দক্ষ প্লাম্বার বুক করুন। আমরা আপনার সমস্যার দ্রুত সমাধান নিশ্চিত করি। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/plambing.jpg" alt="image" class="plambing-img"></div><p>প্লাম্বিং</p></div>
+            <div class="box" onclick="openPopup('এসি সার্ভিস', 'আপনার এসির ঠান্ডা কম হওয়া, গ্যাস রিফিল, ফিল্টার ক্লিনিং বা যেকোনো ধরনের কুলিং সমস্যার সমাধানে আমাদের দক্ষ টেকনিশিয়ান রয়েছেন। আমরা আপনার এসিকে সচল এবং দীর্ঘস্থায়ী রাখতে দিচ্ছি প্রফেশনাল সার্ভিস। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/air-condition.png" alt="image" class="air-condition-img"></div><p>এসি সার্ভিস</p></div>
+            <div class="box" onclick="openPopup('ক্লিনিং সার্ভিস', 'আপনার বাসা, অফিস, সোফা কিংবা কার্পেটের গভীর পরিচ্ছন্নতার জন্য আমরা দিচ্ছি জীবাণুমুক্ত প্রফেশনাল ক্লিনিং সার্ভিস। আমাদের দক্ষ টেকনিশিয়ান আধুনিক সরঞ্জাম ব্যবহারের মাধ্যমে আপনার পরিবেশকে করে তুলবেন স্বাস্থ্যসম্মত ও ঝকঝকে। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/cleaning.jpg" alt="image" class="cleaning-img"></div><p>ক্লিনিং</p></div>
+            <div class="box" onclick="openPopup('হোম রিপেয়ার', 'আপনার বাসার যেকোনো ছোট-বড় আসবাবপত্র মেরামত, দরজা-জানালার সমস্যা বা গৃহস্থালি টুকিটাকি মেরামতের জন্য আমাদের দক্ষ টেকনিশিয়ান সর্বদা প্রস্তুত। দ্রুত ও নিখুঁত সার্ভিসের জন্য আমাদের ওপর ভরসা করতে পারেন। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/home-repire.jpg" alt="image" class="home-repire-img"></div><p>হোম রিপেয়ার</p></div>
+            <div class="box" onclick="openPopup('কম্পিউটার সার্ভিস', 'আপনার কম্পিউটার বা ল্যাপটপের যেকোনো সফটওয়্যার সমস্যা, উইন্ডোজ সেটআপ বা হার্ডওয়্যার সংক্রান্ত জটিলতায় আমাদের অভিজ্ঞ টেকনিশিয়ান আপনাকে দ্রুত সহায়তা করবেন। আপনার ডিভাইসের নিরাপত্তা নিশ্চিত করতে আমরা আছি পাশে। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/computer-service.jpg" alt="image" class="computer-service-img"></div><p>কম্পিউটার</p></div>
+            <div class="box" onclick="openPopup('রেফ্রিজারেটর (ফ্রিজ) সার্ভিস', 'আপনার ফ্রিজ ঠান্ডা কম হওয়া, কম্প্রেসর সমস্যা, ফ্রিজের ভেতরে পানি জমা বা গ্যাস লিকেজের মতো যেকোনো জটিল সমস্যার সমাধানে আমাদের দক্ষ টেকনিশিয়ান সর্বদা প্রস্তুত। আপনার খাবারকে সতেজ ও ফ্রিজকে দীর্ঘস্থায়ী রাখতে আমরা দিচ্ছি দ্রুত ও নির্ভরযোগ্য সার্ভিস। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/refrigaretor-service.jpg" alt="image" class="refrigaretor-service-img"></div>রেফ্রিজারেটর<p></p></div>
+            <div class="box" onclick="openPopup('ফ্যান ও মটর সার্ভিস', 'আপনার বাসার যেকোনো ধরনের ফ্যান (সিলিং বা স্ট্যান্ড ফ্যান) এবং ইলেকট্রিক মটরের সমস্যা, যেমন—চলতে গিয়ে শব্দ হওয়া, ফ্যান ধীরগতিতে চলা বা মটর জ্বলে যাওয়ার মতো সমস্যার সমাধানে আমাদের অভিজ্ঞ টেকনিশিয়ান সর্বদা প্রস্তুত। আপনার যন্ত্রপাতির দীর্ঘস্থায়ী কার্যক্ষমতা নিশ্চিত করতে আমাদের ওপর ভরসা করতে পারেন। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/fan&motor.jpg" alt="image" class="motor-service-img"></div><p>ফ্যান ও মটর</p></div>
+            <div class="box" onclick="openPopup('অ্যাপ্লায়েন্স রিপেয়ার', 'আপনার বাসার ওয়াশিং মেশিন, মাইক্রোওয়েভ ওভেন কিংবা অন্যান্য ইলেকট্রিক গৃহস্থালি যন্ত্রপাতির যেকোনো যান্ত্রিক ত্রুটি বা মেরামতের জন্য আমাদের দক্ষ টেকনিশিয়ান সহায়তা করতে প্রস্তুত। সঠিক সময়ে সঠিক মেরামতের মাধ্যমে আপনার যন্ত্রপাতির আয়ু বাড়ান। সার্ভিস পেতে এখনই লগইন করে আপনার কাজের বিস্তারিত পোস্ট করুন। মনে রাখবেন, লগইন ছাড়া কাজ পোস্ট করা সম্ভব নয়।')"><div class="img-space"><img src="images/oven.jpg" alt="image" class="oven-service-img"></div><p>অ্যাপ্লায়েন্স সার্ভিস</p></div>
+
+        </div>
+    </section>
+    <!-- পপআপ লেআউট -->
+<div id="servicePopup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2 id="popupTitle"></h2>
+        <p id="popupDesc"></p>
+    </div>
+</div>
+
+    <section class="section">
+        <h2>কিভাবে এটি কাজ করে</h2>
+        <div class="scroll-wrapper" id="how-it-works">
+            <div class="box-wide"><div class="img-space"></div><p>১. সমস্যা পোস্ট করুন</p></div>
+            <div class="box-wide"><div class="img-space"></div><p>২. টেকনিশিয়ান বাছুন</p></div>
+            <div class="box-wide"><div class="img-space"></div><p>৩. কাজ সম্পন্ন করুন</p></div>
+            <div class="box-wide"><div class="img-space"></div><p>৪. পেমেন্ট দিন</p></div>
+        </div>
+    </section>
+
+<div id="joinModal" class="modal">
+    <div class="my-modal-box">
+        <h2 class="my-title">নতুন অ্যাকাউন্ট তৈরি করুন</h2>
+        
+        <div class="my-radio-container">
+            <h4 class="my-subtitle">অ্যাকাউন্টের ধরন</h4>
+            <div class="my-radio-list">
+                <label><input type="radio" id="client" name="role" value="client"> আমি ক্লায়েন্ট</label>
+                <label><input type="radio" id="technician" name="role" value="technician"> আমি টেকনিশিয়ান</label>
+                <label><input type="radio" id="both" name="role" value="both"> উভয়ই</label>
+            </div>
+        </div>
+        
+        <div class="my-button-group">
+            <button class="my-btn cancel" onclick="closeModal('joinModal')">বাতিল করুন</button>
+            <button class="my-btn proceed" onclick="openConfirmation()">এগিয়ে যান</button>
+        </div>
+        
+        <p class="my-footer">ইতিমধ্যে অ্যাকাউন্ট আছে? <span class="my-link" onclick="switchToLogin()">লগইন করুন</span></p>
+    </div>
+</div>
+
+<div id="confirmationModal" class="confirm-modal-overlay" style="display:none;">
+    <div class="confirm-container">
+        <h2 id="dynamicHeading"></h2>
+        
+        <div class="confirm-info-box">
+    <p id="confirmNoteText"><span class="note-label">নোট:</span></p>
+</div>
+        <div class="confirm-btn-group">
+            <button class="confirm-btn no-btn" onclick="closeConfirmation()">না</button>
+            <button class="confirm-btn yes-btn" onclick="window.location.href='all_ready_file/html/signup-form.html';">হ্যাঁ</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="loginModal" class="modal-overlay">
+    <div class="modal-container">
+        <span class="close-cross" onclick="closeLoginModal()">&times;</span>
+        <h2>ইউজারনেম ও পাসওয়ার্ড দিন</h2>
+        
+        <input type="text" id="username" class="full-input" placeholder="ইউজারনেম">
+        <input type="password" id="password" class="full-input" placeholder="পাসওয়ার্ড">
+        
+        <button id="loginSubmit" class="full-btn blue-btn">লগইন করুন</button>
+        <button class="full-btn google-btn">জিমেইল দিয়ে লগইন করুন</button>
+        
+        <p class="signup-link">এ্যাকাউন্ট নাই? <span  onclick="switchToJoin()">সাইন আপ করুন</span></p>
+    </div>
+</div>
+    <script src="all_ready_file/js/script.js"></script>
+    <script src="all_ready_file/js/join-modal.js"></script>
+     <script src="all_ready_file/js/login-modal.js"></script>
+    
+    
 </body>
 </html>
+

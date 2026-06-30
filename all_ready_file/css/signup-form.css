@@ -1,0 +1,433 @@
+.help {
+    font-size: .7rem !important;
+color: #333333;
+text-decoration: none;
+}
+
+.nav-buttons {
+    display: flex;
+    font-weight: 600;
+    font-size: 14px;
+    align-items: center;
+    margin-left: 0;
+}
+.home {
+    font-size: .7rem !important;
+color: #333333;
+text-decoration: none;
+}
+
+.FAQ {
+    font-size: .7rem !important;
+color: #333333;
+text-decoration: none;
+}
+.nav-buttons {
+    align-items: center;
+justify-content: center;
+
+}
+.nav-buttons a:hover {
+    color: #ffffff;            /* মাউস নিলে টেক্সট কালার সাদা হবে */
+    background-color: #00264d; /* মাউস নিলে ব্যাকগ্রাউন্ড গাঢ় নীল হবে */
+    cursor: pointer;           /* কার্সারটি হাতের চিহ্ন দেখাবে */
+}
+/* মেনু লিঙ্কের নিচে হালকা আন্ডারলাইন ইফেক্ট (মাউস নিলে আসবে) */
+.nav-buttons a {
+    position: relative;
+}
+
+.nav-buttons a::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00264d;
+    transition: width 0.3s ease;
+}
+
+.nav-buttons a:hover::before {
+    width: 100%; /* হোভার করলে নিচে দাগ আসবে */
+}
+.nav-buttons a {
+    text-decoration: none;
+    color: #333333;
+    padding: 10px 15px;
+    transition: all 0.3s ease; /* এটি ইফেক্টটিকে মসৃণ (smooth) করবে */
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    display: inline-block;
+    font-family: 'Segoe UI', Tahoma, sans-serif; /* আধুনিক ক্লিন ফন্ট */
+}
+@media (max-width:821px) {
+
+.why-us {
+    display: none;
+}
+.about-us {
+    display: none !important;
+}
+.FAQ {
+    display: none !important;
+}
+.nav-menu {
+    position: absolute;       /* এটি মেনুটিকে ফ্লো থেকে বের করে আনবে */
+    right: 8%;                 /* একদম ডান দিকে চেপে বসবে */
+    width: 70%;               /* ডানদিকের অর্ধেক জায়গা দখল করবে */
+    display: flex;            /* মেনু আইটেম সাজানোর জন্য */
+    justify-content: flex-end; /* মেনু আইটেমগুলোকে ডানে রাখবে */
+    align-items: center;
+  
+}
+
+
+.nav-menu {
+margin-left: 10%;
+}
+}
+@media (max-width:821px) {
+#signupForm {
+     margin-top: 5%!important;
+}
+}
+.signup-container {
+    width: 100%;             /* স্ক্রিনজুড়ে থাকবে */
+    max-width: 90%;        /* খুব বেশি চওড়া হবে না, দেখতে সুন্দর লাগবে */
+    margin: 40px auto;       /* উপরে-নিচে জায়গা রাখবে */
+    padding: 40px;           /* ভেতরের ফাঁকা জায়গা বাড়াবে */
+    background: #ffffff;     /* ব্যাকগ্রাউন্ড সাদা */
+    border-radius: 12px;     /* কোনাগুলো গোল হবে */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* হালকা শ্যাডো যা একে পেজের উপরে ভাসিয়ে রাখবে */
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 15px;           /* ইনপুট বক্সের ভেতর বড় জায়গা */
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;         /* টেক্সট সাইজ বড় */
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.terms-dropdown {
+    width: 100%;
+    margin: 10px 0; /* নীতিমালা এবং সাবমিট বাটনের মাঝে গ্যাপ তৈরি করবে */
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+    word-wrap: break-word;     /* বড় শব্দ ভেঙে ফেলবে */
+    white-space: normal;      /* টেক্সটকে স্বাভাবিকভাবে নিচে নামাবে */
+    overflow-wrap: break-word; /* নিশ্চিত করবে যেন ডানে না বেরিয়ে যায় */
+    box-sizing: border-box;    /* প্যাডিং যেন বক্সের সাইজ বাড়িয়ে না দেয় */
+}
+
+.terms-toggle {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.google-btn {
+    width: 100%;
+    padding: 10px;
+    background: #eee;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    font-size: 18px;
+}
+#terms {
+    width: 18px;            /* বক্সের সাইজ ছোট করার জন্য */
+    height: 18px;
+    cursor: pointer;
+    margin: 0;              /* ডিফল্ট মার্জিন সরিয়ে ফেলা */
+}
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+    z-index: 1;
+}
+
+.input-group label {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    transition: 0.3s;
+    pointer-events: none;
+    color: #999;
+    background: white;
+    padding: 0 5px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* টাইপ করার সাথে সাথে লেবেল উপরে উঠবে */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 12px;
+    color: #28a745;
+}
+.input-error {
+    /* বর্ডারের বদলে বক্স-শ্যাডো ব্যবহার করুন */
+    box-shadow: 0 0 0 2px red !important; 
+    border-color: transparent !important; /* বর্ডার থাকলে তা স্বচ্ছ করে দিন */
+    animation: shake 0.3s;
+    color: red !important;
+}
+/* যখন বক্সে ক্লিক করবেন (focus), তখন এরর ক্লাস থাকা সত্ত্বেও বর্ডার স্বাভাবিক হয়ে যাবে */
+input.input-error:focus {
+    border: 2px solid #333333 !important; /* আপনার ডিফল্ট বর্ডার কালার দিন */
+    box-shadow: none !important;      /* যদি কোনো লাল আভা থাকে তা সরবে */
+    outline: none !important;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.terms-container {
+    display: flex;
+    flex-direction: column; /* ড্রপডাউনটিকে বাটনের উপরে নিচে সাজানোর জন্য */
+    height: auto;           /* হাইট ফিক্সড না রেখে অটো করে দিন */
+    overflow: visible;      /* ড্রপডাউন যেন বাইরে বের হতে পারে */
+    width: 100%;
+    margin: 10px 0;
+}
+/* ১. বাউন্ডারি বা কন্টেইনারের সাইজ বাড়িয়ে দিন */
+.otp-boundary {
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 25px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    text-align: center;
+    max-width: 450px; /* আগের ৩৫০px থেকে বাড়িয়ে ৪৫০px করলাম */
+    margin: 0 auto;
+}
+
+/* ২. বক্সগুলোর সাইজ এবং গ্যাপ সমন্বয় করা */
+.otp-input-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 8px; /* গ্যাপ একটু কমিয়ে দিলাম যাতে ৬টি বক্স সহজে ধরে */
+    margin-top: 15px;
+}
+
+.otp-box {
+    width: 45px;  /* বক্সের সাইজ সামান্য কমালাম */
+    height: 45px; /* বক্সের সাইজ সামান্য কমালাম */
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+}
+
+.otp-box:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+}
+
+#resendBtn {
+    padding: 6px 12px;           /* বাটনের ভেতর জায়গা */
+    background-color: #e7f1ff;   /* হালকা নীল ব্যাকগ্রাউন্ড */
+    color: #007bff;              /* নীল টেক্সট */
+    border: 1px solid #007bff;   /* নীল বর্ডার */
+    border-radius: 5px;          /* কোণা গোল করা */
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+#resendBtn.disabled {
+    background-color: #f0f0f0;   /* ডিজেবল হলে ধূসর ব্যাকগ্রাউন্ড */
+    border-color: #ccc;          /* ডিজেবল হলে ধূসর বর্ডার */
+    color: #999;                 /* ডিজেবল হলে ফ্যাকাশে টেক্সট */
+    cursor: not-allowed;
+}
+
+/* হোভার ইফেক্ট (যখন বাটন সচল থাকে) */
+#resendBtn:not(.disabled):hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+/* মোবাইল স্ক্রিনের জন্য রেসপনসিভ ডিজাইন */
+@media screen and (max-width: 821px) {
+    .otp-boundary {
+        padding: 15px 10px; /* প্যাডিং কমানো হলো */
+        max-width: 100%;    /* পুরো উইডথ দখল করবে */
+    }
+
+  .otp-input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px; /* গ্যাপটা একটু কমিয়ে দিন যাতে জায়গা বাঁচে */
+    flex-wrap: nowrap; /* এটা নিশ্চিত করুন যে নিচে নামবে না */
+    width: 100%;
+}
+
+.otp-box {
+    width: 40px !important;
+    height: 45px !important;
+    flex-shrink: 1; /* এটিই ম্যাজিক করবে! জায়গা কম হলে এটি সংকুচিত হবে */
+    min-width: 25px; /* তবে একটা লিমিট দিন যাতে একদম গায়েব না হয়ে যায় */
+    font-size: 16px !important;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+  
+}
+
+input:disabled {
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+    border-color: #ddd;
+}
+
+.edit-info-container {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    display: none;
+}
+
+.edit-btn {
+    background: #f0f7ff; /* হালকা নীল ব্যাকগ্রাউন্ড */
+    color: #2980b9;      /* গাঢ় নীল টেক্সট */
+    border: 1px solid #d6eaf8;
+    padding: 6px 15px;
+    border-radius: 20px;  /* গোল কোণা */
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.edit-btn:hover {
+    background: #d6eaf8;
+    transform: scale(1.02);
+}
+
+.edit-icon {
+    margin-right: 6px;
+    font-weight: bold;
+}
+/* এরর মেসেজটি ডিফল্টভাবে লুকিয়ে থাকবে */
+#nameErrorMessage {
+    display: none; 
+}
+
+/* যখন আমরা ক্লাস যোগ করব, তখন এটি দেখা যাবে */
+.show-error {
+    display: block !important;
+}
+#nameErrorMessage {
+    margin-left: 12px;
+    text-align: left;     /* লেখা বামে শুরু হবে */
+  
+    width: 100%;          /* পুরো জায়গা জুড়ে থাকবে */
+   
+}
+
+#phoneEmailErrorMessage {
+    margin-left: 12px;
+    text-align: left;     /* লেখা বামে শুরু হবে */
+  
+    width: 100%;          /* পুরো জায়গা জুড়ে থাকবে */
+   
+}
+
+#passwordErrorWrapper {
+    margin-left: 12px;
+    text-align: left;     /* লেখা বামে শুরু হবে */
+  
+    width: 100%;          /* পুরো জায়গা জুড়ে থাকবে */
+   
+}
+/* এটি ব্রাউজারের ডিফল্ট চোখের সব রূপকে ঢেকে দেবে */
+input[type="password"]::-webkit-credentials-auto-fill-button,
+input[type="password"]::-webkit-reveal,
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+.password-wrapper {
+    position: relative; /* এটি আইকনটিকে ইনপুট বক্সের ভেতর বন্দি রাখবে */
+    width: 100%; 
+}
+
+#pass {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; /* ডানপাশে আইকনের জন্য জায়গা ছাড়া */
+    box-sizing: border-box; /* এটি বক্সের সাইজ ঠিক রাখবে */
+}
+
+#togglePassword {
+    position: absolute;
+    right: 10px; /* ডান দিক থেকে দূরত্ব */
+    top: 50%; /* উপর থেকে অর্ধেক নিচে */
+    transform: translateY(-50%); /* একদম মাঝখানে নিয়ে আসা */
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    display: none;
+}
+#togglePassword {
+    position: absolute;
+    right: 10px;
+    top: 31px; /* এটি আপনার ইনপুট বক্সের পজিশন অনুযায়ী একটু বাড়ান বা কমান */
+    cursor: pointer;
+}
+
+.otp-box.active-focus {
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+    transform: scale(1.05); /* ফোকাস করলে বক্সটি সামান্য বড় হবে */
+    transition: all 0.3s ease;
+}
+
+/* প্রতিটি পয়েন্টের মাঝে গ্যাপ তৈরি করার জন্য */
+#terms-content p, 
+#terms-content ul {
+    margin-bottom: 3px !important; /* গ্যাপ বাড়াবে */
+    margin-top: 10px !important;    /* ওপরের সাথে গ্যাপ তৈরি করবে */
+}
+
+/* লিস্ট আইটেমগুলোর মাঝেও গ্যাপ দেওয়ার জন্য */
+#terms-content li {
+    margin-bottom: 8px;
+}

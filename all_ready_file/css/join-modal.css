@@ -1,0 +1,113 @@
+.modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+
+.my-modal-box { background: #fff; margin: 5% auto; padding: 30px; width: 350px; border-radius: 15px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); font-family: sans-serif; }
+
+.my-title { margin: 0 0 20px 0; font-size: 22px; color: #333; }
+
+.my-radio-container { border: 2px solid #007bff; border-radius: 10px; padding: 15px; margin-bottom: 20px; text-align: left; }
+.my-subtitle { margin: 0 0 10px 0; color: #007bff; font-size: 16px; }
+
+.my-radio-list { display: flex; flex-direction: column; gap: 10px; }
+.my-radio-list label { cursor: pointer; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+
+.my-button-group { display: flex; gap: 10px; }
+.my-btn { flex: 1; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; font-weight: bold; }
+.cancel { background: #eee; color: #333; }
+.proceed { background: #007bff; color: white; }
+
+.my-footer { margin-top: 20px; font-size: 14px; }
+.my-link { color: #007bff; cursor: pointer; text-decoration: underline; }
+/* হোভার ইফেক্ট */
+.my-btn {
+    transition: all 0.3s ease; /* এটি স্মুথ ট্রানজিশন করবে */
+}
+
+.cancel:hover {
+    background: #d4d4d4; /* বাতিলের জন্য সামান্য গাঢ় ছাই রঙ */
+    transform: translateY(-2px); /* সামান্য উপরে উঠবে */
+}
+
+.proceed:hover {
+    background: #0056b3; /* নীল বাটনটি সামান্য গাঢ় হবে */
+    transform: translateY(-2px); /* সামান্য উপরে উঠবে */
+}
+
+/* ক্লিক করার সময় হালকা পুশ হবে */
+.my-btn:active {
+    transform: translateY(0);
+}
+@media (max-width:821px) {
+.my-modal-box {
+    margin-top: 50%;
+}
+}
+
+.confirm-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirm-container {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.confirm-info-box {
+    border: 2px solid #28a745; /* আলাদা বর্ডার কালার */
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 6px;
+    background-color: #f8fff9;
+}
+
+.confirm-btn-group {
+    display: flex;
+    gap: 10px;
+}
+
+.confirm-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.no-btn { background: #ccc; }
+.yes-btn { background: #28a745; color: white; }
+
+#confirmNoteText {
+    font-weight: 500;
+}
+.note-label {
+    font-weight: 900;
+    color: #333; /* অথবা আপনার পছন্দমতো অন্য কোনো গাঢ় রঙ */
+}
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
+/* শেকিং অ্যানিমেশন */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake-animation {
+    animation: shake 0.3s ease-in-out;
+    border: 2px solid red !important; /* লাল বর্ডার */
+    transition: border 0.3s ease; /* এই লাইনটি যোগ করুন */
+}

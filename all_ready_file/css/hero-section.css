@@ -1,0 +1,199 @@
+.hero {
+     display: flex;
+     background: transparent;
+     height: 40vh;
+     width: 100%;
+     border: 2px solid transparent;
+     color: #fff;
+     
+     align-items: center;
+     margin-top: 50px; /* ন্যাভবারটি যত মোটা (height), তার চেয়ে একটু বেশি জায়গা ছাড়ুন */
+ }
+
+.hero-right { 
+    width: 50%;
+    height:100%;
+  
+ }
+ .hero-text {
+    font-size: 40px;
+    margin-top: 40px;
+    margin-left: 50px;
+    border: 2px solid transparent;
+    color: #ffffff; /* একদম পরিষ্কার সাদা */
+    
+    font-weight: 700; /* টেক্সট বোল্ড করার জন্য */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* টেক্সটের নিচে হালকা শ্যাডো যা ব্যাকগ্রাউন্ডে টেক্সটকে ফুটিয়ে তুলবে */
+    line-height: 1.2;
+    
+  /* ব্যাকগ্রাউন্ডকে টেক্সটের শেপে ক্লিপ করা */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* টেক্সট স্বচ্ছ করা যাতে ব্যাকগ্রাউন্ডের গ্র্যাডিয়েন্ট দেখা যায় */
+ 
+  
+  /* টেক্সট যাতে ভালো দেখা যায় তার জন্য বোল্ড করা */
+  font-weight: bold;
+  font-size: 40px; /* আপনার প্রয়োজন অনুযায়ী সাইজ পরিবর্তন করুন */
+ }
+ .hero-text p {
+    color: #f0f0f0; /* কিছুটা অফ-হোয়াইট যাতে চোখের ওপর চাপ না পড়ে */
+    font-size: 20px;
+    margin-top: 10px;
+}
+ .hero-left {
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #00264d 0%, #e2e4e8fb 100%);
+ }
+.search-wrap {
+   border: 1px solid transparent;
+   height: 12%;
+   width: 40%;
+margin-left: 20%;
+display: flex;
+}
+.search-btn {
+   height: 100%;
+   width: 15%;
+}
+.search-input {
+   height: 100%;
+   width: 85%;
+}
+.image-box { 
+    width: 100%;
+    height: 100%;
+    background: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+ }
+ .hero-img {
+    height: 100%;
+    width: 100%;
+
+ }
+ 
+ @media (max-width:821px) {
+   .hero {
+     display: flex;
+     background: transparent;
+     height: 20vh;
+     width: 100%;
+     border: 2px solid transparent;
+     color: #fff;
+     
+     align-items: center;
+     margin-top: 50px; /* ন্যাভবারটি যত মোটা (height), তার চেয়ে একটু বেশি জায়গা ছাড়ুন */
+ }
+ .hero-text {
+    font-size: 22px !important;
+    margin-top: 40px;
+    margin-left: 50px;
+    border: 2px solid transparent;
+    color: #ffffff; /* একদম পরিষ্কার সাদা */
+    
+    font-weight: 700; /* টেক্সট বোল্ড করার জন্য */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* টেক্সটের নিচে হালকা শ্যাডো যা ব্যাকগ্রাউন্ডে টেক্সটকে ফুটিয়ে তুলবে */
+    line-height: 1.2;
+    width: 90%;
+    margin-left: 8%;
+    
+  /* ব্যাকগ্রাউন্ডকে টেক্সটের শেপে ক্লিপ করা */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* টেক্সট স্বচ্ছ করা যাতে ব্যাকগ্রাউন্ডের গ্র্যাডিয়েন্ট দেখা যায় */
+ 
+  
+  /* টেক্সট যাতে ভালো দেখা যায় তার জন্য বোল্ড করা */
+  font-weight: bold;
+  font-size: 40px; /* আপনার প্রয়োজন অনুযায়ী সাইজ পরিবর্তন করুন */
+ }
+ .hero-text p {
+    color: #f0f0f0; /* কিছুটা অফ-হোয়াইট যাতে চোখের ওপর চাপ না পড়ে */
+    font-size: 20px;
+    margin-top: 10px;
+}
+ .search-wrap {
+   border: 1px solid transparent;
+   height: 15%;
+   width: 70%;
+margin-left: 12%;
+margin-top: 2%;
+display: flex;
+}
+.search-btn {
+   height: 100%;
+   width: 20%;
+}
+.search-input {
+   height: 100%;
+   width: 80%;
+   font-size: 11px;
+}
+ }
+ @media (max-width:376px) {
+   .hero {
+     display: flex;
+     background: transparent;
+     height: 25vh;
+     width: 100%;
+     border: 2px solid transparent;
+     color: #fff;
+     
+     align-items: center;
+     margin-top: 50px; /* ন্যাভবারটি যত মোটা (height), তার চেয়ে একটু বেশি জায়গা ছাড়ুন */
+ }
+ .hero-text {
+    font-size: 18px !important;
+    margin-top: 40px;
+    margin-left: 50px;
+    border: 2px solid transparent;
+    color: #ffffff; /* একদম পরিষ্কার সাদা */
+    
+    font-weight: 700; /* টেক্সট বোল্ড করার জন্য */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* টেক্সটের নিচে হালকা শ্যাডো যা ব্যাকগ্রাউন্ডে টেক্সটকে ফুটিয়ে তুলবে */
+    line-height: 1.2;
+    width: 90%;
+    margin-left: 8%;
+    
+  /* ব্যাকগ্রাউন্ডকে টেক্সটের শেপে ক্লিপ করা */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* টেক্সট স্বচ্ছ করা যাতে ব্যাকগ্রাউন্ডের গ্র্যাডিয়েন্ট দেখা যায় */
+ 
+  
+  /* টেক্সট যাতে ভালো দেখা যায় তার জন্য বোল্ড করা */
+  font-weight: bold;
+  font-size: 40px; /* আপনার প্রয়োজন অনুযায়ী সাইজ পরিবর্তন করুন */
+ }
+ .hero-text p {
+    color: #f0f0f0; /* কিছুটা অফ-হোয়াইট যাতে চোখের ওপর চাপ না পড়ে */
+    font-size: 20px;
+    margin-top: 10px;
+}
+ .search-wrap {
+   border: 1px solid transparent;
+   height: 15%;
+   width: 70%;
+margin-left: 12%;
+margin-top: 2%;
+display: flex;
+}
+.search-btn {
+   height: 100%;
+   width: 20%;
+}
+.search-input {
+   height: 100%;
+   width: 80%;
+   font-size: 11px;
+}
+ }
