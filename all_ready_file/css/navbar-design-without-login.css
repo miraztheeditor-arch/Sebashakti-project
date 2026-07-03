@@ -142,6 +142,8 @@ justify-content: center;
     min-width: 0;
     width: 50%;
   border: 2px solid transparent;
+  margin-left: 2% !important;
+  margin-right: 6% !important;
 }
 .about-us {
    
@@ -369,6 +371,20 @@ justify-content: center;
 }
 
 }
+
+@media(max-width: 1115px) {
+    
+.nav-menu {
+   gap: 1vw;               /* মেনু আইটেমগুলোর মাঝখানের গ্যাপ কমিয়ে দিন */
+        margin-left: 2% !important;        /* মার্জিন কমিয়ে দিন যাতে বাটনটির জন্য জায়গা পায় */
+        width: auto;            /* ফিক্সড উইডথ না রেখে অটো করে দিন */
+        font-size: 14px;        /* ফন্ট সাইজ সামান্য কমিয়ে দেখতে পারেন */
+        margin-right: 6% !important;
+        gap: 22px !important;
+}
+}
+
+
 @media (max-width: 821px) {
 .services-areas {
 display: none !important;
@@ -389,6 +405,9 @@ display: none !important;
     min-width: 0;
     width: 30%;
   border: 2px solid transparent;
+  margin-left: 8% !important;
+  margin-right: 0 !important;
+
 }
 .services, .home {
    
@@ -404,5 +423,16 @@ display: none !important;
 @media (min-width:760px) {
 .nav-menu {
     gap: 6vw;
+}
+}
+
+@media(max-width: 376px) {
+    
+.nav-menu {
+justify-content: center;
+align-items: center;
+margin-left: 12% !important;
+margin-right: 0 !important;
+font-size: 12px !important;
 }
 }

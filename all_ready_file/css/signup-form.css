@@ -63,14 +63,12 @@ justify-content: center;
     display: inline-block;
     font-family: 'Segoe UI', Tahoma, sans-serif; /* আধুনিক ক্লিন ফন্ট */
 }
-@media (max-width:821px) {
+@media (max-width:929px) {
 
 .why-us {
-    display: none;
-}
-.about-us {
     display: none !important;
 }
+
 .FAQ {
     display: none !important;
 }
@@ -79,19 +77,111 @@ justify-content: center;
     right: 8%;                 /* একদম ডান দিকে চেপে বসবে */
     width: 70%;               /* ডানদিকের অর্ধেক জায়গা দখল করবে */
     display: flex;            /* মেনু আইটেম সাজানোর জন্য */
-    justify-content: flex-end; /* মেনু আইটেমগুলোকে ডানে রাখবে */
+    justify-content: center; /* মেনু আইটেমগুলোকে ডানে রাখবে */
     align-items: center;
-  
-}
-
-
-.nav-menu {
-margin-left: 10%;
+    gap: 10% !important;
+    margin-left: 10%;
 }
 }
 @media (max-width:821px) {
 #signupForm {
      margin-top: 5%!important;
+}
+}
+@media (max-width: 710px) {
+
+.why-us {
+    display: none !important;
+}
+.about-us {
+     display: none !important;
+}
+
+.FAQ {
+    display: none !important;
+}
+.nav-menu {
+    position: absolute;       /* এটি মেনুটিকে ফ্লো থেকে বের করে আনবে */
+    right: 8%;                 /* একদম ডান দিকে চেপে বসবে */
+    width: 70%;               /* ডানদিকের অর্ধেক জায়গা দখল করবে */
+    display: flex;            /* মেনু আইটেম সাজানোর জন্য */
+    justify-content: center; /* মেনু আইটেমগুলোকে ডানে রাখবে */
+    align-items: center;
+    gap: 10% !important;
+    margin-left: 10%;
+}
+}
+@media (max-width: 542px) {
+
+.why-us {
+    display: none !important;
+}
+.about-us {
+     display: none !important;
+}
+
+.FAQ {
+    display: none !important;
+}
+.nav-menu {
+    position: absolute;       /* এটি মেনুটিকে ফ্লো থেকে বের করে আনবে */
+    right: 0% !important;                 /* একদম ডান দিকে চেপে বসবে */
+    width: 70%;               /* ডানদিকের অর্ধেক জায়গা দখল করবে */
+    display: flex;            /* মেনু আইটেম সাজানোর জন্য */
+    justify-content: center; /* মেনু আইটেমগুলোকে ডানে রাখবে */
+    align-items: center;
+    gap: 10% !important;
+    margin-left: 20% !important;
+}
+}
+@media (max-width: 431px) {
+
+.why-us {
+    display: none !important;
+}
+.about-us {
+     display: none !important;
+}
+
+.FAQ {
+    display: none !important;
+}
+.nav-menu {
+    position: absolute;       /* এটি মেনুটিকে ফ্লো থেকে বের করে আনবে */
+    right: 0%;                 /* একদম ডান দিকে চেপে বসবে */
+    width: 60%;               /* ডানদিকের অর্ধেক জায়গা দখল করবে */
+    display: flex;            /* মেনু আইটেম সাজানোর জন্য */
+    justify-content: center; /* মেনু আইটেমগুলোকে ডানে রাখবে */
+    align-items: center;
+    gap: 1% !important;
+    margin-left: 40px !important;
+    margin-right: 0 !important;
+}
+}
+@media (max-width: 351px) {
+
+.why-us {
+    display: none !important;
+}
+.about-us {
+     display: none !important;
+}
+
+.FAQ {
+    display: none !important;
+}
+.help {
+    display: none !important;
+}
+.nav-menu {
+    position: absolute;       /* এটি মেনুটিকে ফ্লো থেকে বের করে আনবে */
+    right: 0% !important;                 /* একদম ডান দিকে চেপে বসবে */
+    width: 60%;               /* ডানদিকের অর্ধেক জায়গা দখল করবে */
+    display: flex;            /* মেনু আইটেম সাজানোর জন্য */
+    justify-content: center; /* মেনু আইটেমগুলোকে ডানে রাখবে */
+    align-items: center;
+    gap: 10% !important;
+    margin-left: 20% !important;
 }
 }
 .signup-container {
