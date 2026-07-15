@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="../css/navbar-design-after-technician & client-login.css">
+    <link rel="stylesheet" href="../css/technician-dashboard-banner.css">
+    <link rel="stylesheet" href="../css/technician-dashboard-task-section.css">
+      <link rel="stylesheet" href="../css/technician-profile-icon-click.css">
+</head>
+<body>
+    <div id="toastMessage" style="display:none; position:fixed; top:80px; right:20px; background-color: #28a745; color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; font-family: sans-serif; font-weight: 500;">
+    রেজিস্ট্রেশন সফল হয়েছে! আপনাকে স্বাগতম।
+</div>
+    <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="../../images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
+
+<div class="nav-menu">
+    <a href="../../index.html" class="home">হোম</a>
+        <a href="services-areas.html" class="services-areas">সার্ভিস এরিয়া</a>
+        <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-icon" id="jobs-btn" title="Available Jobs">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span class="btn-text">Find Jobs</span>
+    </button>
+     <button class="nav-icon" id="bell-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+    </button>
+<div class="profile-container" id="profile-btn" onclick="toggleSidebar()">
+    <div class="profile-circle" id="profile-avatar">
+        <span id="avatar-letter">U</span>
+    </div>
+</div>
+
+
+
+<div id="profileSidebar" class="sidebar">
+
+  <div class="sidebar-header-fixed">
+    <div class="sidebar-header">
+        <div class="profile-pic-container">
+            <div class="profile-circle" id="profile-avatar">
+                <span id="avatar-letter">U</span>
+                </div>
+            <div class="camera-icon">📷</div>
+        </div>
+        <div class="name-container">
+            <span class="user-name">Rakihsuduasysay...</span>
+        </div>
+        <div class="button-container">
+            <button class="close-btn" onclick="toggleSidebar()">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                 </svg>
+            </button>
+        </div>
+    </div>
+
+        
+        <div class="sidebar-header-title">
+            <h3>অ্যাকাউন্ট মেনু</h3>
+        </div>
+
+        <div class="tech-info-box">
+            <div class="info-item">
+                 <span class="dot"></span> ওয়ার্কিং স্ট্যাটাস: <span class="status-text">অনলাইন</span>
+            </div>
+            <div class="info-item">
+                <span>📍</span> সার্ভিস এরিয়া: মিরপুর, ঢাকা
+            </div>
+        </div>
+      </div>
+
+    <div class="sidebar-scrollable" style="flex-grow: 1; overflow-y: auto;">
+
+        <div class="sidebar-menu">
+            <div class="menu-group">
+                <a href="#" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
+                <a href="#" class="menu-item"><span>🛠️</span> আমার কাজ</a>
+                <a href="#" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
+                <a href="#" class="menu-item"><span>💰</span> উইথড্র রিকোয়েস্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="#" class="menu-item"><span>👤</span> প্রোফাইল এডিট</a>
+                <a href="#" class="menu-item"><span>⚙️</span> সেটিংস</a>
+                <a href="#" class="menu-item"><span>🎧</span> সাপোর্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="#" class="menu-item logout"><span>🚪</span> লগ আউট</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ <div id="overlay"></div>
+
+
+    </nav>
+        <div class="banner">
+    <div class="banner-content">
+    <div class="greeting-header">
+<h2 style="margin:0;">হ্যালো, <span id="user-display-name">ব্যবহারকারী</span>!</h2>
+        <span>👋</span>
+    </div>
+    <p class="user-meta" id="user-id-display">টেকনিশিয়ান আইডি: #XXXX</p>
+    <div class="status-indicator">
+    <span class="dot"></span> কাজের জন্য প্রস্তুত
+</div>
+</div>
+        <div class="stats-container">
+              <div class="stat-card">
+                <span>বকেয়া পেমেন্ট</span>   
+        <strong class="negative-val">৩</strong>
+        <span class="comon-text">টি</span>
+            </div>
+              <div class="stat-card">
+                <span>আজকের শিডিউল</span>
+                 <strong class="progress-val">২</strong> <span class="comon-text">টি</span>
+                
+            </div>
+            <div class="stat-card">
+    <span>মোট আয়</span>
+   <strong class="positive-val">৬২৫,০০০</strong> <span class="comon-text">৳</span>
+</div>
+            <div class="stat-card">
+                <span>চলমান কাজ</span>
+                 <strong class="progress-val">৪</strong> <span class="comon-text">টি</span>
+                
+            </div>
+            <div class="stat-card">
+                <span>আজকের অনুরোধ</span>
+                 <strong class="comon-val">৬</strong> <span class="comon-text">টি</span>
+               
+            </div>
+        </div>
+    </div>
+        
+    </nav>
+    <div class="job-section">
+    <div class="job-header">
+        <h3>আপনার এরিয়াতে নতুন কাজ</h3>
+    </div>
+    
+    <div class="divider"></div>
+    <div class="scroll-container">
+    
+    <div class="no-job-card">
+    <div class="no-job-content">
+        <p class="main-text">দুঃখিত! এই মুহূর্তে আপনার এরিয়াতে কোনো কাজ খুঁজে পাওয়া যাচ্ছে না।</p>
+        <p class="sub-text">অনুগ্রহ করে <b>Find Jobs</b> এ ক্লিক করে আপনার পছন্দের কাজটি বেছে নিন।</p>
+    </div>
+</div>
+
+    <div class="job-card-gold">
+    <div class="card-top-row">
+        <div class="logo-circle"></div>
+        <div class="card-meta">
+            <h4 class="client-name">রহিম এন্টারপ্রাইজ</h4>
+            
+            <p class="location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                মিরপুর, ঢাকা
+            </p>
+        </div>
+    </div>
+
+    <h3 class="job-title">
+    <!-- এটি টুলবক্স আইকনের SVG -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    এসি সার্ভিসিং - ইউনিট ৩
+</h3>
+
+
+    <button class="btn-details">বিস্তারিত দেখুন</button>
+</div>
+
+ <div class="job-card-gold">
+    <div class="card-top-row">
+        <div class="logo-circle"></div>
+        <div class="card-meta">
+            <h4 class="client-name">রহিম এন্টারপ্রাইজ</h4>
+            
+            <p class="location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                মিরপুর, ঢাকা
+            </p>
+        </div>
+    </div>
+
+    <h3 class="job-title">
+    <!-- এটি টুলবক্স আইকনের SVG -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    এসি সার্ভিসিং - ইউনিট ৩ 
+</h3>
+
+    <button class="btn-details">বিস্তারিত দেখুন</button>
+</div>
+
+
+    <div class="job-card-gold">
+    <div class="card-top-row">
+        <div class="logo-circle"></div>
+        <div class="card-meta">
+            <h4 class="client-name">রহিম এন্টারপ্রাইজ</h4>
+            
+            <p class="location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                মিরপুর, ঢাকা
+            </p>
+        </div>
+    </div>
+
+    <h3 class="job-title">
+    <!-- এটি টুলবক্স আইকনের SVG -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    এসি সার্ভিসিং - ইউনিট ৩
+</h3>
+
+
+    <button class="btn-details">বিস্তারিত দেখুন</button>
+</div>
+
+
+    <div class="job-card-gold">
+    <div class="card-top-row">
+        <div class="logo-circle"></div>
+        <div class="card-meta">
+            <h4 class="client-name">রহিম এন্টারপ্রাইজ</h4>
+            
+            <p class="location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                মিরপুর, ঢাকা
+            </p>
+        </div>
+    </div>
+
+    <h3 class="job-title">
+    <!-- এটি টুলবক্স আইকনের SVG -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    এসি সার্ভিসিং - ইউনিট ৩
+</h3>
+
+
+    <button class="btn-details">বিস্তারিত দেখুন</button>
+</div>
+
+
+    <div class="job-card-gold">
+    <div class="card-top-row">
+        <div class="logo-circle"></div>
+        <div class="card-meta">
+            <h4 class="client-name">রহিম এন্টারপ্রাইজ</h4>
+            
+            <p class="location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                মিরপুর, ঢাকা
+            </p>
+        </div>
+    </div>
+
+    <h3 class="job-title">
+    <!-- এটি টুলবক্স আইকনের SVG -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    এসি সার্ভিসিং - ইউনিট ৩
+</h3>
+
+
+    <button class="btn-details">বিস্তারিত দেখুন</button>
+</div>
+
+
+    <div class="job-card-gold">
+    <div class="card-top-row">
+        <div class="logo-circle"></div>
+        <div class="card-meta">
+            <h4 class="client-name">রহিম এন্টারপ্রাইজ</h4>
+            
+            <p class="location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                মিরপুর, ঢাকা
+            </p>
+        </div>
+    </div>
+
+    <h3 class="job-title">
+    <!-- এটি টুলবক্স আইকনের SVG -->
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+    </svg>
+    এসি সার্ভিসিং - ইউনিট ৩
+</h3>
+
+
+    <button class="btn-details">বিস্তারিত দেখুন</button>
+</div>
+
+</div>
+</div>
+    <script src="../js/api.js"></script>
+<script src="../js/technician-dashboard.js"></script>
+
+</body>
+</html>

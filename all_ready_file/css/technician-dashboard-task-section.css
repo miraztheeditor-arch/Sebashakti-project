@@ -1,0 +1,280 @@
+.job-card-gold {
+    /* লাইট ব্রাউনিশ ব্যাকগ্রাউন্ড */
+    background: #fdfaf6; 
+   
+   /* গ্রেডিয়েন্ট বর্ডারের জন্য নিচের অংশটুকু */
+    border: 2px solid transparent; /* বর্ডার ট্রান্সপারেন্ট রাখা */
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: 
+        linear-gradient(to right, #fdfaf6, #fdfaf6), /* ভেতরের ব্যাকগ্রাউন্ড কালার */
+        linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); /* গোল্ডেন গ্রেডিয়েন্ট */
+    flex-shrink: 0; /* এটি কার্ডকে ছোট হতে বাধা দিবে */
+    border-radius: 15px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+.card-top-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.logo-circle { width: 40px; height: 40px; background: #c5a059; border-radius: 50%; }
+.client-name { margin: 0; font-size: 15px; }
+.location { 
+    font-size: 13px; 
+    color: #666; 
+    margin: 0; 
+    display: flex; 
+    align-items: center; 
+}
+.job-title {
+    font-size: 14px;
+    margin: 15px 0;
+    text-align: left; /* বামেই থাকবে */
+    color: #333;
+    display: flex; /* আইকন এবং টেক্সটকে পাশাপাশি রাখার জন্য */
+    align-items: center; /* লম্বালম্বি মাঝখানে রাখার জন্য */
+}
+.btn-details {
+    width: 100%;
+    padding: 10px;
+    background: #9acd32; /* আপনার সেই হলদে-সবুজ রং */
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-details:hover {
+    background: linear-gradient(90deg, #7cfc00, #9acd32);
+    box-shadow: 0 4px 10px rgba(154, 205, 50, 0.4);
+}
+/* সেকশন হেডার */
+.job-section { padding: 5px 0; }
+.job-header h3 { 
+    font-size: 18px; 
+     color: #1a237e; 
+    margin-bottom: 5px; 
+    font-weight: 600;
+    margin-left: 2%;
+}
+
+/* ডিভাইডার লাইন */
+.divider {
+    height: 2px;
+    background: #e0e0e0;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    width: 100%;
+}
+/* পিসির জন্য স্ক্রলবার দৃশ্যমান করা */
+.scroll-container {
+    display: flex !important;
+    overflow-x: auto;
+    gap: 20px !important;
+    padding: 10px 0;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+  
+    /* পিসিতে স্ক্রলবার দেখানোর জন্য */
+    scrollbar-width: thin; /* ফায়ারফক্সের জন্য */
+    scrollbar-color: #c5a059 #f1f1f1; /* আইকনের রঙ ও ব্যাকগ্রাউন্ডের রঙ */
+}
+
+/* ক্রোম, এজ এবং সাফারির জন্য স্ক্রলবার ডিজাইন */
+.scroll-container::-webkit-scrollbar {
+    height: 8px; /* স্ক্রলবারের উচ্চতা */
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* স্ক্রলবারের পেছনের ট্র্যাক */
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #c5a059; /* স্ক্রলবারের রঙ (আপনার গোল্ডেন থিমের সাথে মিল রেখে) */
+    border-radius: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb:hover {
+    background: #a08040; /* মাউস নিলে রঙ পরিবর্তন */
+}
+
+@media screen and (max-width: 977px) {
+    /* কন্টেইনার এবং কার্ডের হাইটকে auto করে দিন */
+    .scroll-container {
+        padding: 10px 2%;
+        gap: 8px;
+    }
+
+    .job-card-gold {
+        width: 240px; /* কার্ডের মূল সাইজ কমিয়ে ফেলুন */
+        height: auto;  /* হাইট কন্টেন্টের ওপর ছেড়ে দিন */
+        padding: 12px; /* প্যাডিং ছোট করুন */
+    }
+
+    /* ফন্ট সাইজ এবং বাটন সব একসাথে ছোট করা */
+    .job-card-gold h4, .job-card-gold .client-name {
+        font-size: 13px;
+    }
+
+    .job-card-gold h3, .job-card-gold .job-title {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    .btn-details {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    /* আগের কোডগুলো থাকবে, সাথে এটি যোগ করুন */
+    .no-job-card {
+        width: 240px !important; /* job-card-gold এর সাইজের সাথে মিলিয়ে */
+        height: auto;
+        padding: 12px;
+    }
+    .no-job-card p {
+        font-size: 12px !important; /* টেক্সট ছোট করা */
+    }
+}
+
+@media screen and (max-width: 677px) {
+    /* স্ক্রল কন্টেইনারের প্যাডিং ও গ্যাপ আরও কমিয়ে দিন */
+    .scroll-container {
+        padding: 8px 2%;
+        gap: 6px; 
+    }
+
+    /* কার্ডের প্রস্থ কমিয়ে ফেলুন */
+    .job-card-gold {
+        width: 200px; /* কার্ড আরও ছোট করে দিলাম */
+        padding: 10px;
+    }
+
+    /* ফন্ট আরও ছোট করা */
+    .job-card-gold h4, .job-card-gold .client-name {
+        font-size: 12px;
+    }
+
+    .job-card-gold h3, .job-card-gold .job-title {
+        font-size: 13px;
+        margin: 4px 0;
+    }
+
+    /* বাটনটি একদম কমপ্যাক্ট করে দেওয়া */
+    .btn-details {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+    .job-header h3 { 
+    font-size: 16px; 
+    color: #1a237e; 
+    margin-bottom: 5px; 
+ font-weight: bold !important;
+    text-shadow: 0.2px 0.2px 0.2px #1a237e; /* হালকা শ্যাডো যা লেখাকে ভরাট করবে */
+    margin-left: 2%;
+}
+/* আগের কোডগুলো থাকবে, সাথে এটি যোগ করুন */
+    .no-job-card {
+        width: 200px !important; /* job-card-gold এর ছোট সাইজের সাথে মিলিয়ে */
+        height: auto;
+        padding: 10px;
+    }
+    .no-job-card p {
+        font-size: 10px !important; /* টেক্সট আরও ছোট করা */
+    }
+}
+@media screen and (max-width: 490px) {
+    /* কন্টেইনারের সাইড গ্যাপ সামান্য কমানো */
+    .scroll-container {
+        padding: 5px 1% !important;
+        gap: 12px !important;
+    }
+
+    /* কার্ডের প্রস্থ কমিয়ে মোবাইল ফ্রেন্ডলি করা */
+    .job-card-gold {
+        width: 170px !important; /* কার্ড ছোট করে দিলাম */
+        padding: 8px !important;
+        border-radius: 10px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
+    }
+
+    /* টেক্সট সাইজ আরও ছোট করা */
+    .job-card-gold .client-name {
+        font-size: 11px !important;
+    }
+
+    .job-card-gold .job-title {
+        font-size: 12px !important;
+        margin: 3px 0 !important;
+    }
+
+    /* বাটনটিকে একদম ছোট করা */
+    .btn-details {
+        font-size: 10px !important;
+        padding: 4px 6px !important;
+    }
+    
+    /* যদি লোগো বা আইকন থাকে, সেটিও ছোট করে দিন */
+    .logo-circle {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    .job-header h3 { 
+    font-size: 14px; 
+     color: #1a237e; 
+    margin-bottom: 5px; 
+ font-weight: bold !important;
+    text-shadow: 0.2px 0.2px 0.2px #1a237e; /* হালকা শ্যাডো যা লেখাকে ভরাট করবে */
+    margin-left: 2%;
+}
+
+}
+
+.no-job-card {
+    /* আপনার বর্তমান কোডগুলো থাকবে */
+    background: #fdfaf6;
+    flex-shrink: 0;
+    border-radius: 15px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    /* গ্রেডিয়েন্ট বর্ডারের জন্য নিচের অংশটুকু */
+    border: 2px solid transparent; /* বর্ডার ট্রান্সপারেন্ট রাখা */
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: 
+        linear-gradient(to right, #fdfaf6, #fdfaf6), /* ভেতরের ব্যাকগ্রাউন্ড কালার */
+        linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); /* গোল্ডেন গ্রেডিয়েন্ট */
+    /* এই বাড়তি বিষয়গুলো যোগ করুন */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.2s ease; /* কার্ডে মাউস নিলে হালকা ইফেক্ট হবে */
+}
+
+/* কার্ডের ভেতরের টেক্সটের জন্য বাড়তি স্টাইল */
+.no-job-card p {
+    color: #5c5c5c; /* টেক্সটের রঙ একটু গাঢ় করলে পড়তে সুবিধা হয় */
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+.no-job-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* টেক্সটের দুই লাইনের মাঝে ফাঁক */
+}
+
+.main-text {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.sub-text {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4; /* লাইনগুলো যেন ঘিঞ্জি না লাগে */
+}

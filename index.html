@@ -125,7 +125,7 @@
 </div>
         <div class="confirm-btn-group">
             <button class="confirm-btn no-btn" onclick="closeConfirmation()">না</button>
-            <button class="confirm-btn yes-btn" onclick="window.location.href='all_ready_file/html/signup-form.html';">হ্যাঁ</button>
+          <button class="confirm-btn yes-btn" onclick="confirmAndRedirect()">হ্যাঁ</button>
         </div>
     </div>
 </div>
@@ -136,7 +136,7 @@
         <span class="close-cross" onclick="closeLoginModal()">&times;</span>
         <h2>ইউজারনেম ও পাসওয়ার্ড দিন</h2>
         
-        <input type="text" id="username" class="full-input" placeholder="ইউজারনেম">
+        <input type="text" id="username" class="full-input" placeholder="ফোন নম্বর/ইমেইল">
         <input type="password" id="password" class="full-input" placeholder="পাসওয়ার্ড">
         
         <button id="loginSubmit" class="full-btn blue-btn">লগইন করুন</button>
@@ -145,6 +145,7 @@
         <p class="signup-link">এ্যাকাউন্ট নাই? <span  onclick="switchToJoin()">সাইন আপ করুন</span></p>
     </div>
 </div>
+    <script src="all_ready_file/js/api.js"></script>
     <script src="all_ready_file/js/script.js"></script>
     <script src="all_ready_file/js/join-modal.js"></script>
      <script src="all_ready_file/js/login-modal.js"></script>

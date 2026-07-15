@@ -18,8 +18,9 @@ function closeModal(id) {
 }
 
 
-function openConfirmation() {
-    const selectedRadio = document.querySelector('input[name="role"]:checked');
+async function openConfirmation() {
+     const selectedRadio = document.querySelector('input[name="role"]:checked');
+     
     const radioContainer = document.querySelector('.my-radio-list'); // আপনার রেডিও বাটনের কন্টেইনার ক্লাস
     if (!selectedRadio) {
      // ১. লাল বর্ডার ও শেকিং ইফেক্ট যোগ করা
@@ -32,6 +33,19 @@ function openConfirmation() {
 
         return; // ফাংশনটি এখানে থেমে যাবে
     }
+    // ৮১ নম্বর লাইনের জন্য ট্রাই-ক্যাচ ব্লক
+        try {
+            await UserAPI.saveUserRole(selectedRadio.value);
+            
+          
+            
+        } catch (err) {
+            // এরর হলে কমন মেসেজ
+            console.error("Error saving user role:", err);
+            alert("সার্ভারে সমস্যা হয়েছে, দয়া করে পুনরায় চেষ্টা করুন।");
+            return; // এখানেই থেমে যাবে, সাইন আপ পেজে আর যাবে না
+        }
+   
 
     // ১. রোলের নাম অনুযায়ী বাংলা টেক্সট সেট করা
     let roleName = "";
@@ -67,7 +81,34 @@ function closeConfirmation() {
 }
 
 function proceed() {
+    
     // কনফার্ম হওয়ার পর পরবর্তী কাজ
     alert("আপনার নির্বাচন নিশ্চিত হয়েছে!");
     document.getElementById("confirmationModal").style.display = "none";
+}
+
+function confirmAndRedirect() {
+    // ১. কোন রেডিও বাটনটি সিলেক্ট করা ছিল তা খুঁজে বের করুন
+    const selectedRadio = document.querySelector('input[name="role"]:checked');
+    
+    if (selectedRadio) {
+        // ৮১ নম্বর লাইনের জন্য ট্রাই-ক্যাচ ব্লক
+         
+            // ৩. সফল হলে তবেই সাইন আপ পেজে পাঠান
+            window.location.href = "all_ready_file/html/signup-form.html";
+    }
+}
+
+// লগইন চেক করার সময়:
+findUserByCredential: async (identifier, password) => {
+    const masterData = JSON.parse(localStorage.getItem('userMasterData') || '{}');
+    
+    // লুপ চালিয়ে চেক করুন ফোন অথবা ইমেইলের সাথে পাসওয়ার্ড মেলে কি না
+    for (let phone in masterData) {
+        const user = masterData[phone];
+        if ((phone === identifier || user.email === identifier) && user.password === password) {
+            return user; // পুরো ইউজার ডাটা (আইডিসহ) ফেরত দিবে
+        }
+    }
+    return null;
 }

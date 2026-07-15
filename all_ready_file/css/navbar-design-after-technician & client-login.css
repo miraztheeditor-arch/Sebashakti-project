@@ -134,18 +134,20 @@ justify-content: center;
     align-items: center;
     justify-content: center;
     height: 100%;
-    gap: 8vw; /* এই সংখ্যাটি বাড়িয়ে বা কমিয়ে দূরত্ব ঠিক করতে পারবেন */
-   
-    
+    gap: 12vw !important; /* এই সংখ্যাটি বাড়িয়ে বা কমিয়ে দূরত্ব ঠিক করতে পারবেন */    
     font-size: 0.1rem !important;
     flex-shrink: 1;
     min-width: 0;
     width: 50%;
   border: 2px solid transparent;
-  margin-left: 2% !important;
-  margin-right: 6% !important;
+  margin-left: 0 !important;
+  margin-right: 9% !important;
 }
 .about-us {
+   
+    font-size: .7rem !important;
+}
+.home {
    
     font-size: .7rem !important;
 }
@@ -169,75 +171,9 @@ justify-content: center;
     border: 2px solid transparent;
     height: 75%;
     width: 30%;
-  
-    margin-right: 1%;
-    
-}
-/* বাটনগুলোর কমন এবং বেসিক স্টাইল */
-.login-btn, .join-btn {
-    text-decoration: none;
-   
-    border-radius: 10px; /* সম্পূর্ণ গোলাকার বাটন */
-    font-weight: 1000; /* বোল্ড ফন্ট */
-   font-size: 15px;
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* স্মুথ এবং প্রিমিয়াম অ্যানিমেশন */
-    
     align-items: center;
-    justify-content: center;
-    margin-left: 1%;
     margin-right: 1%;
-    border: none;
-    flex: 1;
-    min-width: 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* হালকা শ্যাডো */
     
-}
-
-/* লগইন বাটন (আধুনিক আউটলাইন স্টাইল) */
-.login-btn {
-    background-color: transparent;
-    border: 2px solid #00264d; /* লোগোর রঙের সাথে মিলিয়ে বর্ডার */
-    color: #00264d;
-   
-}
-
-.login-btn:hover {
-    background-color: #00264d; /* হোভারে ব্যাকগ্রাউন্ড নীল হবে */
-    color: #ffffff; /* টেক্সট সাদা হবে */
-    box-shadow: 0 6px 12px rgba(0, 38, 77, 0.3); /* নীল রঙের গভীর শ্যাডো */
-    transform: translateY(-3px); /* সামান্য উপরে উঠবে */
-}
-
-/* জয়েন করুন বাটন (উজ্জ্বল এবং আকর্ষণীয় গোল্ডেন স্টাইল) */
-.join-btn {
-    background: linear-gradient(45deg, #ffcc00, #ff9900); /* সুন্দর গ্রেডিয়েন্ট কালার */
-    color: #000000;
-    position: relative;
-    overflow: hidden; /* শাইন ইফেক্টের জন্য জরুরি */
-}
-
-/* জয়েন বাটনের জন্য একটি উজ্জ্বল শাইন ইফেক্ট */
-.join-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.7);
-    transform: rotate(30deg);
-    transition: all 0.6s ease;
-}
-
-.join-btn:hover::after {
-    left: 130%; /* মাউস নিলে শাইন ইফেক্টটি পাশ দিয়ে চলে যাবে */
-}
-
-.join-btn:hover {
-    background: linear-gradient(45deg, #ff9900, #ffcc00); /* গ্রেডিয়েন্ট উল্টে যাবে */
-    box-shadow: 0 8px 20px rgba(255, 153, 0, 0.4); /* গোল্ডেন রঙের গভীর শ্যাডো */
-    transform: translateY(-3px) scale(1.03); /* সামান্য উপরে উঠবে এবং বড় হবে */
 }
 
 
@@ -380,7 +316,7 @@ justify-content: center;
         width: auto;            /* ফিক্সড উইডথ না রেখে অটো করে দিন */
         font-size: 14px;        /* ফন্ট সাইজ সামান্য কমিয়ে দেখতে পারেন */
         margin-right: 6% !important;
-        gap: 22px !important;
+        gap: 50px !important;
 }
 }
 
@@ -419,17 +355,25 @@ display: none !important;
     .nav-menu {
         display: none;
     }
-    .login-btn {
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
 }
 @media (min-width:760px) {
 .nav-menu {
     gap: 6vw;
 }
 }
+
+@media (max-width: 664px) {
+.about-us {
+    display: none !important;
+}
+}
+@media (max-width: 391px) {
+.nav-buttons {
+    margin-right: 5% !important;
+}
+}
+
+
 
 @media(max-width: 376px) {
     
@@ -441,3 +385,79 @@ margin-right: 0 !important;
 font-size: 12px !important;
 }
 }
+@media (max-width: 361px) {
+.nav-buttons {
+    margin-right: 8% !important;
+}
+.nav-menu {
+    margin-left: 4% !important;
+}
+}
+
+/* গোল আইকন ও গ্রেডিয়েন্ট বর্ডার */
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #3498db, #9b59b6, #e74c3c);
+    padding: 2px; /* বর্ডারের পুরুত্ব */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+}
+
+/* টেক্সটের জন্য */
+.profile-text {
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center; /* টেক্সট মাঝখানে রাখার জন্য */
+}
+#avatar-letter {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* মাউস নিলে রঙ হালকা পরিবর্তন হবে */
+#bell-icon:hover {
+    background-color: #e0e0e0;
+}
+
+/* বেল আইকনের সাইজ */
+#bell-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #555;             /* আইকনের রঙ */
+}
+
+
+.nav-icon:hover {
+    background-color: #e0e0e0;
+}
+
+
+.nav-icon {
+    border-radius: 10px; /* চারকোনা কিন্তু কোণাগুলো হালকা বাঁকানো */
+    background-color: #f0f0f0; 
+    border: none;
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* এটি বাটনগুলোকে চ্যাপ্টা হওয়া থেকে বাঁচাবে */
+    
+}
+

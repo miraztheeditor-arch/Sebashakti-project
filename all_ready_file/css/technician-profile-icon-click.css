@@ -1,0 +1,277 @@
+
+/* যখন উইন্ডোটি খুলবে */
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+   /* গ্লাস ইফেক্ট - যেকোনো রঙের ব্যাকগ্রাউন্ডের ওপর কাজ করবে */
+    background: rgba(255, 255, 255, 0.7); 
+    backdrop-filter: blur(15px);
+    
+    /* বর্ডার এবং শ্যাডো */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+   
+    /* স্পেসিং */
+
+    border-radius: 0 0 20px 20px; /* নিচের দিকে হালকা রাউন্ড */
+    
+    /* টেক্সট কালার */
+    color: #333; /* গাঢ় ধূসর রঙ, সবুজের চেয়ে বেশি প্রফেশনাল */
+}
+
+.profile-pic-container { position: relative;
+
+ display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+padding-right: 5px;
+ }
+.camera-icon { position: absolute; bottom: 0; right: 0; cursor: pointer; }
+
+/* গোল আইকন ও গ্রেডিয়েন্ট বর্ডার */
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #3498db, #9b59b6, #e74c3c);
+    padding: 2px; /* বর্ডারের পুরুত্ব */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    
+  
+   
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+}
+
+/* বাটনটির উইডথ এবং পজিশন */
+.close-btn {
+    background: transparent !important;
+    border: transparent !important;
+    cursor: pointer;
+    
+    /* বাটনটি যেন ঠিক ২০% জায়গা দখল করে */
+    flex: 0 0 20%; 
+   
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* আইকনটিকে একদম ডান দিকে রাখতে */
+    outline: none;
+    padding: 0;
+}
+
+/* এসভিজি আইকনটি যাতে বাটনের ভেতরে ঠিকঠাক থাকে */
+.close-btn svg {
+    width: 24px;
+    height: 24px;
+}
+/* ক্যামেরা আইকনটিকে পুরোপুরি বৃত্তের ভেতরে নিতে */
+.profile-circle {
+    position: relative;
+    /* আপনার আগের স্টাইলগুলো এখানে থাকবে */
+}
+
+.camera-icon {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    background: white;
+    /* আরও ছোট করতে */
+    width: 12px;
+    height: 12px;
+    font-size: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.name-container {
+   
+    flex-grow: 1; /* নাম এবং বাটনের মাঝে ফাঁকা জায়গা দখল করতে */
+    margin-left: 2px;
+   
+}
+
+.button-container {
+    
+    display: flex;
+    justify-content: flex-end; /* বাটনটিকে ডানে সরাতে */
+    margin-right: 0;
+}
+.user-name {
+    display: block;          /* এটি ব্লক এলিমেন্ট হতে হবে */
+    white-space: nowrap;     /* নাম এক লাইনে রাখবে */
+    overflow: hidden;        /* অতিরিক্ত অংশ লুকিয়ে ফেলবে */
+    text-overflow: ellipsis; /* বড় নামের শেষে '...' দেখাবে */
+    max-width: 150px;        /* নির্দিষ্ট প্রস্থ, যা আপনার প্রয়োজন অনুযায়ী বাড়াতে বা কমাতে পারেন */
+}
+
+
+
+#profileSidebar.active {
+    right: 0;
+}#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* হালকা কালো ব্যাকগ্রাউন্ড */
+    backdrop-filter: blur(5px);      /* আসল ব্লার এফেক্ট */
+    display: none;                  /* শুরুতে এটি লুকানো থাকবে */
+    z-index: 999;                   /* সাইডবারের নিচে কিন্তু কন্টেন্টের উপরে */
+    transition: 0.4s;
+}
+
+
+
+/* ওভারলে ডিফল্ট পিসিতে হাইড থাকবে */
+#overlay {
+    display: none;
+}
+
+/* ছোট স্ক্রিনে ওভারলে কাজ করবে */
+@media (max-width: 1024px) {
+    #overlay.active {
+        display: block;
+    }
+}
+
+
+.sidebar-menu {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #4a4a4a;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.menu-item:hover {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+}
+
+.menu-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 15px 0;
+}
+
+.logout {
+    color: #e74c3c;
+    margin-top: 10px;
+}
+
+.logout:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.icon {
+    font-size: 18px;
+}
+
+.tech-info-box {
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.03);
+    margin: 5px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* অনলাইন ডট স্টাইল */
+.dot {
+    height: 8px;
+    width: 8px;
+    background-color: #27ae60; /* সবুজ রঙ */
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-text {
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.sidebar-header-title {
+    padding: 15px 20px 5px 20px;
+    color: #888; /* একটু হালকা রঙ যাতে আলাদা বোঝা যায় */
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#profileSidebar {
+
+    /* অবশ্যই এই দুটো লাইন যোগ করুন */
+    display: flex;
+    flex-direction: column;
+  
+    position: fixed;
+    width: 25%;
+    top: 0;
+    right: -100%;
+    transition: 0.4s;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+    box-sizing: border-box;
+    height: 100vh;
+    /* এই এক লাইনেই আপনার সব সমস্যা সমাধান হবে */
+    width: max(25%, min(90%, 400px)); 
+}
+
+/* ফিক্সড অংশ */
+.sidebar-header-fixed {
+    flex-shrink: 0;         /* হেডার নড়বে না */
+    background: #ffffff;    /* মেনু যেন নিচ দিয়ে না দেখা যায় */
+   
+}
+
+/* স্ক্রলযোগ্য অংশ */
+.sidebar-scrollable {
+    flex-grow: 1;           /* হেডার বাদে বাকি সব জায়গা নেবে */
+    overflow-y: auto;       /* কন্টেন্ট বেশি হলে এখানেই স্ক্রল হবে */
+}

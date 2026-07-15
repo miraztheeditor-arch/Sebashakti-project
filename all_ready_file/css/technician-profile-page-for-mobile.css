@@ -1,0 +1,73 @@
+/* ১. সাইডবার হেডারকে ফ্লেক্স করা যাতে সব এলিমেন্ট লম্বালম্বি সাজানো থাকে */
+.sidebar-header {
+    display: flex;
+    justify-content: center;
+    
+    align-items: flex-start; /* বামে ঘেঁষে রাখবে */
+    padding: 20px;
+    gap: 15px; /* ব্যাক বাটন এবং প্রোফাইলের মাঝে দূরত্ব */
+    margin-top: 70px;
+    border: 2px solid black;
+    height: 70px;
+    width: 100%;
+}
+
+
+
+
+/* ৩. প্রোফাইল আইকন ও নামের কন্টেইনার */
+.profile-pic-container {
+    margin-top: 0 !important;
+    margin-left: 5px !important;
+    border:  2px solid red;
+}
+
+
+
+/* ৫. নামের স্টাইল */
+.name-container {
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis; /* নাম বড় হলে ডট ডট দেখাবে */
+    white-space: nowrap;
+}
+
+.profile-pic-container { position: relative;
+
+ display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+padding-right: 5px;
+ }
+.camera-icon { position: absolute; bottom: 0; right: 0; cursor: pointer; }
+
+/* গোল আইকন ও গ্রেডিয়েন্ট বর্ডার */
+.profile-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #3498db, #9b59b6, #e74c3c);
+    padding: 2px; /* বর্ডারের পুরুত্ব */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: relative;
+  
+   
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+}
+#avatar-letter {
+    color: white;           /* লেখা সাদা করার জন্য */
+    font-size: 24px;        /* লেখা বড় করার জন্য (আপনার পছন্দমতো বাড়াতে পারেন) */
+    font-weight: bold;      /* লেখাটিকে বোল্ড করার জন্য */
+    display: block;         /* টেক্সটটিকে সঠিকভাবে সেন্টার করার জন্য */
+}

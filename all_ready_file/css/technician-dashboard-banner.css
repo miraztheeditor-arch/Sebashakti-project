@@ -1,0 +1,289 @@
+/* style.css ফাইল */
+.banner {
+    background: linear-gradient(135deg, #00c6ff 0%, #7b2cbf 100%);
+    padding: 20px 30px;
+    border-radius: 5px; /* কোনাগুলো একটু গোল করলে আরও প্রিমিয়াম দেখাবে */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    margin-top: 52px;
+}
+/* মেইন কন্টেইনার */
+.stats-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 60%;
+    margin-left: auto;
+    flex-wrap: nowrap; /* কার্ডগুলো এক লাইনেই থাকবে */
+}
+
+/* কার্ড স্টাইল */
+.stat-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    padding: 10px 5px;
+    border-radius: 8px;
+    text-align: center !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    /* গোল্ডেন/প্রিমিয়াম টাচ এবং শ্যাডো */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px); /* গ্লাস ইফেক্ট */
+    height: 80px !important;
+    /* সবথেকে গুরুত্বপূর্ণ: ফন্ট সাইজ রেসপনসিভ করা */
+    font-size: clamp(8px, 1.2vw, 14px); 
+    flex: 1; /* সমান জায়গা নেবে */
+    min-width: 0; /* লেখা যাতে বক্সের বাইরে না যায় */
+    overflow: hidden; /* অতিরিক্ত কিছু থাকলে তা লুকিয়ে ফেলবে */
+    position: relative;
+    transition: all 0.3s ease; /* ট্রানজিশন মসৃণ করার জন্য */
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+/* হোভার ইফেক্ট */
+.stat-card:hover {
+    transform: translateY(-5px); /* কার্ডটি হালকা উপরে উঠে আসবে */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    border-color: rgba(255, 255, 255, 0.4); /* বর্ডার উজ্জ্বল হবে */
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4); /* শ্যাডো বাড়বে */
+}
+
+/* ক্লিক করার সময় হালকা একটা এনিমেশন */
+.stat-card:active {
+    transform: translateY(0); /* ক্লিক করলে আবার আগের অবস্থানে নেমে যাবে */
+}
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 8px;
+    padding: 1px; /* বর্ডারের পুরুত্ব */
+    background: linear-gradient(135deg, #FFD700, #B8860B, transparent);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+
+/* লেবেল টেক্সট (বকেয়া পেমেন্ট) */
+.stat-card span:first-child {
+    display: block; /* এটি উপরেই থাকবে */
+}
+
+/* কার্ডের সংখ্যা (হাইলাইট করার জন্য) */
+.stat-card strong {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 700; /* বোল্ড করা */
+    color: #ffffff;   /* উজ্জ্বল সাদা */
+}
+/* মোট আয় বা পজিটিভ সংখ্যার জন্য কালার */
+.positive-val {
+    color: #00FF7F !important; /* উজ্জ্বল সবুজ */
+   
+    font-weight: bold;
+}
+.negative-val {
+    color: #FF4D4D !important; /* উজ্জ্বল সবুজ */
+    font-weight: bold;
+}
+.progress-val {
+    color: #FFD700 !important; /* উজ্জ্বল সবুজ */
+    font-weight: bold;
+}
+.comon-val {
+    color: #ffffff !important; /* উজ্জ্বল সবুজ */
+    font-weight: bold;
+}
+/* 'টাকা' লেখাটি সাদা থাকবে */
+.comon-text {
+    color: #ffffff !important; 
+    font-weight: normal;
+    font-size: 14px; /* সংখ্যার চেয়ে একটু ছোট রাখা ভালো */
+    display: inline-block;
+   margin-top: 8px;
+    border-bottom: none !important;
+}
+@media (max-width:1011px) {
+     .stats-container {
+        width: 40%; /* মোবাইলে পুরো জায়গা নেবে */
+        display: grid; /* গ্রিড লেআউট ব্যবহার করব */
+        grid-template-columns: repeat(3, 1fr); /* ৩টি কার্ড পাশাপাশি */
+        gap: 8px;
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    .comon-text {
+    color: #ffffff !important; 
+    font-weight: normal;
+    font-size: 14px; /* সংখ্যার চেয়ে একটু ছোট রাখা ভালো */
+    display: inline-block;
+   margin-top: 4px;
+    border-bottom: none !important;
+}
+        .banner-content {
+    display: flex;
+    flex-direction: column; /* সব এলিমেন্ট লম্বালম্বি সারিবদ্ধ হবে */
+    align-items: center;    /* সব কিছু মাঝখানে থাকবে */
+    justify-content: center;
+    text-align: center;
+    width: 60% !important;
+   
+    box-sizing: border-box; /* সাইজ যাতে না ভাঙে */
+}
+.stat-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 5px;
+    border-radius: 8px;
+    text-align: center !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 60px !important;
+    /* সবথেকে গুরুত্বপূর্ণ: ফন্ট সাইজ রেসপনসিভ করা */
+    font-size: clamp(8px, 1.2vw, 14px); 
+    flex: 1; /* সমান জায়গা নেবে */
+    min-width: 0; /* লেখা যাতে বক্সের বাইরে না যায় */
+    overflow: hidden; /* অতিরিক্ত কিছু থাকলে তা লুকিয়ে ফেলবে */
+}
+
+
+}
+@media (max-width:857px) {
+    .stat-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 10px 5px;
+    border-radius: 8px;
+    text-align: center !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 50px !important;
+    /* সবথেকে গুরুত্বপূর্ণ: ফন্ট সাইজ রেসপনসিভ করা */
+    font-size: clamp(8px, 1.2vw, 14px); 
+    flex: 1; /* সমান জায়গা নেবে */
+    min-width: 0; /* লেখা যাতে বক্সের বাইরে না যায় */
+    overflow: hidden; /* অতিরিক্ত কিছু থাকলে তা লুকিয়ে ফেলবে */
+}
+.comon-text {
+    color: #ffffff !important; 
+    font-weight: normal;
+    font-size: 14px; /* সংখ্যার চেয়ে একটু ছোট রাখা ভালো */
+    display: inline-block;
+   margin-top: 0px !important;
+    border-bottom: none !important;
+}
+}
+
+/* ফোন বা মোবাইল ভিউয়ের জন্য (স্ক্রিন উইডথ ৬০০px বা তার কম) */
+@media (max-width: 690px) {
+    .banner {
+        flex-direction: column; /* মোবাইল ভিউতে ব্যানার কনটেন্ট নিচে চলে যাবে */
+        text-align: center;
+    }
+
+    .stats-container {
+        width: 100%; /* মোবাইলে পুরো জায়গা নেবে */
+        display: grid; /* গ্রিড লেআউট ব্যবহার করব */
+        grid-template-columns: repeat(3, 1fr); /* ৩টি কার্ড পাশাপাশি */
+        gap: 8px;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    .stat-card {
+        padding: 8px 2px;
+        font-size: 10px; /* ফন্ট সাইজ ছোট করে দিলাম যাতে ধরানো যায় */
+    }
+    
+    .stat-card strong {
+        font-size: 14px;
+    }
+    .banner-content {
+    display: flex;
+    flex-direction: column; /* সব এলিমেন্ট লম্বালম্বি সারিবদ্ধ হবে */
+    align-items: center;    /* সব কিছু মাঝখানে থাকবে */
+    justify-content: center;
+    text-align: center;
+    width: 100% !important;
+   
+    box-sizing: border-box; /* সাইজ যাতে না ভাঙে */
+}
+
+}
+/* কন্টেইনার স্টাইল */
+.banner-content {
+    display: flex;
+    flex-direction: column; /* সব এলিমেন্ট লম্বালম্বি সারিবদ্ধ হবে */
+    align-items: center;    /* সব কিছু মাঝখানে থাকবে */
+    justify-content: center;
+    text-align: center;
+    width: 40%;
+  
+    box-sizing: border-box; /* সাইজ যাতে না ভাঙে */
+}
+
+/* শিরোনাম এবং ইমোজি সারিবদ্ধ করা */
+.greeting-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* টেক্সট ও ইমোজির মাঝের গ্যাপ */
+    font-size: clamp(16px, 4vw, 24px); /* স্ক্রিন অনুযায়ী সাইজ অটো অ্যাডজাস্ট হবে */
+    margin: 0;
+    color: white;
+}
+
+/* আইডি স্টাইল */
+.user-meta {
+    margin: 5px 0;
+    margin-top: 8px;
+    font-size: clamp(12px, 2.5vw, 14px);
+    opacity: 0.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* স্ট্যাটাস ব্যাজ */
+.status-indicator {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: clamp(10px, 2vw, 12px);
+    margin-top: 5px;
+    display: inline-block;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    white-space: nowrap; /* লেখা যাতে ভেঙে না যায় */
+    margin-bottom: 5px;
+}
+/* সবুজ ডট-এর জন্য স্টাইল */
+.status-indicator .dot {
+    height: 8px;
+    width: 8px;
+    background-color: #00FF7F; /* উজ্জ্বল সবুজ */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    box-shadow: 0 0 5px rgba(0, 255, 127, 0.8); /* হালকা আলোর আভা */
+}
+#toastMessage {
+    display: none; /* শুরুতে এটি লুকানো থাকবে */
+    position: fixed;
+    /* মূল ম্যাজিক: */
+    top: 20px; /* স্ক্রিনের উপর থেকে কতটুকু নিচে থাকবে */
+    left: 50%; /* স্ক্রিনের বাম দিক থেকে ৫০% দূরত্বে */
+    transform: translateX(-50%); /* ঠিক মাঝখানে আনতে এটি ব্যবহার করুন */
+    
+    /* অন্যান্য স্টাইল */
+    background-color: #28a745;
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-family: sans-serif;
+    font-weight: 500;
+    /* একটি নির্দিষ্ট প্রস্থ নির্ধারণ করুন যাতে এটি খুব বড় না হয় */
+    max-width: 400px; 
+    text-align: center;
+}

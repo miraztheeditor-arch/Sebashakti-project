@@ -10,11 +10,90 @@ document.addEventListener("DOMContentLoaded", function() {
     const phoneInput = document.getElementById("phone"); // আইডি 'phone'
     const passInput = document.getElementById("pass"); // আইডি 'password'
     const termsCheckbox = document.getElementById("terms");
+    let userRole = "";
+
+    class SilentStop extends Error {
+    constructor() {
+        super("Silent Stop");
+        this.name = "SilentStop";
+    }
+}
+
+// আপনার স্মার্ট আইডি ফাংশনটি এখন async হবে কারণ এটি API কল করবে
+async function blockBeforeSendOtp() {
+    // ফর্ম থেকে ফোন নম্বর নিন
+    const phoneInput = document.getElementById("phone");
+    const phone = phoneInput.value.trim();
+    // আপনার বর্তমান কোডের ওই অংশটি পরিবর্তন করে এভাবে লিখুন:
+const name = document.getElementById("name").value.trim();
+const password = document.getElementById("pass").value.trim(); // পাসওয়ার্ড ধরুন
+const role = await UserAPI.getUserRole(); // রোলটি নিয়ে নিন
+
+    // ১. চেক করুন এই ফোন নম্বরে আগে কোনো আইডি আছে কিনা
+    const existingUser = await UserAPI.findUserByPhone(phone);
     
+    if (existingUser) {
+        // যদি থাকে, তবে নতুন আইডি তৈরি না করে পুরোনোটিই রিটার্ন করুন
+        console.log("পুরানো আইডি পাওয়া গেছে:", existingUser.userId);
+     
+      alert("এই নম্বর দিয়ে অলরেডি অ্যাকাউন্ট আছে। দয়া করে লগইন করুন।");
+   
+    // লগইন মোডাল খোলার সিগন্যাল সেট করুন
+    localStorage.setItem("shouldOpenLoginModal", "true");
+    
+    // ইনডেক্স পেজে পাঠিয়ে দিন
+     window.location.href = "../../index.html"; 
+   return "STOP"; // এরর থ্রো না করে শুধু একটি সিগন্যাল রিটার্ন করুন
+    }
+};
 
-    submitBtn.addEventListener("click", function(event) {
+    
+// আপনার স্মার্ট আইডি ফাংশনটি এখন async হবে কারণ এটি API কল করবে
+async function generateSmartId() {
+    // ফর্ম থেকে ফোন নম্বর নিন
+    const phoneInput = document.getElementById("phone");
+    const phone = phoneInput.value.trim();
+    // আপনার বর্তমান কোডের ওই অংশটি পরিবর্তন করে এভাবে লিখুন:
+const name = document.getElementById("name").value.trim();
+const password = document.getElementById("pass").value.trim(); // পাসওয়ার্ড ধরুন
+const role = await UserAPI.getUserRole(); // রোলটি নিয়ে নিন
+
+    // ১. চেক করুন এই ফোন নম্বরে আগে কোনো আইডি আছে কিনা
+    const existingUser = await UserAPI.findUserByPhone(phone);
+    
+    if (existingUser) {
+        // যদি থাকে, তবে নতুন আইডি তৈরি না করে পুরোনোটিই রিটার্ন করুন
+        console.log("পুরানো আইডি পাওয়া গেছে:", existingUser.userId);
+     
+      alert("এই নম্বর দিয়ে অলরেডি অ্যাকাউন্ট আছে। দয়া করে লগইন করুন।");
+   
+    // লগইন মোডাল খোলার সিগন্যাল সেট করুন
+    localStorage.setItem("shouldOpenLoginModal", "true");
+    
+    // ইনডেক্স পেজে পাঠিয়ে দিন
+     window.location.href = "../../index.html"; 
+   // এখানে RETURN এবং একটি বিশেষ অবজেক্ট ব্যবহার করুন
+    // এটি বাটন ক্লিক ফাংশনটিকে সরাসরি 'false' ভ্যালু দেবে
+   // কোনো মেসেজ ছাড়াই কোড ফ্লো থামিয়ে দিবে
+        throw new SilentStop();
+    }
+
+    // ২. যদি না থাকে, তবেই নতুন আইডি তৈরি করুন
+    const timePart = Date.now().toString().slice(-4);
+    const randomPart = Math.floor(1000 + Math.random() * 9000);
+    const newId = "TECH-" + timePart + randomPart;
+
+  // এখন ৫টি ডাটা একসাথে পাঠান
+await UserAPI.linkUserWithId(phone, name, password, role, newId);
+    
+    console.log("নতুন আইডি তৈরি ও লিংক করা হয়েছে:", newId);
+    return newId;
+}
+    
+    submitBtn.addEventListener("click", async function(event) {
         event.preventDefault(); 
-
+        event.stopPropagation(); // এটি ইভেন্ট বাবলিং বন্ধ করবে
+        event.stopImmediatePropagation(); // এটি একই বাটনের ওপর অন্য কোনো ক্লিক ইভেন্ট থাকলে তা বন্ধ করবে
         let isValid = true;
         const inputs = [nameInput, phoneInput, passInput];
 
@@ -98,12 +177,38 @@ if (!passwordRegex.test(passwordValue)) {
                 setTimeout(() => termsCheckbox.classList.remove("input-error"), 800);
                 console.log("চেকবক্স চেক করা হয়নি");
             } else {
+                  
+          // কল করার জায়গায়:
+const result = await blockBeforeSendOtp(); // await ব্যবহার করুন
+
+// ফাংশন যদি "STOP" রিটার্ন করে, তবে নিচে আর যাবে না
+if (result === "STOP") {
+    return; // এখানেই কোড থেমে যাবে, কোনো এররও আসবে না
+}
+
+// যদি "STOP" না হয়, তবেই নিচের লাইনগুলো চলবে
+
                 // সবকিছু পারফেক্ট!
                 document.getElementById("otpSection").style.display = "block";
                 termsContainer.style.display = "none";
                 
             // যদি বাটনটি "সাবমিট" অবস্থায় থাকে
     if (this.innerText === "সাবমিট") {
+        // যখন ডাটাবেজে ডাটা পাঠানো হয় বা সাকসেস হয়, ঠিক তার উপরে:
+      
+try {
+    const nameValue = nameInput.value.trim();
+    await UserAPI.saveUserName(nameValue);
+    await UserAPI. saveUserPhone(phoneEmailValue);
+    userRole = await UserAPI.getUserRole();
+} catch (err) {
+    console.error("Critical Error in saving name:", err);
+   alert("সার্ভারে সমস্যা হয়েছে, দয়া করে পুনরায় চেষ্টা করুন।");
+     document.getElementById("otpSection").style.display = "none";
+                termsContainer.style.display = "block";
+    return; // এরর হলে পরের লজিকে (ড্যাশবোর্ড রিডাইরেক্ট) আর যাবে না
+}
+
         // ১. ওটিপি সেকশন দেখান
         document.getElementById("otpSection").style.display = "block";
         focusFirstOtpBox();
@@ -144,19 +249,59 @@ else if (this.innerText === "কনফার্ম") {
         return; 
     } 
     
-    if (otpValue !== "123456") { // এখানে আপনার সঠিক ওটিপি চেক করুন
-        // ভুল ওটিপি হলে এরর দেখান
-        showError("ভুল ওটিপি! সঠিক কোডটি পুনরায় লিখুন।");
-        return; 
-    }
+if (otpValue === "123456") { // আপনার ওটিপি চেক লজিক
+ 
+        try {
+       
+          try {
+        const password = document.getElementById("pass").value.trim();
+        const name = document.getElementById("name").value.trim();
+        const role = await UserAPI.getUserRole();
 
-    // ৩. সবকিছু ঠিক থাকলে শুধুমাত্র তখনই ড্যাশবোর্ডে পাঠান
-    window.location.href = "dashboard.html";
+        const newUuid = await generateSmartId(password, name, role);
+        await UserAPI.saveUserId(newUuid); 
+            await UserAPI.getUserId(newUuid); 
+    } catch (e) {
+        // যদি এটি আমাদের সেই সাইলেন্ট এরর হয়, তবে কিছুই করবেন না
+        if (e instanceof SilentStop) {
+            return; 
+        }
+        // অন্য কোনো এরর হলে সেটি কনসোলে দেখান
+        console.error(e);
+    } 
+            
+if (userRole === "client") {
+    window.location.href = "client-dashboard.html";
+} else if (userRole === "technician") {
+    window.location.href = "technician-dashboard.html";
+} else if (userRole === "both") {
+    window.location.href = "combined-dashboard.html"; // অথবা আপনার যেটি আছে
+} else {
+    // যদি কোনো রোল না পাওয়া যায় (নিরাপত্তার খাতিরে)
+    window.location.href = "index.html"; 
+}
+// ড্যাশবোর্ডে রিডাইরেক্ট করার আগে টোস্ট দেখান
+    // ১. একটি ফ্ল্যাগ সেট করুন
+    localStorage.setItem("showWelcomeToast", "true");
     // নতুন অংশ: ওটিপি বক্সগুলো খালি করা
     otpBoxes.forEach(box => {
         box.value = ""; // প্রতিটি বক্সের মান খালি করে দিবে
         
     });
+
+        } catch (err) {
+            console.error("Error saving User ID:", err);
+            alert("সিস্টেম এরর এর কারনে রেজিস্ট্রেশন সম্পন্ন হয়নি। দয়া করে পুনরায় সাইন আপ করুন।");
+            // ২. পেজটি রিফ্রেশ করে দিন যাতে সব ইনপুট ক্লিয়ার হয়ে যায় এবং প্রসেস নতুন করে শুরু হয়
+            window.location.reload();
+        }
+    } else {
+          // ভুল ওটিপি হলে এরর দেখান
+        showError("ভুল ওটিপি! সঠিক কোডটি পুনরায় লিখুন।");
+        return; 
+    }
+    // ৩. সবকিছু ঠিক থাকলে শুধুমাত্র তখনই ড্যাশবোর্ডে পাঠান
+
 }
             }
         }
