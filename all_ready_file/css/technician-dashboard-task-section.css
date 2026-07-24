@@ -47,6 +47,16 @@
     background: linear-gradient(90deg, #7cfc00, #9acd32);
     box-shadow: 0 4px 10px rgba(154, 205, 50, 0.4);
 }
+
+@media (hover: none) {
+    .btn-details:hover,
+    .btn-details:active,
+    .btn-details:focus {
+        background: #9acd32 !important; /* আপনার মূল বাটন কালার */
+        box-shadow: none !important;
+        transform: none !important;
+    }
+}
 /* সেকশন হেডার */
 .job-section { padding: 5px 0; }
 .job-header h3 { 

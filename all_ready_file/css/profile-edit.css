@@ -1,0 +1,263 @@
+.edit-profile-container {
+    max-width: 95%;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header h2 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.form-header p {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="tel"],
+.profile-form input[type="email"],
+.profile-form select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.profile-form input:focus,
+.profile-form select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+.nid-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px dashed #e0e0e0;
+}
+
+.nid-section h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.nid-upload-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.upload-box {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.upload-box label {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.upload-box input[type="file"] {
+    font-size: 12px;
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.save-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #219653;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+}
+
+/* রেস্পন্সিভ ডিজাইন */
+@media (max-width: 600px) {
+    .nid-upload-group {
+        flex-direction: column;
+    }
+}
+
+.service-area-box {
+    background: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.service-area-box .box-header h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.profile-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical; /* ইউজার যেন প্রয়োজনমতো বক্সের সাইজ ওপর-নিচে বড় করতে পারে */
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.profile-form textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding-right: 45px; /* আইকনের জন্য জায়গা ফাঁকা রাখা */
+}
+
+.edit-icon-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #3498db;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.edit-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    position: sticky; /* স্ক্রল করলে আটকে যাবে */
+    top: 50px;        /* নেভিগেশন বার যত pixels উঁচু, সেই অনুযায়ী এখানে মান দেবেন (যেমন: 60px বা 70px) যাতে নেভিগেশনের নিচে থাকে */
+    background-color: #ffffff; /* ব্যাকগ্রাউন্ড সাদা রাখতে হবে, না হলে পেছনের লেখা দেখা যাবে */
+    z-index: 99;      /* নেভিগেশনের নিচে এবং অন্যান্য কন্টেন্টের উপরে থাকবে */
+    margin-bottom: 20px;
+    padding: 15px 2px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* নিচে হালকা শ্যাডো যা প্রিমিয়াম লুক দেবে */
+    
+    margin-top: -20px;
+}
+
+/* ব্যাক বাটন একদম বামে থাকবে */
+.header-container .nav-btn {
+    background: #f0f4f8;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.header-container .nav-btn:hover {
+    background: #e2e8f0;
+    color: #3498db;
+}
+
+/* হেডিং ও সাবটাইটেল একদম পেজের মাঝখানে (Center) থাকবে */
+.form-header-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.form-header-content h2 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+.form-header-content p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 12px;
+}

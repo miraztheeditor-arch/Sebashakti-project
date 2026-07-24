@@ -37,7 +37,7 @@ padding-right: 5px;
 .camera-icon { position: absolute; bottom: 0; right: 0; cursor: pointer; }
 
 /* গোল আইকন ও গ্রেডিয়েন্ট বর্ডার */
-.profile-circle {
+.profile-circle-in-profile {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -52,6 +52,22 @@ padding-right: 5px;
    
 }
 
+#profile-avatar-letter {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    
+}
+
+#user-id-profile {
+    margin: 5px 0;
+    margin-top: 2px;
+    font-size: clamp(9px, 2vw, 10px);
+    opacity: 0.8;
+    /* কালারটি সাদা থেকে পরিবর্তন করে গাঢ় ধূসর বা কালো করে দিন */
+    color: #333333; 
+    font-weight: 500;
+}
 .profile-circle img {
     width: 100%;
     height: 100%;
@@ -104,7 +120,8 @@ padding-right: 5px;
 .name-container {
    
     flex-grow: 1; /* নাম এবং বাটনের মাঝে ফাঁকা জায়গা দখল করতে */
-    margin-left: 2px;
+    margin-left: 4px;
+    
    
 }
 
@@ -120,6 +137,7 @@ padding-right: 5px;
     overflow: hidden;        /* অতিরিক্ত অংশ লুকিয়ে ফেলবে */
     text-overflow: ellipsis; /* বড় নামের শেষে '...' দেখাবে */
     max-width: 150px;        /* নির্দিষ্ট প্রস্থ, যা আপনার প্রয়োজন অনুযায়ী বাড়াতে বা কমাতে পারেন */
+    margin-top: 16px;
 }
 
 

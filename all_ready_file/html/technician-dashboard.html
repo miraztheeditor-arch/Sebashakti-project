@@ -64,13 +64,14 @@
   <div class="sidebar-header-fixed">
     <div class="sidebar-header">
         <div class="profile-pic-container">
-            <div class="profile-circle" id="profile-avatar">
-                <span id="avatar-letter">U</span>
+            <div class="profile-circle-in-profile" id="profile-avatar">
+                <span id="profile-avatar-letter">U</span>
                 </div>
             <div class="camera-icon">📷</div>
         </div>
         <div class="name-container">
-            <span class="user-name">Rakihsuduasysay...</span>
+            <span class="user-name" id="user-name">User...</span>
+            <p class="user-meta" id="user-id-profile">UID: #XXXX</p>
         </div>
         <div class="button-container">
             <button class="close-btn" onclick="toggleSidebar()">
@@ -100,16 +101,17 @@
 
         <div class="sidebar-menu">
             <div class="menu-group">
-                <a href="#" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
-                <a href="#" class="menu-item"><span>🛠️</span> আমার কাজ</a>
-                <a href="#" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
+                <a href="technician-dashboard.html" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
+                <a href="my-wallet.html" class="menu-item"><span>💼</span> মাই ওয়ালেট</a>
+                <a href="my-work.html?active=recent-request" class="menu-item"><span>🛠️</span> আমার কাজ</a>
+                <a href="payment-history.html?active=recent-request" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
                 <a href="#" class="menu-item"><span>💰</span> উইথড্র রিকোয়েস্ট</a>
             </div>
 
             <hr class="menu-divider">
 
             <div class="menu-group">
-                <a href="#" class="menu-item"><span>👤</span> প্রোফাইল এডিট</a>
+                <a href="profile-edit.html" class="menu-item"><span>👤</span> প্রোফাইল এডিট</a>
                 <a href="#" class="menu-item"><span>⚙️</span> সেটিংস</a>
                 <a href="#" class="menu-item"><span>🎧</span> সাপোর্ট</a>
             </div>
@@ -140,30 +142,45 @@
 </div>
 </div>
         <div class="stats-container">
+
+            <a href="payment-history.html?active=recent-request&tab=due-payments" style="text-decoration:none; color:inherit;">
               <div class="stat-card">
                 <span>বকেয়া পেমেন্ট</span>   
         <strong class="negative-val">৩</strong>
         <span class="comon-text">টি</span>
             </div>
+            </a>
+
+           <a href="my-work.html?active=recent-request&tab=today-schedule" style="text-decoration:none; color:inherit;">
               <div class="stat-card">
                 <span>আজকের শিডিউল</span>
                  <strong class="progress-val">২</strong> <span class="comon-text">টি</span>
-                
             </div>
-            <div class="stat-card">
-    <span>মোট আয়</span>
-   <strong class="positive-val">৬২৫,০০০</strong> <span class="comon-text">৳</span>
-</div>
+            </a>
+
+            <a href="payment-history.html?active=earnings&tab=completed-jobs" style="text-decoration: none; color: inherit;">
+    <div class="stat-card">
+        <span>মোট আয়</span>
+        <strong class="positive-val">৬২৫,০০০</strong>
+        <span class="comon-text">৳</span>
+    </div>
+</a>
+             
+           
+         <a href="my-work.html?active=recent-request&tab=ongoing-works" style="text-decoration:none; color:inherit;">
             <div class="stat-card">
                 <span>চলমান কাজ</span>
                  <strong class="progress-val">৪</strong> <span class="comon-text">টি</span>
-                
             </div>
+          </a> 
+
+          <a href="my-work.html?active=recent-request&tab=today-requests" style="text-decoration:none; color:inherit;">
             <div class="stat-card">
                 <span>আজকের অনুরোধ</span>
                  <strong class="comon-val">৬</strong> <span class="comon-text">টি</span>
-               
             </div>
+            </a>
+            
         </div>
     </div>
         
@@ -356,6 +373,7 @@
 
 </div>
 </div>
+    
     <script src="../js/api.js"></script>
 <script src="../js/technician-dashboard.js"></script>
 

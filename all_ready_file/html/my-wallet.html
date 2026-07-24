@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="../css/navbar-design-after-technician & client-login.css">
+    <link rel="stylesheet" href="../css/my-wallet.css">
+    <link rel="stylesheet" href="../css/technician-profile-icon-click.css">
+    
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="../../images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
+
+<div class="nav-menu">
+    <a href="../../index.html" class="home">হোম</a>
+        <a href="services-areas.html" class="services-areas">সার্ভিস এরিয়া</a>
+        <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-icon" id="jobs-btn" title="Available Jobs">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span class="btn-text">Find Jobs</span>
+    </button>
+     <button class="nav-icon" id="bell-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+    </button>
+<div class="profile-container" id="profile-btn" onclick="toggleSidebar()">
+    <div class="profile-circle" id="profile-avatar">
+        <span id="avatar-letter">U</span>
+    </div>
+</div>
+
+
+
+<div id="profileSidebar" class="sidebar">
+
+  <div class="sidebar-header-fixed">
+    <div class="sidebar-header">
+        <div class="profile-pic-container">
+            <div class="profile-circle-in-profile" id="profile-avatar">
+                <span id="profile-avatar-letter">U</span>
+                </div>
+            <div class="camera-icon">📷</div>
+        </div>
+        <div class="name-container">
+            <span class="user-name" id="user-name">User...</span>
+            <p class="user-meta" id="user-id-profile">UID: #XXXX</p>
+        </div>
+        <div class="button-container">
+            <button class="close-btn" onclick="toggleSidebar()">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                 </svg>
+            </button>
+        </div>
+    </div>
+
+        
+        <div class="sidebar-header-title">
+            <h3>অ্যাকাউন্ট মেনু</h3>
+        </div>
+
+        <div class="tech-info-box">
+            <div class="info-item">
+                 <span class="dot"></span> ওয়ার্কিং স্ট্যাটাস: <span class="status-text">অনলাইন</span>
+            </div>
+            <div class="info-item">
+                <span>📍</span> সার্ভিস এরিয়া: মিরপুর, ঢাকা
+            </div>
+        </div>
+      </div>
+
+    <div class="sidebar-scrollable" style="flex-grow: 1; overflow-y: auto;">
+
+        <div class="sidebar-menu">
+            <div class="menu-group">
+                <a href="technician-dashboard.html" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
+                <a href="my-wallet.html" class="menu-item"><span>💼</span> মাই ওয়ালেট</a>
+                <a href="my-work.html?active=recent-request" class="menu-item"><span>🛠️</span> আমার কাজ</a>
+                <a href="payment-history.html?active=recent-request" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
+                <a href="#" class="menu-item"><span>💰</span> উইথড্র রিকোয়েস্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="profile-edit.html" class="menu-item"><span>👤</span> প্রোফাইল এডিট</a>
+                <a href="#" class="menu-item"><span>⚙️</span> সেটিংস</a>
+                <a href="#" class="menu-item"><span>🎧</span> সাপোর্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="#" class="menu-item logout"><span>🚪</span> লগ আউট</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ <div id="overlay"></div>
+
+
+    </nav>
+<div class="wallet-container">
+
+    <div class="header-section-tab">
+      <!-- তীরের মাথার মত ব্যাক এ্যারো SVG -->
+<button onclick="history.back()" class="nav-btn arrow-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+</button>
+    <div class="main-header">মাই ওয়ালেট</div>
+</div>
+    <!-- মূল দুই কলাম লেআউট -->
+    <div class="wallet-grid-layout">
+        
+        <!-- বাম পাশ: ব্যালেন্স কার্ড, স্ট্যাটস এবং সবার নিচে শুধু ট্যাব বাটন দুটি -->
+        <div class="wallet-left">
+          
+            <div class="wallet-profile-container">
+             <div class="wallet-profile-pic-container">
+            <div class="wallet-profile-circle-in-profile" id="wallet-profile-avatar">
+                <span id="wallet-profile-avatar-letter">U</span>
+                </div>
+            </div>
+        <div class="wallet-name-container">
+            <span class="wallet-user-name" id="wallet-user-name">User...</span>
+            <p class="wallet-user-meta" id="wallet-user-id-profile">UID: #XXXX</p>
+        </div>
+           </div> 
+
+
+            <div class="balance-card">
+                <span class="wallet-icon">💼</span>
+                <div class="balance-info">
+                    <p>বর্তমান ব্যালেন্স (Current Balance)</p>
+                    <h2 class="balance-amount"><span id="amount-num">75</span><span class="currency-symbol"> ৳</span></h2>
+                </div>
+                <button class="deposit-btn" onclick="openDepositModal()">+ ডিপোজিট করুন</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <p>মোট কাটা কমিশন</p>
+                    <h3>১,২০০৳</h3>
+                </div>
+                <div class="stat-box">
+                    <p>বকেয়া অ্যাডজাস্টমেন্ট</p>
+                    <h3 class="due-container"><span id="due-num">-296</span> <span class="currency-symbol">৳</span></h3>
+                </div>
+            </div>
+
+            <!-- বাম কলামের সবার নিচে শুধু ট্যাব বাটন দুটি -->
+            <div class="bottom-history-controls">
+                <div class="history-title-text">লেনদেন ও কমিশন হিস্ট্রি</div>
+                <div class="history-tabs">
+                    <button class="history-tab-btn active" onclick="switchHistoryTab('commission', 'কমিশন হিস্ট্রি', event)">কমিশন হিস্ট্রি</button>
+                    <button class="history-tab-btn" onclick="switchHistoryTab('deposit', 'ডিপোজিট হিস্ট্রি', event)">ডিপোজিট হিস্ট্রি</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ডান পাশ: লম্বালম্বি হিস্ট্রি ফিল্ড (যার উপরে হেডার থাকবে এবং বাটনের নামে আপডেট হবে) -->
+        <div class="wallet-right">
+            <div class="history-section">
+                <div class="history-header">
+                <!-- হিস্ট্রি ফিল্ডের ওপরের হেডার (যা সিলেক্টেড বাটনের নামে আপডেট হবে) -->
+                <h3 id="history-header-title" class="history-title">কমিশন হিস্ট্রি</h3>
+               </div>
+
+               <div class="history-field-tabs">
+    <button class="history-field-tab-btn active">লাস্ট মান্থ</button>
+    <button class="history-field-tab-btn">ফুল টাইম</button>
+</div>
+                <div class="history-scroll-box">
+                    <!-- কমিশন হিস্ট্রি লিস্ট -->
+                    <div id="commission-list" class="history-tab-content" style="display: block;">
+                        <div class="transaction-list">
+                            <div class="tx-item">
+                                <div class="tx-details">
+                                    <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                     <span class="tx-title">এসপি সার্ভিসিং - কমিশন কাটা হয়েছে</span>
+                                    <span class="tx-date">২১ জুলাই, ২০২৬ - ১০:৩০ এএম</span>
+                                </div>
+                                <div class="tx-amount negative">-৫০৳</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ডিপোজিট হিস্ট্রি লিস্ট -->
+                    <div id="deposit-list" class="history-tab-content" style="display: none;">
+                        <div class="transaction-list">
+                            <div class="tx-item">
+                                <div class="tx-details">
+                                    <span class="tx-title">বিকাশ ডিপোজিট সফল</span>
+                                    <span class="tx-date">২০ জুলাই, ২০২৬ - ০৩:১৫ পিএম</span>
+                                </div>
+                                <div class="tx-amount positive">+১,০০০৳</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <script src="../js/my-wallet.js"></script>
+
+</body>
+</html>

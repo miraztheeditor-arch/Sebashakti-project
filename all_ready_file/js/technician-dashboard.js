@@ -1,16 +1,24 @@
 document.addEventListener('DOMContentLoaded', async function() {
     const avatarLetterSpan = document.getElementById('avatar-letter');
+    const avatarLetterProfile = document.getElementById('profile-avatar-letter');
     
-    try {
-        // সার্ভার থেকে ডাটা আনার চেষ্টা
-        const savedName = await UserAPI.getUserName(); 
+  try {
+    const savedName = await UserAPI.getUserName();
 
-        if (savedName && savedName.length > 0) {
-            avatarLetterSpan.innerText = savedName.charAt(0).toUpperCase();
-        } else {
-            // ডাটা খালি হলে ডিফল্ট 'U'
-            avatarLetterSpan.innerText = "U";
-        }
+    if (savedName && savedName.length > 0) {
+        const firstLetter = savedName.charAt(0).toUpperCase();
+        
+        // 🔥 অবতার লেটার আলাদাভাবে সেশনে সেভ করা হলো
+        sessionStorage.setItem('liveAvatarLetter', firstLetter);
+
+        const avatarLetterSpan = document.getElementById('avatar-letter');
+        const avatarLetterProfile = document.getElementById('profile-avatar-letter');
+
+        if (avatarLetterSpan) avatarLetterSpan.innerText = firstLetter;
+        if (avatarLetterProfile) avatarLetterProfile.innerText = firstLetter;
+    } else {
+        sessionStorage.setItem('liveAvatarLetter', 'U');
+    }
     } catch (err) {
         // সার্ভার থেকে ডাটা আনতে সমস্যা হলে এখানে আসবে
         console.error("সার্ভার থেকে নাম আনতে সমস্যা হয়েছে:", err);
@@ -20,10 +28,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // ডিফল্ট হিসেবে 'U' ই থাক, যাতে ইউজার ইন্টারফেস ভেঙে না যায়
         avatarLetterSpan.innerText = "U"; 
+        sessionStorage.setItem('liveAvatarLetter', 'U');
     }
 });
 document.addEventListener('DOMContentLoaded', async function() {
     const nameDisplaySpan = document.getElementById('user-display-name');
+    const nameSpan = document.getElementById('user-name');
     
     try {
         // এপিআই থেকে নাম আনার চেষ্টা
@@ -31,8 +41,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         if (savedName && savedName.length > 0) {
             nameDisplaySpan.innerText = savedName;
+            nameSpan.innerText = savedName;
+
+            // 🚀 লঞ্চ রেডি কোড: সার্ভার থেকে নাম পাওয়ার সাথে সাথেই প্রোফাইল বা অন্য ফাইলের জন্য সেভ করে রাখা
+        sessionStorage.setItem('liveUserName', savedName);
         } else {
             nameDisplaySpan.innerText = "User"; // ডাটা খালি থাকলে 'User' দেখাবে
+            sessionStorage.setItem('liveUserName', "User");
         }
     } catch (err) {
         console.error("সার্ভার থেকে নাম আনতে সমস্যা হয়েছে:", err);
@@ -69,10 +84,15 @@ document.addEventListener("DOMContentLoaded", async function() {
             throw new Error("User ID not found! Redirecting to signup...");
         }
 
+        // 🔥 লঞ্চ রেডি: আইডি সেশনে সেভ করে দেওয়া হলো যাতে অন্য ফাইলও পায়
+        sessionStorage.setItem('liveUserId', userId);
+
         // ৩. আইডি থাকলে বসিয়ে দিন
         const userIdDisplay = document.getElementById("user-id-display");
+        const userIdProfile = document.getElementById("user-id-profile");
         if (userIdDisplay) {
             userIdDisplay.textContent = `টেকনিশিয়ান আইডি: ${userId}`;
+            userIdProfile.textContent = `UID: ${userId}`;
         }
         
     } catch (error) {
@@ -95,6 +115,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const userIdFromUrl = urlParams.get('id');
 
+
+
+
     // ৩. masterData থেকে সঠিক ইউজারটি খুঁজে বের করুন
     // Object.values ব্যবহার করে সব ইউজারের ভেতর থেকে আইডি ম্যাচ করছি
     const currentUser = Object.values(masterData).find(u => u.userId === userIdFromUrl);
@@ -102,13 +125,19 @@ window.addEventListener('DOMContentLoaded', () => {
     if (currentUser) {
         // ৪. সফলভাবে ডাটা পাওয়া গেলে আপডেট করুন
         const nameElement = document.getElementById('user-display-name');
-        const idElement = document.getElementById('user-id-display');
+        const nameProfile = document.getElementById('user-name');
+        const idElementDisplay = document.getElementById('user-id-display');
+        const idElementProfile = document.getElementById('user-id-profile');
         const nameAvater = document.getElementById('avatar-letter');
+        const nameAvaterLetter = document.getElementById('profile-avatar-letter');
         const loginToast = document.getElementById('toastMessage');
 
-        if (nameAvater) nameAvater.innerText = currentUser.name.charAt(0).toUpperCase();
         if (nameElement) nameElement.innerText = currentUser.name;
-        if (idElement) idElement.innerText = "টেকনিশিয়ান আইডি: " + currentUser.userId;
+        if (nameAvaterLetter) nameAvaterLetter.innerText = currentUser.name.charAt(0).toUpperCase();
+        if (nameAvater) nameAvater.innerText = currentUser.name.charAt(0).toUpperCase();
+        if (nameProfile) nameProfile.innerText = currentUser.name;
+        if (idElementDisplay) idElementDisplay.innerText = "UID: " + currentUser.userId;
+        if (idElementProfile) idElementProfile.innerText = "UID: " + currentUser.userId;
 
         // টোস্ট মেসেজটি শুধুমাত্র একবার দেখানোর লজিক
     // চেক করুন ইউজার কি মাত্রই লগইন করে এসেছে কিনা (সাইন-আপ বা লগইন পেজ থেকে)
@@ -152,3 +181,4 @@ overlay.addEventListener('click', () => {
     sidebar.classList.remove('active');
     overlay.classList.remove('active');
 });
+

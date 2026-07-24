@@ -8,6 +8,7 @@ body { font-family: sans-serif; background: #fff; }
     position: fixed;
     top: 0;
     z-index: 1000;
+    
    
    
     background-color: #f8f9fa; /* হালকা অফ-হোয়াইট রঙ */
@@ -405,6 +406,7 @@ font-size: 12px !important;
     align-items: center;
     justify-content: center;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .profile-circle img {
@@ -413,6 +415,7 @@ font-size: 12px !important;
     border-radius: 50%;
     object-fit: cover;
     background-color: white;
+   
 }
 
 /* টেক্সটের জন্য */
