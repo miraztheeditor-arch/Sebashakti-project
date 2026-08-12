@@ -464,3 +464,26 @@ font-size: 12px !important;
     
 }
 
+/* বেল আইকন পজিশনিং ঠিক রাখা */
+#bell-icon {
+    position: relative; 
+    cursor: pointer;
+}
+
+/* লাল ব্যাজ বা সংখ্যার ডিজাইন */
+.notification-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: #ef4444; /* উজ্জ্বল লাল রঙ */
+    color: #ffffff;            /* লেখার রঙ সাদা */
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 50px;       /* গোল শেপ আনার জন্য */
+    min-width: 16px;
+    text-align: center;
+    line-height: 14px;
+    box-shadow: 0 0 0 2px #ffffff; /* চারপাশে হালকা হোয়াইট বর্ডার, দেখতে সুন্দর লাগে */
+}
+

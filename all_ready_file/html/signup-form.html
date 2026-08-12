@@ -54,14 +54,14 @@
 
     <!-- ফোন বা ইমেইল -->
     <div class="input-group">
-        <input type="tel" id="phone" placeholder=" " required>
+        <input type="tel" id="phone" placeholder=" " autocomplete="new-phone" readonly onfocus="this.removeAttribute('readonly');" required>
         <label for="contact">ফোন নম্বর বা ইমেইল</label>
         <span id="phoneEmailErrorMessage" style="color: red; display: none; font-size: 12px;">দয়া করে সঠিক ফোন নম্বর বা ইমেইল ঠিকানা প্রদান করুন।</span>
     </div>
 
     <!-- পাসওয়ার্ড -->
     <div class="input-group">
-      <input type="password" id="pass" placeholder=" " minlength="8"required>
+      <input type="password" id="pass" placeholder=" " minlength="8" required>
         <label for="pass">পাসওয়ার্ড (কমপক্ষে ৮ অক্ষর)</label>
         <span id="togglePassword">👁️</span>
          <div id="passwordSection" style="margin: 10px 0;">

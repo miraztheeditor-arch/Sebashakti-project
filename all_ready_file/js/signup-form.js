@@ -78,10 +78,21 @@ const role = await UserAPI.getUserRole(); // রোলটি নিয়ে নি
         throw new SilentStop();
     }
 
+    // রোল অনুযায়ী প্রিফিক্স নির্ধারণ করার লজিক
+let prefix = "USER-"; // ডিফল্ট
+
+if (role === "client") {
+    prefix = "CLT-";
+} else if (role === "technician") {
+    prefix = "TECH-";
+} else if (role === "both") {
+    prefix = "COMB-"; // কম্বাইন বা ইন্টারন্যাশনাল ড্যাশবোর্ডের জন্য আন্তর্জাতিক উপযোগী প্রিফিক্স
+}
+
     // ২. যদি না থাকে, তবেই নতুন আইডি তৈরি করুন
     const timePart = Date.now().toString().slice(-4);
     const randomPart = Math.floor(1000 + Math.random() * 9000);
-    const newId = "TECH-" + timePart + randomPart;
+    const newId = prefix + timePart + randomPart;
 
   // এখন ৫টি ডাটা একসাথে পাঠান
 await UserAPI.linkUserWithId(phone, name, password, role, newId);

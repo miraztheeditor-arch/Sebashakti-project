@@ -1,0 +1,404 @@
+/* ল্যাপটপ থেকে হঠাৎ মোবাইল স্ক্রিনে গেলে বা ডানে-বামে অতিরিক্ত স্ক্রল হওয়া আটকাতে */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+
+/* মেইন সেটিংস লেআউট */
+.settings-container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.settings-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #111;
+}
+
+/* সেটিংস কার্ড ডিজাইন */
+.settings-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #eaeaea;
+}
+
+.settings-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ফর্ম এলিমেন্টস */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label, .preference-row label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.form-group input, .settings-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.form-group input:focus, .settings-select:focus {
+    border-color: #3498db;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+/* বাটন ডিজাইন */
+.btn-primary {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+/* টগল সুইচ (Toggle Switch) ডিজাইন */
+.toggle-row, .preference-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.toggle-row:not(:last-child), .preference-row:not(:last-child) {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2ecc71;
+}
+
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* ডেঞ্জার জোন স্টাইল */
+.danger-zone {
+    border: 1px solid #ffd2d2;
+    background-color: #fff8f8;
+}
+
+.danger-zone h3 {
+    color: #c0392b;
+}
+
+.danger-zone p {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.danger-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-warning {
+    background-color: #e67e22;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-warning:hover { background-color: #d35400; }
+.btn-danger:hover { background-color: #c0392b; }
+
+/* প্রিফারেন্স রো লেআউট ঠিক করার জন্য */
+.preference-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* মাঝ বরাবর রাখবে */
+    padding: 12px 0;
+    gap: 20px;
+}
+
+.preference-row:not(:last-child) {
+    border-bottom: 1.5px solid #f1f1f1;
+}
+
+/* লেবেল যেন ছোট বা ভেঙে না যায় */
+.preference-row label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #444;
+    min-width: 120px; /* একটি নির্দিষ্ট স্পেস রাখবে */
+    margin-bottom: 0 !important; /* এক্সট্রা মার্জিন থাকলে দূর করবে */
+}
+
+/* সিলেক্ট বক্সের সাইজ ও প্রপার্টি */
+.settings-select {
+    flex: 1; /* বাকি জায়গা নিয়ে সমানভাবে থাকবে */
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    background: #f9f9f9;
+    cursor: pointer;
+}
+
+/* পাসওয়ার্ড ফর্ম অ্যানিমেশন বা লুক স্মুথ করার জন্য */
+#password-form-box {
+    animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* মোডাল ওভারলে ব্যাকগ্রাউন্ড */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+/* মোডাল বক্স */
+.modal-box {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+
+.modal-box h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.modal-box p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* মোডালের বাটনগুলো */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
+
+/* মেইন টাইটেল কন্টেইনার */
+.title-container {
+    position: relative; /* ভেতরের এবসোলিউট পজিশনিং নিয়ন্ত্রণ করার জন্য */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* টাইটেলকে ডানে-বামে একদম মাঝখানে রাখতে */
+    height: 60px; /* আপনার প্রয়োজনমতো উচ্চতা কম-বেশি করতে পারেন */
+    padding: 0 20px;
+    background-color: #fff; /* ব্যাকগ্রাউন্ড কালার প্রয়োজনমতো দিন */
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 8px;
+    max-width: 850px;
+}
+
+/* ব্যাক বাটনকে বক্সের একদম বামে রাখার জন্য */
+.title-container .back-btn {
+    position: absolute;
+    left: 15px; /* একদম বাম দিক থেকে দূরত্ব */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* গোলাকার বৃত্ত করার জন্য */
+    background-color: #f1f5f9; /* সাধারণ অবস্থায় হালকা ব্যাকগ্রাউন্ড */
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease; /* হোভার হওয়ার সময় স্মুথ ইফেক্ট */
+}
+
+/* ব্যাক বাটনের সুন্দর হোভার ইফেক্ট */
+.title-container .back-btn:hover {
+    background-color: #e2e8f0; /* হোভার করলে কালার একটু গাড় হবে */
+    transform: scale(1.05);    /* একটু জুম হওয়ার ইফেক্ট */
+     color: #3498db;
+}
+/* ব্যাক বাটন একদম বামে থাকবে */
+.title-container .nav-btn {
+    background: #f0f4f8;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.title-container .nav-btn:hover {
+    background: #e2e8f0;
+    color: #3498db;
+}
+
+
+/* একাউন্ট সেটিংস টাইটেলকে উপর-নিচ ও ডানে-বামে পারফেক্ট মাঝখানে রাখতে */
+.settings-title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    text-align: center;
+}
+.title-container {
+    position: -webkit-sticky !important;
+    position: sticky !important;
+    top: 50px !important; /* আপনার নেভবারের হাইট অনুযায়ী */
+    z-index: 998 !important;
+    background-color: #ffffff !important;
+    /* সামান্য নড়াচড়া বা কাঁপুনি (jank/jitter) বন্ধ করার জন্য */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+@media (max-width: 770px) {
+    .title-container {
+        top: 60px !important;
+        margin-top: 10px !important;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+}
+/* সেটিংস পেজের টাইটেল কন্টেইনার ফিক্সড করার কোড */
+.title-container {
+    position: fixed !important;
+    top: 50px !important;
+    
+    width: 100% !important;
+    z-index: 999 !important;
+    background-color: #ffffff !important;
+    box-sizing: border-box !important;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+@media (max-width: 770px) {
+    .title-container {
+        top: 50px !important;
+    }
+}
+
+body {
+    padding-top: 110px !important;
+}

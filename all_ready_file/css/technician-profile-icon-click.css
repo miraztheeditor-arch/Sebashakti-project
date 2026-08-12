@@ -137,7 +137,7 @@ padding-right: 5px;
     overflow: hidden;        /* অতিরিক্ত অংশ লুকিয়ে ফেলবে */
     text-overflow: ellipsis; /* বড় নামের শেষে '...' দেখাবে */
     max-width: 150px;        /* নির্দিষ্ট প্রস্থ, যা আপনার প্রয়োজন অনুযায়ী বাড়াতে বা কমাতে পারেন */
-    margin-top: 16px;
+    margin-top: 13px;
 }
 
 

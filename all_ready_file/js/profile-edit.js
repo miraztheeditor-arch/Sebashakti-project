@@ -158,29 +158,59 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     */
 });
-
 function resetProfileForm() {
-    // ১. ফরমের ডিফল্ট রিসেট মেথড কল করা 
-    // (এটি ব্রাউজারের defaultValue অনুযায়ী ফিল্ডগুলোকে আবার আগের অবস্থায় ফিরিয়ে নিয়ে যাবে)
-    document.querySelector('.profile-form').reset();
+    // ১. ফর্মের ডিফল্ট রিসেট মেথড কল করা
+    const form = document.querySelector('.profile-form');
+    if (form) {
+        form.reset();
+    }
 
-    // ২. উপজেলা ড্রপডাউন রিসেট করার পর ডিফল্ট টেক্সট ফিরিয়ে আনার কোড
+    // ২. ডকুমেন্টের সব ইনপুট, সিলেক্ট এবং টেক্সটএরিয়া জোরপূর্বক খালি করা
+    const allInputs = document.querySelectorAll('input, select, textarea');
+    allInputs.forEach(element => {
+        if (element.type === 'checkbox' || element.type === 'radio') {
+            element.checked = false;
+        } else if (element.tagName === 'SELECT') {
+            element.selectedIndex = 0;
+        } else {
+            element.value = '';
+        }
+    });
+
+    // ৩. এনআইডি কার্ডের সামনের ছবির প্রিভিউ ও প্লেসহোল্ডার রিসেট
+    const frontPreview = document.getElementById('frontPreview');
+    const frontPlaceholder = document.getElementById('frontPlaceholder');
+    if (frontPreview && frontPlaceholder) {
+        frontPreview.src = '';
+        frontPreview.style.display = 'none';
+        frontPlaceholder.style.display = 'block';
+    }
+
+    // ৪. এনআইডি কার্ডের পেছনের ছবির প্রিভিউ ও প্লেসহোল্ডার রিসেট
+    const backPreview = document.getElementById('backPreview');
+    const backPlaceholder = document.getElementById('backPlaceholder');
+    if (backPreview && backPlaceholder) {
+        backPreview.src = '';
+        backPreview.style.display = 'none';
+        backPlaceholder.style.display = 'block';
+    }
+
+    // ৫. যদি কোনো ডাইনামিক ফিল্ড বা রিঅ্যাডওনিকরণ থাকে, তা ইনিশিয়াল স্টেটে ফিরিয়ে নেওয়া
+    const profileFullNameInput = document.getElementById('fullName');
+    if (profileFullNameInput) {
+        profileFullNameInput.value = '';
+        profileFullNameInput.setAttribute('readonly', true);
+        profileFullNameInput.style.borderColor = "";
+    }
+
+    // ৬. উপজেলা বা অন্য কোনো চেইন ড্রপডাউন থাকলে তার ডিফল্ট টেক্সট ফিরিয়ে আনা
     const upazilaSelect = document.getElementById("upazilaSelect");
     if (upazilaSelect) {
         upazilaSelect.innerHTML = '<option value="">প্রথমে জেলা সিলেক্ট করুন</option>';
     }
 
-    // ৩. নাম বা অন্যান্য ফিল্ড যদি রিসেটের কারণে রিডঅনলি অবস্থা থেকে চেঞ্জ হয়ে থাকে, 
-    // তবে সেগুলোকে আবার আগের মতো নিরাপদ বা readonly করে দেওয়া
-    const profileFullNameInput = document.getElementById('fullName');
-    if (profileFullNameInput) {
-        profileFullNameInput.setAttribute('readonly', true);
-        profileFullNameInput.style.borderColor = ""; // বর্ডার কালার রিসেট
-    }
-
-    // ভবিষ্যতে ফোন বা ইমেইল ফিল্ড আসলে সেগুলোও এখানে রিডঅনলি বা আগের অবস্থায় ফিরিয়ে নিতে পারবেন
+    console.log("File and form completely reset to default state.");
 }
-
 
 document.addEventListener('DOMContentLoaded', function () {
     const profileFullNameInput = document.getElementById('fullName');
@@ -249,4 +279,79 @@ document.addEventListener('DOMContentLoaded', function () {
             avatarLetter.innerText = "U"; // ডেটা না থাকলে ফলব্যাক
         }
     }
+});
+
+function openUploadOptions(type) {
+    activeType = type;
+    
+    // চেক করা ডিভাইসটি মোবাইল নাকি ল্যাপটপ/কম্পিউটার
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // মোবাইল হলে ক্যামেরা ও গ্যালারির পপ-আপ দেখাবে
+        document.getElementById('uploadChoiceModal').style.display = 'flex';
+    } else {
+        // ল্যাপটপ বা কম্পিউটার হলে সরাসরি ফাইল ব্রাউজার/স্টোরেজ ওপেন হবে
+        document.getElementById(activeType + 'GalleryInput').click();
+    }
+}
+
+function closeUploadOptions() {
+    document.getElementById('uploadChoiceModal').style.display = 'none';
+}
+
+function selectSource(source) {
+    closeUploadOptions();
+    if (source === 'camera') {
+        document.getElementById(activeType + 'CameraInput').click();
+    } else {
+        document.getElementById(activeType + 'GalleryInput').click();
+    }
+}
+
+function previewImage(event, previewId, placeholderId) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const previewImg = document.getElementById(previewId);
+            const placeholder = document.getElementById(placeholderId);
+            
+            previewImg.src = e.target.result;
+            previewImg.style.display = "block";
+            placeholder.style.display = "none";
+        }
+        reader.readAsDataURL(file);
+    }
+}
+
+// ১. লগ আউটে ক্লিক করলে মডাল শো করবে
+function showLogoutModal(event) {
+    event.preventDefault();
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+        modal.style.setProperty('display', 'flex', 'important');
+    }
+}
+
+// ২. 'বাতিল' বাটনে ক্লিক করলে মডাল বন্ধ হবে
+function hideLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    if (modal) {
+        modal.style.setProperty('display', 'none', 'important');
+    }
+}
+
+// ৩. চূড়ান্তভাবে লগ আউট কনফার্ম করলে
+function executeLogout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../index.html'; // আপনার লগইন পেজের লিংক
+}
+
+document.getElementById('jobs-btn').addEventListener('click', function() {
+    window.location.href = 'find-jobs.html';
+});
+
+document.getElementById('bell-icon').addEventListener('click', function() {
+    window.location.href = 'bell-icon.html';
 });

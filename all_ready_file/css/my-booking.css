@@ -1,0 +1,334 @@
+/* ১. বডির ডিফল্ট স্ক্রল ও মার্জিন বন্ধ করা */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* পুরো পেজে স্ক্রলবার আসার পথ বন্ধ */
+    background-color: #f0f2f5;
+}
+
+
+/* মেইন বক্স কনটেইনার */
+.work-box {
+    display: flex;        /* এটি বাম ও ডানে ভাগ করবে */
+    flex-direction: row;  /* পাশাপাশি রাখার জন্য */
+    width: 100%;
+    height: 99vh;
+    margin: 5vh auto;
+    overflow: hidden; 
+    background: #ffffff;
+    border-radius: 0;
+    margin-top: 52px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* কন্টেইনার সেট করা */
+.left-sidebar {
+    container-type: inline-size;
+    container-name: sidebar;
+    width: 20%;
+    min-width: 120px;
+    flex-shrink: 0;
+  
+}
+
+/* ১. সব স্ক্রিনের জন্য ডিফল্ট বড় সাইজ */
+.left-sidebar-header span {
+    font-size: 20px;
+    display: block;
+    text-align: center;
+}
+
+/* ২. ফোন বা ছোট স্ক্রিনের জন্য (যেখানে স্ক্রিনের উইডথ ৫০০px এর কম) */
+@media screen and (max-width: 690px) {
+    .left-sidebar-header span {
+        font-size: 18px !important; /* এখানে আপনার পছন্দমতো সাইজ দিন */
+    }
+}
+
+/* ২. ফোন বা ছোট স্ক্রিনের জন্য (যেখানে স্ক্রিনের উইডথ ৫০০px এর কম) */
+@media screen and (max-width: 600px) {
+    .left-sidebar-header span {
+        font-size: 16px !important; /* এখানে আপনার পছন্দমতো সাইজ দিন */
+    }
+}
+
+/* ২. ফোন বা ছোট স্ক্রিনের জন্য (যেখানে স্ক্রিনের উইডথ ৫০০px এর কম) */
+@media screen and (max-width: 1784px) {
+   .left-sidebar {
+    margin-top: 2px;
+   }
+}
+
+/* ২. ফোন বা ছোট স্ক্রিনের জন্য (যেখানে স্ক্রিনের উইডথ ৫০০px এর কম) */
+@media screen and (max-width: 643px) {
+   .left-sidebar {
+    margin-top: 5px;
+   }
+}
+
+/* ১. সাধারণ অবস্থা (বড় স্ক্রিন) */
+.arrow-btn {
+    width: 50px;
+    height: 50px;
+}
+
+/* ২. ছোট স্ক্রিনের জন্য (যেখানে সাইডবার বা স্ক্রিন ছোট হয়) */
+@media screen and (max-width: 1100px) {
+   
+    /* বাটনের নিজস্ব প্যাডিং বা মার্জিন */
+    .nav-btn {
+        margin-bottom: 19px !important; /* নিচে কিছুটা ফাঁকা জায়গা তৈরি হবে */
+        padding: 5px !important;
+    }
+}
+
+/* ২. ছোট স্ক্রিনের জন্য (যেখানে সাইডবার বা স্ক্রিন ছোট হয়) */
+@media screen and (max-width: 973px) {
+    .arrow-btn {
+        width: 45px !important; /* বাটন ছোট হবে */
+        height: 45px !important;
+       
+    }
+ /* বাটনের মধ্যকার গ্যাপ বাড়ানো */
+    .sidebar-items {
+        gap: 15px !important; /* এখানে গ্যাপ বাড়িয়ে দিন */
+    }
+
+    /* বাটনের নিজস্ব প্যাডিং বা মার্জিন */
+    .nav-btn {
+        margin-bottom: 19px !important; /* নিচে কিছুটা ফাঁকা জায়গা তৈরি হবে */
+        padding: 5px !important;
+    }
+}
+
+/* ২. ছোট স্ক্রিনের জন্য (যেখানে সাইডবার বা স্ক্রিন ছোট হয়) */
+@media screen and (max-width: 673px) {
+    .arrow-btn {
+        width: 40px !important; /* বাটন ছোট হবে */
+        height: 40px !important;
+    }
+    .tab-btn {
+        font-size: 11px !important; /* এখানে আপনার পছন্দমতো সাইজ দিন */
+       
+    }
+
+    .main-header {
+        /* হাইট এখানে একদম ফিক্সড করে দিন, আপনার যা আছে তাই লিখুন */
+        height: 68px !important; 
+        
+        /* লাইন হাইটকে হাইটের সমান রাখুন, যাতে টেক্সট লম্বালম্বি মাঝখানে থাকে */
+        line-height: 60px !important;
+        
+        /* ফন্ট সাইজ ছোট করুন */
+        font-size: 16px !important;
+        
+        /* প্যাডিং বা মার্জিনের কোনো পরিবর্তন করবেন না, তাই সেগুলো লিখবেন না */
+    }
+
+}
+
+/* ২. ছোট স্ক্রিনের জন্য (যেখানে সাইডবার বা স্ক্রিন ছোট হয়) */
+@media screen and (max-width: 500px) {
+    .arrow-btn {
+        width: 35px !important; /* বাটন ছোট হবে */
+        height: 35px !important;
+        
+    }
+     .tab-btn {
+        font-size: 10px !important; /* এখানে আপনার পছন্দমতো সাইজ দিন */
+       
+    }
+
+
+}
+
+
+/* ভেতরের এলিমেন্টগুলোর সাইজ (আগের মতোই থাকবে) */
+.left-sidebar .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 4cqw;       
+    padding: 5cqw;   
+}
+
+.left-sidebar .nav-text {
+    font-size: 7cqw; 
+    white-space: nowrap; 
+    line-height: 1.2;
+}
+
+.left-sidebar i, 
+.left-sidebar img,
+.left-sidebar svg {
+    width: 12cqw;  
+    height: 12cqw;
+    flex-shrink: 0;
+}
+
+
+/* ডান পাশের প্যানেল */
+.right-panel {
+    flex-grow: 1;         /* বাকি পুরো জায়গা দখল করবে */
+    height: 100%;         /* বক্সের হাইট অনুযায়ী থাকবে */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 0;        /* গুরুত্বপূর্ণ: মার্জিন সরিয়ে দিন */
+}
+
+/* ৩. কন্টেন্ট এরিয়াকে বাকি জায়গা নিতে বাধ্য করা */
+.content-area {
+    flex-grow: 1;        /* এটি হেডারের পরের পুরো খালি জায়গা দখল করবে */
+    overflow-y: auto;    /* কন্টেন্ট বেশি হলে শুধুমাত্র এই এরিয়াতেই স্ক্রল আসবে */
+    padding: 20px;
+}
+/* মেইন ব্যানার স্টাইল */
+.main-header {
+    background: #ffffff;             /* খাঁটি সাদা ব্যাকগ্রাউন্ড */
+    color: #2c3e50;                  /* গাঢ় নীলচে টেক্সট, যা প্রফেশনাল লাগে */
+    padding: 20px 25px;
+    font-size: 22px;
+    font-weight: 700;
+    
+    /* নেভিগেশনের সাথে মিলিয়ে ব্যানার লুক */
+    border-bottom: none;             /* নিচে কোনো দাগ থাকবে না */
+    box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* খুব হালকা শ্যাডো যাতে মনে হয় এটি ভেসে আছে */
+    
+    /* সুন্দর লুক দেওয়ার জন্য মার্জিন */
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* যদি আপনি আরও একটু স্টাইলিশ করতে চান */
+.left-sidebar-header::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 24px;
+    background-color: #007bff;        /* আপনার থিম কালার */
+    margin-right: 12px;
+    border-radius: 3px;
+}
+
+/* হেডার ট্যাব বাটনগুলো সুন্দর করা */
+.header-tabs { 
+    display: flex; 
+    background: #f8f9fa; 
+    border-bottom: 1px solid #e0e0e0; 
+}
+
+.tab-btn { 
+    flex: 1; 
+    padding: 20px; 
+    border: none; 
+    background: none; 
+    cursor: pointer; 
+    font-weight: 600; 
+    color: #666; 
+    transition: 0.3s; 
+}
+
+.tab-btn:hover { background: #eef2f7; color: #007bff; }
+
+.tab-btn.active { 
+    background: #ffffff; 
+    color: #007bff; 
+    border-bottom: 3px solid #007bff; /* অ্যাক্টিভ ট্যাব বোঝাতে নিচের দাগ */
+    font-weight: bold;
+}
+
+
+/* বাটন বা আইটেম স্টাইল */
+.sidebar-items {
+    padding: 10px;
+}
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* আইকন এবং লেখার মাঝে ফাঁকা */
+    padding: 15px 20px;
+    width: 100%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-btn:hover {
+    background-color: #e2e6ea;
+    border-radius: 5px;
+}
+
+.nav-btn.active {
+    background-color: #dee2e6; /* আপনার পছন্দের কালার */
+    border-left: 4px solid #007bff; /* বাম পাশে একটি মার্কার */
+}
+
+
+.left-sidebar-header {
+    background-color: #e9ecef;
+  
+    width: 100%; /* আপনার সাইডবারের উইডথের সমান দিন */
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    font-size: 28px;
+    justify-content: center; /* এটি এখন কাজ করবেই */
+    align-items: center;
+    
+    height: 65px;
+    margin-left: 0;
+}
+
+.left-sidebar-header span {
+    display: block; /* এটিকে ব্লক লেভেল এলিমেন্ট করে দিন */
+    width: 100%;
+    text-align: center; /* লেখাটিকে মাঝখানে নেওয়ার জন্য */
+    font-weight: bold;
+    color: #495057;
+    font-size: 22px;
+}
+/* যদি আপনি আরও একটু স্টাইলিশ করতে চান */
+.left-sidebar-header::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 24px;
+    background-color: #007bff;        /* আপনার থিম কালার */
+   
+    border-radius: 3px;
+    margin-right: 0;
+}
+
+/* কন্টেন্ট এরিয়াকে দৃশ্যমান করার জন্য */
+.content-area {
+    width: 100%;
+    min-height: 300px; /* একটি ন্যূনতম উচ্চতা দিন */
+    padding: 20px;
+    display: block;
+    
+}
+
+/* নিশ্চিত করুন কন্টেন্টগুলো হিডেন নয় */
+.tab-content {
+    display: none;
+    width: 100%;
+    
+}
+
+/* ট্যাব কন্টেন্টের কার্ডগুলোকে পাশাপাশি আনার জন্য */
+.tab-content.active {
+    display: flex !important; /* জেএস এর !important কে ওভাররাইড করবে */
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+/* কার্ডের ওপর চাপ কমানোর জন্য */
+.tab-content .job-card {
+    flex: 0 0 300px; /* কার্ডের সাইজ নির্দিষ্ট থাকবে */
+    margin: 0 !important; /* জেএস এর মার্জিন সরিয়ে দিল */
+}

@@ -1,10 +1,40 @@
+/* ল্যাপটপ থেকে হঠাৎ মোবাইল স্ক্রিনে গেলে বা ডানে-বামে অতিরিক্ত স্ক্রল হওয়া আটকাতে */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
 .wallet-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
 }
 
+/* ১. হেডার সেকশন ট্যাব ফিক্সড করার জন্য */
+.header-section-tab {
+    position: fixed !important;
+    top: 0 !important;       /* আপনার নেভবারের উচ্চতা (Height) যত পিক্সেল, এখানে তত বসাবেন */
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 998 !important;
+    background-color: #ffffff !important; /* পেছনের লেখা যেন দেখা না যায় */
+    box-sizing: border-box !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
 
+}
+
+/* ২. মোবাইল বা ৭৭০ পিক্সেলের নিচের স্ক্রিনের জন্য */
+@media (max-width: 770px) {
+    .header-section-tab {
+        top: 0 !important;       /* মোবাইলে নেভবার ছোট হলে সেই অনুযায়ী হাইট */
+    }
+}
+
+/* ৩. নিচের কন্টেন্ট যেন ওপরের ফিক্সড হেডার বা নেভবারের নিচে ঢাকা না পড়ে */
+body {
+    padding-top: 110px !important; /* নেভবার এবং এই হেডার ট্যাবের মোট উচ্চতার সমান এখানে প্যাডিং দিন */
+}
 
 .wallet-grid-layout {
     display: flex;
