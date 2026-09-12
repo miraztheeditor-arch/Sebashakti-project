@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="../../all-comon-files/css/navbar-design-after-technician & client-login.css">
+    <link rel="stylesheet" href="../css-files/post-jobs.css">
+      <link rel="stylesheet" href="../css-files/client-profile-icon-click.css">
+      <link rel="stylesheet" href="../css-files/client-logout-modal.css">
+</head>
+<body>
+    <div id="toastMessage" style="display:none; position:fixed; top:80px; right:20px; background-color: #28a745; color: #fff; padding: 15px 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 1000; font-family: sans-serif; font-weight: 500;">
+    রেজিস্ট্রেশন সফল হয়েছে! আপনাকে স্বাগতম।
+</div>
+    <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="../../../images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
+
+<div class="nav-menu">
+    <a href="../../../index.html" class="home">হোম</a>
+        <a href="services-areas.html" class="services-areas">সার্ভিস এরিয়া</a>
+        <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-icon" id="jobs-btn" title="Available Jobs">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span class="btn-text">Post Jobs</span>
+    </button>
+     <button class="nav-icon" id="bell-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="notification-badge">২</span>
+    </button>
+<div class="profile-container" id="profile-btn" onclick="toggleSidebar()">
+    <div class="profile-circle" id="profile-avatar">
+        <span id="avatar-letter">U</span>
+    </div>
+</div>
+
+
+
+<div id="profileSidebar" class="sidebar">
+
+  <div class="sidebar-header-fixed">
+    <div class="sidebar-header">
+        <div class="profile-pic-container">
+            <div class="profile-circle-in-profile" id="profile-avatar">
+                <span id="profile-avatar-letter">U</span>
+                </div>
+      
+<input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewProfileImage(event)">
+        </div>
+        <div class="name-container">
+            <span class="user-name" id="user-name">User...</span>
+            <p class="user-meta" id="user-id-profile">UID: #XXXX</p>
+        </div>
+        <div class="button-container">
+            <button class="close-btn" onclick="toggleSidebar()">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                 </svg>
+            </button>
+        </div>
+    </div>
+
+        
+        <div class="sidebar-header-title">
+            <h3>অ্যাকাউন্ট মেনু</h3>
+        </div>
+
+        <div class="tech-info-box">
+            <div class="info-item">
+                 <span class="dot"></span> অ্যাকাউন্ট স্ট্যাটাস: <span class="status-text">একটিভ</span>
+            </div>
+            <div class="info-item">
+                <span>📍</span> সার্ভিস নেওয়ার ঠিকানা: মিরপুর, ঢাকা
+            </div>
+        </div>
+      </div>
+
+    <div class="sidebar-scrollable" style="flex-grow: 1; overflow-y: auto;">
+
+        <div class="sidebar-menu">
+            <div class="menu-group">
+                <a href="profile-client.html" class="menu-item"><span>👤</span> প্রোফাইল</a>
+                <a href="client-dashboard.html" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
+                <a href="my-booking.html?active=recent-request" class="menu-item"><span>📅</span> আমার বুকিং</a>
+                
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="payment-history-client.html?active=recent-request" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
+                <a href="settings-client.html" class="menu-item"><span>⚙️</span> সেটিংস</a>
+                <a href="support-client.html" class="menu-item"><span>🎧</span> সাপোর্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="#" class="menu-item logout" onclick="showLogoutModal(event)"><span class="icon">🚪</span> লগ আউট</a>
+                
+ <!-- লগ আউট কনফার্মেশন পপআপ মডাল (প্রথমে হাইড থাকবে) -->
+<div id="logoutModal" class="logout-modal-overlay" style="display: none;">
+    <div class="logout-modal-box">
+        <div class="logout-icon">⚠️</div>
+        <h3>আপনি কি লগ আউট করতে চান?</h3>
+        <p>লগ আউট করলে আপনার বর্তমান সেশন শেষ হয়ে যাবে এবং পুনরায় লগইন করতে হবে।</p>
+        
+        <div class="logout-modal-buttons">
+            <button type="button" class="btn-cancel" onclick="hideLogoutModal()">বাতিল</button>
+            <button type="button" class="btn-confirm" onclick="executeLogout()">লগ আউট</button>
+        </div>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ <div id="overlay"></div>
+
+ 
+    </nav>
+
+    <div class="post-job-container">
+        
+        
+ <!-- হেডার সেকশন -->
+    <div class="post-job-header">
+        <!-- ব্যাক বাটন (বামে থাকবে) -->
+    <button onclick="history.back()" class="nav-btn arrow-btn" title="পেছনে যান">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+    </button>
+        <h2>আপনি একটি কাজ পোস্ট করতে যাচ্ছেন</h2>
+    </div>
+
+        <form id="postJobForm">
+            <div class="form-group">
+                <label for="userName">নাম</label>
+                <input type="text" id="userName" class="form-control" value="User_XXXX" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="fixedLocation">ফিক্সড লোকেশন</label>
+                <input type="text" id="fixedLocation" class="form-control" value="মিরপুর, ঢাকা" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="currentLocation">বর্তমান লোকেশন</label>
+                <input type="text" id="currentLocation" class="form-control" placeholder="আপনার বর্তমান লোকেশন লিখুন">
+            </div>
+
+          <div class="form-group" id="workWrapper">
+    <label for="workCategory">কী কাজ করাতে চান?</label>
+    
+    <!-- ড্রপডাউন -->
+    <select id="workCategory" class="form-control" onchange="toggleField(this)">
+        <option value="" disabled selected>কাজ সিলেক্ট করুন</option>
+        <option value="electrical">ইলেকট্রিক্যাল</option>
+        <option value="plumbing">প্লাম্বিং সার্ভিস</option>
+        <option value="ac-service">এসি সার্ভিস</option>
+        <option value="cleaning">ক্লিনিং সার্ভিস</option>
+        <option value="home-repair">হোম রিপেয়ার</option>
+        <option value="computer-service">কম্পিউটার সার্ভিস</option>
+        <option value="refrigerator-service">রেফ্রিজারেটর (ফ্রিজ) সার্ভিস</option>
+        <option value="fan-motor-service">ফ্যান ও মোটর সার্ভিস</option>
+        <option value="appliance-repair">অ্যাপ্লায়েন্স রিপেয়ার</option>
+        <option value="other">অন্যান্য, আমি নিজে লিখতে চাই</option>
+    </select>
+
+    <!-- ইনপুট ফিল্ড ও ব্যাক করার বাটনযুক্ত কন্টেইনার (শুরুতে লুকানো) -->
+    <div id="customInputContainer" class="custom-input-container hidden">
+        <input type="text" id="customWorkInput" class="form-control" placeholder="নিজের কাজের নাম লিখুন">
+        <button type="button" class="back-to-select-btn" onclick="resetToDropdown()" title="ড্রপডাউনে ফিরে যান">✕</button>
+    </div>
+</div>
+
+            <div class="form-group">
+                <label for="unitCount">কতগুলো ইউনিটের কাজ করাতে চান?</label>
+                <input type="number" id="unitCount" class="form-control" value="1">
+            </div>
+
+            <!-- নতুন ফিল্ড: সমস্যার বিস্তারিত লিখুন -->
+            <div class="form-group">
+                <label for="problemDetails">সমস্যার বিস্তারিত লিখুন</label>
+                <textarea id="problemDetails" class="form-control" rows="4" placeholder="আপনার সমস্যা বা কাজের বিস্তারিত এখানে লিখুন..."></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-draft" onclick="saveAsDraft()">ড্রাফটে রাখুন</button>
+                <button type="submit" class="btn btn-submit">পোস্ট করুন</button>
+            </div>
+        </form>
+    </div>
+    <script src="../../all-comon-files/js/api.js"></script>
+    <script src="../../all-comon-files/js/job-api.js"></script>
+    <script src="../../all-comon-files/js/auth-guard.js"></script>
+    <script src="../js-files/post-jobs.js"></script>
+
+</body>
+
+</html>

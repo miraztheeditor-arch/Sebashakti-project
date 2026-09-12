@@ -1,0 +1,259 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #f0f2f5;
+}
+/* মেইন কন্টেইনার */
+.post-job-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* হেডার ডিজাইন */
+.post-job-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    margin-top: 50px ;
+}
+
+.post-job-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky; /* অথবা fixed রাখতে চাইলে fixed দিতে পারেন */
+    top: 50px;        /* ঠিক ওপর থেকে ৫০ পিক্সেল নিচে ফিক্সড থাকবে */
+    z-index: 998;
+    background-color: #ffffff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* ২. ব্যাক বাটন (গোল শেপ এবং পজিশনিং) */
+.post-job-header .arrow-btn {
+    position: absolute;
+    left: 10px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%; /* গোল করার জন্য */
+    background-color: #e0e7ff; /* হালকা নীল ব্যাকগ্রাউন্ড */
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+/* ৩. এসভিজি আইকন কালার */
+.post-job-header .arrow-btn svg {
+    
+    transition: color 0.3s ease;
+}
+
+
+
+.post-job-header .arrow-btn:hover svg {
+    color: #4f46e5; /* ডিফল্ট আইকন কালার */
+}
+
+/* ৫. হেডারের মাঝখানের টেক্সট */
+.post-job-header h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #1e293b;
+    font-weight: 600;
+}
+
+#postJobForm {
+    padding: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #475569;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-control[readonly] {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn-draft { background-color: #e2e8f0; color: #475569; }
+.btn-submit { background-color: #2563eb; color: #ffffff; }
+
+.hidden { display: none; }
+
+/* ড্রপডাউন ও ইনপুট ফিল্ড যাতে একই জায়গায় থাকে */
+#workWrapper {
+    position: relative;
+}
+
+#workCategory, #customWorkInput {
+    margin-top: 5px;
+}
+
+/* কাস্টম ইনপুট ও রিসেট বাটন একসাথে রাখার জন্য */
+.custom-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.custom-input-container input {
+    padding-right: 40px; /* যাতে লেখার ওপর বাটন না চলে যায় */
+}
+
+/* ড্রপডাউনে ফিরে যাওয়ার ছোট ক্রস বাটন */
+.back-to-select-btn {
+    position: absolute;
+    right: 10px;
+    background: #e2e8f0;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.back-to-select-btn:hover {
+    background: #cbd5e1;
+    color: #0f172a;
+}
+
+/* রিডঅনলি ফিল্ডে ফোকাস করলে বর্ডার হাইলাইট বন্ধ করা */
+.form-control[readonly]:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #cbd5e1; /* বর্ডার কালার আগের মতোই রাখা */
+    cursor: not-allowed;
+}
+
+/* লুকানোর জন্য এই ক্লাসটি অত্যন্ত জরুরি */
+.hidden {
+    display: none !important;
+}
+
+/* টেক্সটএরিয়ার সাইজ রিসাইজ ফিক্সড বা সুন্দর রাখার জন্য */
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* বাটন জেনারেল ডিজাইন */
+.btn {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* এটিই হোভার ইফেক্ট স্মুথ করবে */
+}
+
+/* ড্রাফট বাটনের হোভার ইফেক্ট */
+.btn-draft {
+    background-color: #e2e8f0;
+    color: #475569;
+}
+
+.btn-draft:hover {
+    background-color: #cbd5e1;
+    color: #1e293b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* পোস্ট করুন বাটনের হোভার ইফেক্ট */
+.btn-submit {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+.btn-submit:hover {
+    background-color: #1d4ed8;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px); /* হোভার করলে সামান্য উপরে উঠবে */
+}
+
+@media screen and (max-width: 922px) {
+    .post-job-header {
+        position: sticky;
+        top: 51px !important;
+        z-index: 998;
+    }
+}
+
+@media screen and (max-width: 885px) {
+    .post-job-header {
+        position: sticky;
+        top: 52px !important;
+        z-index: 998;
+    }
+}
+
+@media screen and (max-width: 797px) {
+    .post-job-header {
+        position: sticky;
+        top: 62px !important;
+        z-index: 998;
+    }
+
+    
+/* ৫. হেডারের মাঝখানের টেক্সট */
+.post-job-header h2 {
+    margin: 0;
+    font-size: 14px;
+    color: #1e293b;
+    font-weight: 600;
+}
+}
+

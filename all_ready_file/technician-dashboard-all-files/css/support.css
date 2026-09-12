@@ -1,0 +1,230 @@
+/* ল্যাপটপ থেকে হঠাৎ মোবাইল স্ক্রিনে গেলে বা ডানে-বামে অতিরিক্ত স্ক্রল হওয়া আটকাতে */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* গ্লোবাল এবং বেস স্টাইল */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+    padding-top: 110px; /* ফিক্সড নেভবার এবং টাইটেল কন্টেইনারের নিচে জায়গা রাখার জন্য */
+}
+
+/* টাইটেল কন্টেইনার (আগের ফিক্সড ও নিখুঁত ডিজাইন) */
+.title-container {
+    position: fixed !important;
+    top: 50px !important; /* নেভবারের হাইট অনুযায়ী */
+    left: 0 !important;
+    width: 100% !important;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e2e8f0;
+    z-index: 998 !important;
+    box-sizing: border-box !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* গোল ব্যাক বাটন */
+.title-container .back-btn {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: #f1f5f9 !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    position: absolute !important;
+    left: 15px !important;
+    transition: all 0.3s ease !important;
+}
+
+.title-container .back-btn:hover {
+    background-color: #e2e8f0 !important;
+    transform: scale(1.05) !important;
+}
+
+.settings-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e293b;
+    text-align: center;
+}
+
+/* মেইন সাপোর্ট কন্টেইনার লেআউট */
+.support-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* ওয়েলকাম কার্ড */
+.support-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+}
+
+.support-main-icon {
+    font-size: 45px;
+    color: #0d6efd;
+    margin-bottom: 15px;
+}
+
+.support-card h3 {
+    margin: 0 0 10px 0;
+    color: #1e293b;
+    font-size: 22px;
+}
+
+.support-card p {
+    color: #64748b;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* যোগাযোগের গ্রিড বক্স */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.contact-box {
+    background: #ffffff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f1f5f9;
+}
+
+.contact-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    width: 55px;
+    height: 55px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: #fff;
+}
+
+.phone-bg { background-color: #198754; }
+.chat-bg { background-color: #0d6efd; }
+.email-bg { background-color: #ffc107; color: #000; }
+
+.contact-box h4 {
+    margin: 0 0 5px 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.contact-box p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 0 0 15px 0;
+}
+
+.action-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+/* সাপোর্ট মেসেজ ফর্ম কার্ড */
+.support-form-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin-bottom: 40px;
+}
+
+.support-form-card h3 {
+    margin-top: 0;
+    color: #1e293b;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: #0d6efd;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+/* মোবাইল রেসপন্সিভ */
+@media (max-width: 770px) {
+    .title-container {
+        top: 60px !important;
+    }
+    body {
+        padding-top: 100px;
+    }
+}

@@ -1,0 +1,590 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #f0f2f5;
+}
+
+.edit-profile-container {
+    max-width: 95%;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.form-header h2 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 24px;
+}
+
+.form-header p {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.profile-form .form-group {
+    margin-bottom: 20px;
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="tel"],
+.profile-form input[type="email"],
+.profile-form select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.profile-form input:focus,
+.profile-form select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+.nid-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px dashed #e0e0e0;
+}
+
+.nid-section h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.nid-upload-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.upload-box {
+    flex: 1;
+    background: #f8f9fa;
+    padding: 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.upload-box label {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.upload-box input[type="file"] {
+    font-size: 12px;
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.save-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: #219653;
+}
+
+.cancel-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #c0392b;
+}
+
+/* রেস্পন্সিভ ডিজাইন */
+@media (max-width: 600px) {
+    .nid-upload-group {
+        flex-direction: column;
+    }
+}
+
+.service-area-box {
+    background: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.service-area-box .box-header h3 {
+    color: #2c3e50;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+    display: inline-block;
+}
+
+.profile-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical; /* ইউজার যেন প্রয়োজনমতো বক্সের সাইজ ওপর-নিচে বড় করতে পারে */
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.profile-form textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding-right: 45px; /* আইকনের জন্য জায়গা ফাঁকা রাখা */
+}
+
+.edit-icon-btn {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #3498db;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.edit-icon-btn:hover {
+    transform: scale(1.1);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    position: sticky; /* স্ক্রল করলে আটকে যাবে */
+    top: 50px;        /* নেভিগেশন বার যত pixels উঁচু, সেই অনুযায়ী এখানে মান দেবেন (যেমন: 60px বা 70px) যাতে নেভিগেশনের নিচে থাকে */
+    background-color: #ffffff; /* ব্যাকগ্রাউন্ড সাদা রাখতে হবে, না হলে পেছনের লেখা দেখা যাবে */
+    z-index: 99;      /* নেভিগেশনের নিচে এবং অন্যান্য কন্টেন্টের উপরে থাকবে */
+    margin-bottom: 20px;
+    padding: 15px 2px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* নিচে হালকা শ্যাডো যা প্রিমিয়াম লুক দেবে */
+    
+    margin-top: -20px;
+}
+
+/* ব্যাক বাটন একদম বামে থাকবে */
+.header-container .nav-btn {
+    background: #f0f4f8;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 2;
+    flex-shrink: 0;
+}
+
+.header-container .nav-btn:hover {
+    background: #e2e8f0;
+    color: #3498db;
+}
+
+/* হেডিং ও সাবটাইটেল একদম পেজের মাঝখানে (Center) থাকবে */
+.form-header-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.form-header-content h2 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    color: #2c3e50;
+}
+
+.form-header-content p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 12px;
+}
+
+@media (max-width: 926px) {
+    .form-header-content h2 {
+        font-size: 20px;
+    }
+    .form-header-content p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 816px) {
+    .form-header-content h2 {
+        font-size: 18px;
+    }
+    .form-header-content p {
+        font-size: 9px;
+    }
+}
+
+
+@media (max-width: 686px) {
+    .form-header-content h2 {
+        font-size: 17px;
+        display: flex;
+        flex-direction: column; /* হেডারকে দুই ভাগে নিচে নিচে কলাম আকারে নিয়ে আসবে */
+        gap: 3px; /* লাইন দুটির মাঝখানে হালকা ফাঁকা রাখার জন্য */
+    }
+    .form-header-content p {
+        font-size: 9px;
+    }
+
+    .header-container {
+    display: flex;
+    align-items: center;
+    position: sticky; /* স্ক্রল করলে আটকে যাবে */
+    top: 56px;        /* নেভিগেশন বার যত pixels উঁচু, সেই অনুযায়ী এখানে মান দেবেন (যেমন: 60px বা 70px) যাতে নেভিগেশনের নিচে থাকে */
+    background-color: #ffffff; /* ব্যাকগ্রাউন্ড সাদা রাখতে হবে, না হলে পেছনের লেখা দেখা যাবে */
+    z-index: 99;      /* নেভিগেশনের নিচে এবং অন্যান্য কন্টেন্টের উপরে থাকবে */
+    margin-bottom: 20px;
+    padding: 15px 2px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03); /* নিচে হালকা শ্যাডো যা প্রিমিয়াম লুক দেবে */
+    
+    margin-top: -20px;
+}
+}
+
+@media (max-width: 527px) {
+    .form-header-content h2 {
+        font-size: 15px;
+        display: flex;
+        flex-direction: column; /* হেডারকে দুই ভাগে নিচে নিচে কলাম আকারে নিয়ে আসবে */
+        gap: 3px; /* লাইন দুটির মাঝখানে হালকা ফাঁকা রাখার জন্য */
+    }
+    .form-header-content p {
+        font-size: 8px;
+    }
+}
+
+/* ফর্ম গ্রুপ এবং সিলেক্ট বক্সের মূল স্টাইল */
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+/* জেলা ও উপজেলা সিলেক্ট ড্রপডাউন ডিজাইন */
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 15px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* ফোকাস করলে বা হোভার করলে বর্ডার সুন্দর দেখাবে */
+.form-group select:focus {
+    border-color: #3498db;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+/* কন্টেইনার ফ্লেক্স */
+.profile-pic-container-in-display {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 29px;
+  
+}
+
+/* ১. সার্কেল বড় করা (৮০ পিক্সেল) */
+#profile-avatar-in-display {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+     background: linear-gradient(135deg, #2ecc71, #3498db, #9b59b6, #e74c3c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* গোল শেপ ঠিক রেখে গ্রেডিয়েন্ট বর্ডার দেওয়ার সহজ উপায় */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.8); /* এটি দিয়ে খুব সুন্দর গোল রিং বা বর্ডার তৈরি হবে */
+ 
+}
+
+/* ২. সার্কেলের অক্ষরের সাইজ */
+#profile-avatar-letter-in-display {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* ৩. ক্যামেরা আইকন দৃশ্যমান ও পজিশন করার সিএসএস */
+#camera-icon-btn {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 15px;
+    height: 15px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* প্রফাইল সার্কেলের ওপরে দৃশ্যমান রাখবে */
+}
+
+/* ৪. নাম ও আইডির গ্যাপ কমানো */
+#user-name-in-display {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1.1;
+    margin: 0;
+    display: block;
+    margin-top: 10px;
+}
+
+#user-id-profile-in-display {
+    font-size: 12px;
+    color: #7f8c8d;
+    font-weight: 500;
+    margin-top: 5px;
+    display: block;
+    line-height: 1;
+}
+
+/* ইনপুট বক্সের সঠিক হাইট ও প্যাডিং */
+.form-group input, 
+.form-group select,
+.input-with-icon input {
+    width: 100%;
+    padding: 12px 14px; /* ওপর-নিচে প্যাডিং বাড়িয়ে দেওয়া হলো */
+    height: 45px;       /* নির্দিষ্ট একটি স্ট্যান্ডার্ড হাইট */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fdfdfd;
+    outline: none;
+    box-sizing: border-box; /* হাইট যেন প্যাডিংয়ের কারণে বেড়ে না যায় */
+}
+
+/* মূল আপলোড বক্সের সাধারণ স্টাইল */
+.upload-preview-container {
+    width: 100%;
+    border: 2px dashed #cbd5e1;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: #f8fafc;
+    position: relative;
+    overflow: hidden;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+    /* ডিফল্ট সাইজ (বড় স্ক্রিনের জন্য - ল্যাপটপ/ডেস্কটপ) */
+    aspect-ratio: 1.5 / 1; /* এনআইডি কার্ডের আদর্শ অনুপাত */
+    max-height: 220px;     /* ল্যাপটপে যেন অতিরিক্ত বড় না হয় */
+}
+
+
+
+/* বক্সের ভেতরের ছবি */
+.upload-preview-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* কার্ডের কোনো অংশই কাটবে না, পুরোটা ফিট হবে */
+    border-radius: 6px;
+}
+
+.placeholder-content {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* =========================================
+   রেসপনসিভ মিডিয়া কুয়েরি (Responsive Media Queries)
+   ========================================= */
+
+/* ১. ছোট মোবাইল স্ক্রিন (Width <= 400px) - যেমন iPhone SE বা ছোট Android */
+@media (max-width: 400px) {
+    .upload-preview-container {
+        /* মোবাইলে কার্ডের উচ্চতা আরেকটু কমানো হয়েছে যাতে আঙ্গুলের নাগালের মধ্যে থাকে */
+        aspect-ratio: 1.6 / 1; /* একটু চওড়া */
+        max-height: 130px;
+    }
+    .placeholder-content {
+        font-size: 13px;
+    }
+}
+
+/* ২. মাঝারি ও বড় মোবাইল স্ক্রিন (Width 401px to 767px) - সাধারণ স্মার্টফোন */
+@media (min-width: 401px) and (max-width: 767px) {
+    .upload-preview-container {
+        /* এনআইডি কার্ডের জন্য পারফেক্ট ভিউ */
+        aspect-ratio: 1.5 / 1;
+        max-height: 170px;
+    }
+    .placeholder-content {
+        font-size: 14px;
+    }
+}
+
+/* ৩. ট্যাবলেট ও ছোট ল্যাপটপ (Width 768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .upload-preview-container {
+        aspect-ratio: 1.5 / 1;
+        max-height: 190px;
+    }
+}
+
+/* ৪. বড় ল্যাপটপ ও ডেস্কটপ (Width >= 1024px) */
+@media (min-width: 1024px) {
+    .upload-preview-container {
+        aspect-ratio: 1.55 / 1; /* আরেকটু বড় ভিউ */
+        max-height: 220px;
+    }
+}
+
+#workDescription:focus, 
+input:focus {
+    outline: none;
+    box-shadow: none;
+   
+    border-color: #e5e7eb; /* আপনার আগের নরমাল বর্ডার কালারটি এখানে দিয়ে দেবেন */
+}
+
+textarea {
+    padding: 12px 16px; /* ওপর-নিচে এবং ডানে-বামে পর্যাপ্ত ফাঁকা জায়গা তৈরি করবে */
+    line-height: 1.5;   /* লাইনগুলোর মাঝের দূরত্ব ঠিক রাখবে */
+}
+
+.edit-profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px !important; /* আইকন ও লেখার মাঝের দূরত্ব কমাতে এটি কমিয়ে দিন (আগে বেশি থাকলে ৮ পিক্সেল বা তার কম দিতে পারেন) */
+    background-color: #f0fdf4; /* এটি হোভার কালারের সাথে মানানসই একটি হালকা সফট ব্যাকগ্রাউন্ড (আপনার থিম অনুযায়ী কালার কোড পরিবর্তন করে নিতে পারেন) */
+    border: 1px solid #d1d5db; /* হালকা বর্ডার চাইলে রাখতে পারেন */
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #111827;
+    transition: background-color 0.2s ease;
+}
+
+.edit-profile:hover {
+    background-color: #e2e8f0; /* হোভার করার সময় ব্যাকগ্রাউন্ড কালার একটু মানানসইভাবে পরিবর্তন হবে */
+}
+
+/* মোবাইল বা ছোট স্ক্রিনের জন্য এডিট প্রোফাইল বাটন রেসপনসিভ স্টাইল */
+@media screen and (max-width: 768px) {
+    .edit-profile {
+        padding: 6px 12px;     /* ছোট স্ক্রিনে প্যাডিং কমিয়ে দেওয়া */
+        font-size: 13px;       /* লেখার সাইজ ছোট করা */
+        gap: 4px;              /* আইকন ও লেখার মাঝের দূরত্ব আরও কমিয়ে আনা */
+    }
+    
+    .edit-profile svg, 
+    .edit-profile img {
+        width: 14px;           /* আইকনের সাইজ ছোট করা */
+        height: 14px;
+    }
+}
+
+@media screen and (max-width: 522px) {
+    .edit-profile {
+        padding: 4px 10px !important;     /* প্যাডিং আরও কমিয়ে ছোট করা হলো */
+        font-size: 12px !important;       /* ফন্ট সাইজ ছোট করা হলো */
+        gap: 4px !important;              /* আইকন ও লেখার মাঝের দূরত্ব কমানো হলো */
+        border-radius: 4px !important;    /* কর্নারগুলো আরেকটু সুন্দর ও ছোট করতে */
+    }
+    
+    .edit-profile svg, 
+    .edit-profile img,
+    .edit-profile i {
+        width: 12px !important;           /* আইকনের সাইজ ছোট করা হলো */
+        height: 12px !important;
+        font-size: 12px !important;
+    }
+}

@@ -1,0 +1,600 @@
+/* ড্রাফট কার্ডের মূল কন্টেইনার */
+.draft-job-card {
+    background: #ffffff;
+    border: 1.5px dashed #6c5ce7;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 10px rgba(108, 92, 231, 0.05);
+    width: 31%;
+    
+}
+
+/* হেডার ও ব্যাজ অংশ */
+.draft-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.draft-badge {
+    background-color: #f3f0ff;
+    color: #6c5ce7;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.draft-date {
+    font-size: 11px;
+    color: #888888;
+}
+
+
+/* ক্যাটাগরি ও ইউনিট অংশ */
+.draft-info-section {
+    font-size: 15px;
+    color: #2d3436;
+    font-weight: 600;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f2f6;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.draft-info-section i {
+    color: #6c5ce7;
+}
+
+.draft-unit {
+    color: #636e72;
+    font-weight: normal;
+}
+
+/* অ্যাকশন বাটন অংশ (দুটি বাটন সমান করার জন্য flex: 1 দেওয়া হয়েছে) */
+.draft-card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-complete {
+    flex: 1; /* সমান জায়গা নেবে */
+    background: linear-gradient(135deg, #6c5ce7, #5b47e0);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-complete:hover {
+    background: linear-gradient(135deg, #5b47e0, #4834d4);
+}
+
+.btn-delete {
+    flex: 1; /* এটিও প্রথমটার সমান জায়গা নেবে */
+    background: #ffeaa7;
+    color: #d63031;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-delete:hover {
+    background: #ff7675;
+    color: #ffffff;
+}
+
+/* মাঝখানের ৩টি ইনফো সেকশনের কন্টেইনার */
+.draft-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* প্রতিটি লাইনের মাঝে সুন্দর একটি ফাঁকা জায়গা */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* প্রতিটি আলাদা লাইনের ডিজাইন */
+.draft-info-item {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    color: #4a4a4a; /* লেখার সাধারণ রং */
+    font-weight: 500;
+}
+
+/* আইকনগুলোর স্টাইল ও কালার */
+.draft-info-item svg {
+    margin-right: 10px; /* আইকন ও লেখার মাঝের গ্যাপ */
+    
+    color: #6a737d; /* আইকনের জন্য একটি সুন্দর ও স্ট্যান্ডার্ড ছাই-কালো রং */
+    flex-shrink: 0;
+}
+
+/* মূল লেবেল বা হার্ডকোড টেক্সটের সাইজ একটু বড় ও বোল্ড করার জন্য */
+.draft-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333333;
+}
+
+/* ডাইনামিক ভ্যালু টেক্সট আলাদা করার জন্য (যেমন একটু নরমাল বা অন্য কালার দিতে চাইলে) */
+.draft-value {
+    font-size: 11px;
+    font-weight: 400;
+    color: #666666; 
+}
+
+/* ৮৮৮ পিক্সেল বা তার নিচের স্ক্রিনের জন্য ড্রাফট কার্ড ছোট করা */
+@media screen and (max-width: 888px) {
+    
+    /* ১. মূল কার্ডের সাইজ ও প্যাডিং কমানো */
+    .draft-job-card {
+        padding: 8px !important;
+        margin-bottom: 12px !important;
+        width: 48% !important;
+    }
+
+    /* ২. হেডার অংশ ছোট করা */
+    .draft-card-header {
+        margin-bottom: 8px !important;
+    }
+    .draft-badge {
+        font-size: 15px !important;
+        padding: 6px 8px !important;
+    }
+    .draft-date {
+        font-size: 10px !important;
+    }
+
+    /* ৩. মাঝের ইনফো সেকশন বা লাইনগুলো ছোট করা */
+    .draft-info-section {
+        font-size: 13px !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 12px !important;
+    }
+    .draft-info-item {
+        font-size: 13px !important;
+    }
+    .draft-info-list {
+        gap: 12px !important;
+        margin-top: 6px !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* ৪. লেবেল ও ভ্যালু ছোট করা */
+    .draft-label {
+        font-size: 11px !important;
+    }
+    .draft-value {
+        font-size: 10px !important;
+    }
+
+    /* ৫. নিচের অ্যাকশন বাটনগুলো ছোট ও স্লিম করা */
+    .draft-card-actions {
+        gap: 8px !important;
+    }
+    .btn-complete, 
+    .btn-delete {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        border-radius: 6px !important;
+        margin-top: 8px;
+    }
+
+    /* ১. ইনফো আইটেম ফ্লেক্স রিসেট করা */
+    .draft-info-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0px !important; /* গ্যাপ একদম শূন্য করে দেওয়া */
+    }
+
+    /* ২. আইকনের নিজস্ব মার্জিন বা স্পেস পুরোপুরি জিরো করা */
+    .draft-info-item svg {
+        width: 16px !important;
+        height: 16px !important;
+        margin-right: 2px !important; /* এখানে আপনার ইচ্ছেমতো ১px বা ২px খুব সামান্য গ্যাপ দিতে পারেন */
+        margin-left: 0px !important;
+        padding: 0px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ৩. যদি লেবেলের ভেতরে কোনো অতিরিক্ত স্পেস থাকে */
+    .draft-label {
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+
+
+
+
+/* ৮৮৮ পিক্সেল বা তার নিচের স্ক্রিনের জন্য ড্রাফট কার্ড ছোট করা */
+@media screen and (max-width: 667px) {
+    
+    /* ১. মূল কার্ডের সাইজ ও প্যাডিং কমানো */
+    .draft-job-card {
+        padding: 8px !important;
+        margin-bottom: 12px !important;
+        max-width: 47% !important;
+    }
+
+    /* ২. হেডার অংশ ছোট করা */
+    .draft-card-header {
+        margin-bottom: 8px !important;
+    }
+    .draft-badge {
+        font-size: 13px !important;
+        padding: 4px 6px !important;
+    }
+    .draft-date {
+        font-size: 8px !important;
+    }
+
+    /* ৩. মাঝের ইনফো সেকশন বা লাইনগুলো ছোট করা */
+    .draft-info-section {
+        font-size: 11px !important;
+        margin-bottom: 10px !important;
+        padding-bottom: 12px !important;
+    }
+    .draft-info-item {
+        font-size: 13px !important;
+    }
+    .draft-info-list {
+        gap: 5px !important;
+        margin-top: 6px !important;
+        margin-bottom: 6px !important;
+    }
+
+    /* ৪. লেবেল ও ভ্যালু ছোট করা */
+    .draft-label {
+        font-size: 10px !important;
+    }
+    .draft-value {
+        font-size: 9px !important;
+    }
+
+    /* ৫. নিচের অ্যাকশন বাটনগুলো ছোট ও স্লিম করা */
+    .draft-card-actions {
+        gap: 6px !important;
+    }
+    .btn-complete, 
+    .btn-delete {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+        border-radius: 6px !important;
+        margin-top: 3px !important;
+    }
+
+    /* ১. ইনফো আইটেম ফ্লেক্স রিসেট করা */
+    .draft-info-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0px !important; /* গ্যাপ একদম শূন্য করে দেওয়া */
+    }
+
+    /* ২. আইকনের নিজস্ব মার্জিন বা স্পেস পুরোপুরি জিরো করা */
+    .draft-info-item svg {
+        width: 15px !important;
+        height: 15px !important;
+        margin-right: 2px !important; /* এখানে আপনার ইচ্ছেমতো ১px বা ২px খুব সামান্য গ্যাপ দিতে পারেন */
+        margin-left: 0px !important;
+        padding: 1px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ৩. যদি লেবেলের ভেতরে কোনো অতিরিক্ত স্পেস থাকে */
+    .draft-label {
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+
+/* ৫৮২ পিক্সেল বা তার নিচের স্ক্রিনের জন্য সবকিছু আরও ছোট করা */
+@media screen and (max-width: 582px) {
+    
+    /* ১. মূল কার্ডের সাইজ ও প্যাডিং মিনিমাইজ করা */
+    .draft-job-card {
+        padding: 6px !important;
+        margin-bottom: 8px !important;
+        border-width: 1px !important;
+        border-radius: 8px !important;
+    }
+
+    /* ২. হেডার অংশ ছোট করা */
+    .draft-card-header {
+        margin-bottom: 4px !important;
+    }
+    .draft-badge {
+        font-size: 11px !important;
+        padding: 2px 6px !important;
+    }
+    .draft-date {
+        font-size: 8px !important;
+    }
+
+    /* ৩. মাঝের ইনফো সেকশন বা লাইনগুলো ছোট করা */
+    .draft-info-section {
+        font-size: 11px !important;
+        margin-bottom: 6px !important;
+        padding-bottom: 4px !important;
+    }
+    .draft-info-item {
+        font-size: 11px !important;
+    }
+    .draft-info-list {
+        gap: 4px !important;
+        margin-top: 4px !important;
+        margin-bottom: 4px !important;
+    }
+
+    /* ৪. লেবেল ও ভ্যালুর টেক্সট সাইজ কমানো */
+    .draft-label {
+        font-size: 10px !important;
+    }
+    .draft-value {
+        font-size: 9px !important;
+    }
+
+    /* ৫. নিচের অ্যাকশন বাটনগুলো ছোট ও স্লিম করা */
+    .draft-card-actions {
+        gap: 6px !important;
+    }
+    .btn-complete, 
+    .btn-delete {
+        padding: 6px 8px !important;
+        font-size: 11px !important;
+        border-radius: 6px !important;
+    }
+
+    /* ৫৮২ পিক্সেলের নিচে বাটনের টেক্সট এক শব্দে পরিবর্তন */
+    .btn-complete {
+        font-size: 0px !important; /* আগের বড় লেখা লুকিয়ে ফেলা */
+    }
+    .btn-complete::after {
+        content: "এডিট";           /* নতুন এক শব্দের টেক্সট */
+        font-size: 11px !important;
+    }
+
+    .btn-delete {
+        font-size: 0px !important; /* আগের বড় লেখা লুকিয়ে ফেলা */
+    }
+    .btn-delete::after {
+        content: "ডিলিট";          /* নতুন এক শব্দের টেক্সট */
+        font-size: 11px !important;
+    }
+
+    /* ১. ইনফো আইটেম ফ্লেক্স রিসেট করা */
+    .draft-info-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0px !important; /* গ্যাপ একদম শূন্য করে দেওয়া */
+    }
+
+    /* ২. আইকনের নিজস্ব মার্জিন বা স্পেস পুরোপুরি জিরো করা */
+    .draft-info-item svg {
+        width: 14px !important;
+        height: 14px !important;
+        margin-right: 2px !important; /* এখানে আপনার ইচ্ছেমতো ১px বা ২px খুব সামান্য গ্যাপ দিতে পারেন */
+        margin-left: 0px !important;
+        padding: 0px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ৩. যদি লেবেলের ভেতরে কোনো অতিরিক্ত স্পেস থাকে */
+    .draft-label {
+        margin-left: 1px !important;
+        padding-left: 0px !important;
+    }
+}
+
+/* ৪৭০ পিক্সেল বা তার নিচের স্ক্রিনের জন্য সবকিছু আরও ছোট ও সুবিন্যস্ত করা */
+@media screen and (max-width: 470px) {
+    
+    /* ১. মূল কার্ডের প্যাডিং ও মার্জিন আরও কমানো */
+    .draft-job-card {
+        padding: 4px !important;
+        margin-bottom: 5px !important;
+        border-radius: 6px !important;
+    }
+
+    /* ২. হেডার বা ব্যাজ আরও ছোট করা */
+    .draft-card-header {
+        margin-bottom: 3px !important;
+    }
+    .draft-badge {
+        font-size: 10px !important;
+        padding: 2px 4px !important;
+    }
+    .draft-date {
+        font-size: 7px !important;
+    }
+
+    /* ৩. মাঝের ইনফো সেকশনের সাইজ কমানো */
+    .draft-info-section,
+    .draft-info-item {
+        font-size: 9px !important;
+    }
+    .draft-info-list {
+        gap: 2px !important;
+        margin-top: 2px !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* ৪. লেবেল ও ভ্যালু ছোট করা */
+    .draft-label {
+        font-size: 8px !important;
+    }
+    .draft-value {
+        font-size: 7px !important;
+    }
+
+    /* ৫. অ্যাকশন বাটনগুলো আরও ছোট ও স্লিম করা */
+    .draft-card-actions {
+        gap: 3px !important;
+    }
+    .btn-complete, 
+    .btn-delete {
+        padding: 4px 5px !important;
+        font-size: 9px !important;
+        border-radius: 4px !important;
+    }
+
+        /* ৫৮২ পিক্সেলের নিচে বাটনের টেক্সট এক শব্দে পরিবর্তন */
+    .btn-complete {
+        font-size: 0px !important; /* আগের বড় লেখা লুকিয়ে ফেলা */
+    }
+    .btn-complete::after {
+        content: "এডিট";           /* নতুন এক শব্দের টেক্সট */
+        font-size: 10px !important;
+    }
+
+    .btn-delete {
+        font-size: 0px !important; /* আগের বড় লেখা লুকিয়ে ফেলা */
+    }
+    .btn-delete::after {
+        content: "ডিলিট";          /* নতুন এক শব্দের টেক্সট */
+        font-size: 10px !important;
+    }
+
+    /* ১. ইনফো আইটেম ফ্লেক্স রিসেট করা */
+    .draft-info-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0px !important; /* গ্যাপ একদম শূন্য করে দেওয়া */
+    }
+
+    /* ২. আইকনের নিজস্ব মার্জিন বা স্পেস পুরোপুরি জিরো করা */
+    .draft-info-item svg {
+        width: 13px !important;
+        height: 13px !important;
+        margin-right: 2px !important; /* এখানে আপনার ইচ্ছেমতো ১px বা ২px খুব সামান্য গ্যাপ দিতে পারেন */
+        margin-left: 0px !important;
+        padding: 0px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ৩. যদি লেবেলের ভেতরে কোনো অতিরিক্ত স্পেস থাকে */
+    .draft-label {
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+
+/* ৪৩০ পিক্সেল বা তার নিচের স্ক্রিনের জন্য কার্ড ও সবকিছু আরও ছোট করে পাশাপাশি রাখা */
+@media screen and (max-width: 430px) {
+    
+    /* ১. কন্টেইনার ফ্লেক্স এবং গ্যাপ ঠিক করা যাতে পাশাপাশি বসে */
+    .draft-jobs-container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: -1px !important;
+        justify-content: space-between !important;
+    }
+
+    /* ২. দুটি কার্ড পাশাপাশি বসানোর জন্য উইথ কমিয়ে 48% করা */
+    .draft-job-card {
+        width: 46% !important;
+        max-width: none !important;
+        padding: 1px 2px !important;
+        margin-bottom: 2px !important;
+        border-radius: 4px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ৩. হেডার ও ব্যাজ একদম ছোট করা */
+    .draft-card-header {
+        margin-bottom: 2px !important;
+    }
+    .draft-badge {
+        font-size: 8px !important;
+        padding: 1px 2px !important;
+    }
+    .draft-date {
+        font-size: 6px !important;
+    }
+
+    /* ৪. মাঝের ইনফো সেকশন ও টেক্সট ছোট করা */
+    .draft-info-section,
+    .draft-info-item {
+        font-size: 7px !important;
+    }
+    .draft-info-list {
+        gap: 4px !important;
+        margin-top: 3px !important;
+        margin-bottom: 2px !important;
+    }
+
+    /* ৫. লেবেল ও ভ্যালু ছোট করা */
+    .draft-label {
+        font-size: 7px !important;
+    }
+    .draft-value {
+        font-size: 6px !important;
+    }
+
+    /* ৬. অ্যাকশন বাটনগুলো খুব ছোট ও স্লিম করা */
+    .draft-card-actions {
+        gap: 4px !important;
+    }
+    .btn-complete, 
+    .btn-delete {
+        padding: 2px 3px !important;
+        font-size: 6px !important;
+        border-radius: 2px !important;
+    }
+
+    
+        /* ৫৮২ পিক্সেলের নিচে বাটনের টেক্সট এক শব্দে পরিবর্তন */
+    .btn-complete {
+        font-size: 0px !important; /* আগের বড় লেখা লুকিয়ে ফেলা */
+    }
+    .btn-complete::after {
+        content: "এডিট";           /* নতুন এক শব্দের টেক্সট */
+        font-size: 9px !important;
+    }
+
+    .btn-delete {
+        font-size: 0px !important; /* আগের বড় লেখা লুকিয়ে ফেলা */
+    }
+    .btn-delete::after {
+        content: "ডিলিট";          /* নতুন এক শব্দের টেক্সট */
+        font-size: 9px !important;
+    }
+/* ১. ইনফো আইটেম ফ্লেক্স রিসেট করা */
+    .draft-info-item {
+        display: flex !important;
+        align-items: center !important;
+        gap: px !important; /* গ্যাপ একদম শূন্য করে দেওয়া */
+    }
+
+    /* ২. আইকনের নিজস্ব মার্জিন বা স্পেস পুরোপুরি জিরো করা */
+    .draft-info-item svg {
+        width: 11px !important;
+        height: 11px !important;
+        margin-right: 2px !important; /* এখানে আপনার ইচ্ছেমতো ১px বা ২px খুব সামান্য গ্যাপ দিতে পারেন */
+        margin-left: 0px !important;
+        padding: 2px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* ৩. যদি লেবেলের ভেতরে কোনো অতিরিক্ত স্পেস থাকে */
+    .draft-label {
+        margin-left: 0px !important;
+        padding-left: 0px !important;
+    }
+}
+

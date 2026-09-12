@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="../../all-comon-files/css/navbar-design-after-technician & client-login.css">
+      <link rel="stylesheet" href="../css-files/job-details-client.css">
+      <link rel="stylesheet" href="../css-files/client-profile-icon-click.css">
+      <link rel="stylesheet" href="../css-files/client-logout-modal.css">
+</head>
+<body>
+ 
+    <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="../../../images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
+
+<div class="nav-menu">
+    <a href="../../../index.html" class="home">হোম</a>
+        <a href="services-areas.html" class="services-areas">সার্ভিস এরিয়া</a>
+        <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-icon" id="jobs-btn" title="Available Jobs">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span class="btn-text">Post Jobs</span>
+    </button>
+     <button class="nav-icon" id="bell-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="notification-badge">২</span>
+    </button>
+<div class="profile-container" id="profile-btn" onclick="toggleSidebar()">
+    <div class="profile-circle" id="profile-avatar">
+        <span id="avatar-letter">U</span>
+    </div>
+</div>
+
+
+
+<div id="profileSidebar" class="sidebar">
+
+  <div class="sidebar-header-fixed">
+    <div class="sidebar-header">
+        <div class="profile-pic-container">
+            <div class="profile-circle-in-profile" id="profile-avatar">
+                <span id="profile-avatar-letter">U</span>
+                </div>
+      
+<input type="file" id="profileImageInput" accept="image/*" style="display: none;" onchange="previewProfileImage(event)">
+        </div>
+        <div class="name-container">
+            <span class="user-name" id="user-name">User...</span>
+            <p class="user-meta" id="user-id-profile">UID: #XXXX</p>
+        </div>
+        <div class="button-container">
+            <button class="close-btn" onclick="toggleSidebar()">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                 </svg>
+            </button>
+        </div>
+    </div>
+
+        
+        <div class="sidebar-header-title">
+            <h3>অ্যাকাউন্ট মেনু</h3>
+        </div>
+
+        <div class="tech-info-box">
+            <div class="info-item">
+                 <span class="dot"></span> অ্যাকাউন্ট স্ট্যাটাস: <span class="status-text">একটিভ</span>
+            </div>
+            <div class="info-item">
+                <span>📍</span> সার্ভিস নেওয়ার ঠিকানা: মিরপুর, ঢাকা
+            </div>
+        </div>
+      </div>
+
+    <div class="sidebar-scrollable" style="flex-grow: 1; overflow-y: auto;">
+
+        <div class="sidebar-menu">
+            <div class="menu-group">
+                <a href="profile-client.html" class="menu-item"><span>👤</span> প্রোফাইল</a>
+                <a href="client-dashboard.html" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
+                <a href="my-booking.html?active=recent-request" class="menu-item"><span>📅</span> আমার বুকিং</a>
+                
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="payment-history-client.html?active=recent-request" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
+                <a href="settings-client.html" class="menu-item"><span>⚙️</span> সেটিংস</a>
+                <a href="support-client.html" class="menu-item"><span>🎧</span> সাপোর্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="#" class="menu-item logout" onclick="showLogoutModal(event)"><span class="icon">🚪</span> লগ আউট</a>
+                
+ <!-- লগ আউট কনফার্মেশন পপআপ মডাল (প্রথমে হাইড থাকবে) -->
+<div id="logoutModal" class="logout-modal-overlay" style="display: none;">
+    <div class="logout-modal-box">
+        <div class="logout-icon">⚠️</div>
+        <h3>আপনি কি লগ আউট করতে চান?</h3>
+        <p>লগ আউট করলে আপনার বর্তমান সেশন শেষ হয়ে যাবে এবং পুনরায় লগইন করতে হবে।</p>
+        
+        <div class="logout-modal-buttons">
+            <button type="button" class="btn-cancel" onclick="hideLogoutModal()">বাতিল</button>
+            <button type="button" class="btn-confirm" onclick="executeLogout()">লগ আউট</button>
+        </div>
+    </div>
+</div>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ <div id="overlay"></div>
+
+ 
+    </nav>
+
+<div class="job-details-container">
+        <!-- হেডার সেকশন -->
+        <div class="page-header">
+          <!-- ব্যাক বাটনটি যেভাবে আপডেট করবেন -->
+<a href="#" onclick="history.back(); return false;" class="back-circle-btn" title="ফিরে যান">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+</a>
+            <h2>জব বিস্তারিত ও ম্যানেজমেন্ট</h2>
+            <div class="header-right-placeholder"></div>
+        </div>
+
+        <!-- জবের মূল তথ্যগুলো (দুটি আলাদা লোকেশন সহ) -->
+        <div class="info-grid-box">
+            <div class="info-card">
+                <span class="info-label">পোস্টকারী (User Name)</span>
+                <span id="lbl-username" class="info-value">-</span>
+            </div>
+            <div class="info-card">
+                <span class="info-label">ক্যাটেগরি (Work Category)</span>
+                <span id="lbl-category" class="info-value">-</span>
+            </div>
+            
+            <!-- বর্তমান লোকেশন -->
+            <div class="info-card">
+                <span class="info-label">বর্তমান লোকেশন (Current Location)</span>
+                <span id="lbl-current-location" class="info-value">-</span>
+            </div>
+
+            <!-- ফিক্সড লোকেশন -->
+            <div class="info-card">
+                <span class="info-label">ফিক্সড লোকেশন (Fixed Location)</span>
+                <span id="lbl-fixed-location" class="info-value">-</span>
+            </div>
+
+            <div class="info-card">
+                <span class="info-label">পরিমাণ (Unit Count)</span>
+                <span id="lbl-units" class="info-value">-</span>
+            </div>
+            <div class="info-card">
+                <span class="info-label">পোস্টের তারিখ (Created At)</span>
+                <span id="lbl-date" class="info-value">-</span>
+            </div>
+            <div class="info-card full-span">
+                <span class="info-label">জব আইডি (Job ID)</span>
+                <span id="lbl-jobid" class="info-value job-id-font">-</span>
+            </div>
+            <div class="info-card full-span">
+                <span class="info-label">সমস্যার বিবরণ (Problem Details)</span>
+                <span id="lbl-details" class="info-value details-text">-</span>
+            </div>
+        </div>
+
+
+
+<!-- ১. কাস্টমার বা ইনকোয়ারি মেসেজ সেকশন -->
+<div class="section-box">
+    <h3>💬 কাস্টমার বা ইনকোয়ারি মেসেজ</h3>
+    <!-- নির্দেশনামূলক টেক্সট -->
+    <p class="section-instruction">ℹ️ নিচের মেসেজগুলোতে ক্লিক করে সরাসরি টেকনিশিয়ানের সাথে চ্যাট করুন।</p>
+    
+    <div id="messages-container">
+        <!-- স্যাম্পল মেসেজ কার্ড ১ -->
+        <div class="sample-item-card">
+            <div class="card-left">
+                <span class="card-icon">👤</span>
+                <div>
+                    <h4 class="card-title">Robiul Khan</h4>
+                    <p class="card-subtitle">ভাই, কাজটা কি আজকেই করা যাবে? বাজেট কত?</p>
+                </div>
+            </div>
+            <span class="card-time">১০ মিনিট আগে</span>
+        </div>
+
+        <!-- স্যাম্পল মেসেজ কার্ড ২ -->
+        <div class="sample-item-card">
+            <div class="card-left">
+                <span class="card-icon">👤</span>
+                <div>
+                    <h4 class="card-title">Karim Ahmed</h4>
+                    <p class="card-subtitle">আমি এই কাজটি আপনার বাজেটের মধ্যেই করে দিতে পারব।</p>
+                </div>
+            </div>
+            <span class="card-time">২০ মিনিট আগে</span>
+        </div>
+    </div>
+</div>
+
+<!-- ২. এপ্লিকেশন তালিকা সেকশন -->
+<div class="section-box">
+    <h3>👥 এপ্লিকেশন তালিকা (Applicants)</h3>
+    <!-- নির্দেশনামূলক সতর্কবার্তা -->
+    <p class="section-instruction warning-color">⚠️ টেকনিশিয়ানের আবেদন রিসিভ করার পূর্বে অবশ্যই চ্যাটে কথা বলে বাজেট ও সময় ফিক্সড করে নিন। বাজেট ফিক্সড না করে একসেপ্ট করবেন না।</p>
+    
+    <div id="applicants-container">
+        <!-- স্যাম্পল এপ্লিকেশন কার্ড -->
+        <div class="sample-item-card">
+            <div class="card-left">
+                <span class="card-icon">👨‍🔧</span>
+                <div>
+                    <h4 class="card-title">Karim Ahmed <span class="badge">টেকনিশিয়ান</span></h4>
+                    <p class="card-subtitle">বাজেট: <strong>৫০০ টাকা</strong> | সময়: <strong>১ দিন</strong></p>
+                </div>
+            </div>
+            <button class="preview-btn">বিস্তারিত</button>
+        </div>
+
+           
+    <div id="applicants-container">
+        <!-- স্যাম্পল এপ্লিকেশন কার্ড -->
+        <div class="sample-item-card">
+            <div class="card-left">
+                <span class="card-icon">👨‍🔧</span>
+                <div>
+                    <h4 class="card-title">Karim Ahmed <span class="badge">টেকনিশিয়ান</span></h4>
+                    <p class="card-subtitle">বাজেট: <strong>৫০০ টাকা</strong> | সময়: <strong>১ দিন</strong></p>
+                </div>
+            </div>
+            <button class="preview-btn">বিস্তারিত</button>
+        </div>
+
+    </div>
+</div>
+
+        <!-- ডিলিট বাটন সেকশন -->
+        <div class="delete-zone">
+            <button id="delete-job-btn" class="delete-btn" onclick="openDeleteModal()">🗑️ এই পোস্টটি ডিলিট করুন</button>
+        </div>
+    </div>
+    
+<!-- ডিলিট কনফার্মেশন মোডাল -->
+<div id="delete-modal" class="custom-modal-overlay" style="display: none;">
+    <div class="custom-modal-box">
+        <!-- ডেঞ্জার আইকন -->
+        <div class="modal-icon-container">
+            <svg class="danger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+        </div>
+
+        <h3>পোস্ট ডিলিট কনফার্মেশন</h3>
+        <p>আপনি কি নিশ্চিতভাবে এই পোস্টটি ডিলিট করতে চান? ডিলিট করলে এটি লাইভ থেকে সরে যাবে এবং চিরতরে মুছে যাবে।</p>
+        
+        <div class="modal-btn-group">
+            <button id="modal-cancel-btn" class="btn-cancel" onclick="closeDeleteModal()">বাতিল</button>
+            <button id="modal-confirm-delete-btn" class="btn-delete-confirm">ডিলিট</button>
+        </div>
+    </div>
+</div>
+    
+     <script src="../../all-comon-files/js/api.js"></script>
+    <script src="../../all-comon-files/js/job-api.js"></script>
+    <script src="../../all-comon-files/js/auth-guard.js"></script>
+    <script src="../js-files/job-details-client.js"></script>
+</body>
+</html>

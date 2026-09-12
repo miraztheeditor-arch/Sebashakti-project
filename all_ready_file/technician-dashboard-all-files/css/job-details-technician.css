@@ -1,0 +1,512 @@
+/* ১. গ্লোবাল ওভারফ্লো এবং বক্স সাইজিং ফিক্স */
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #f0f2f5;
+}
+
+.job-details-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    
+    margin-bottom: 20px;
+}
+
+/* ফিক্সড হেডার */
+.page-header {
+    position: sticky;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: #6c5ce7;
+    color: #ffffff;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/* বামে গোল বৃত্ত এবং এসভিজি */
+.back-circle-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.back-circle-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.page-header h2 {
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.header-right-placeholder {
+    width: 40px; /* লেফটের গোল বৃত্তের সমান স্পেস যাতে টাইটেল নিখুঁত মাঝখানে থাকে */
+}
+
+/* ইনফো গ্রিড লেআউট */
+.info-grid-box {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    background: #fafbfc;
+    border-bottom: 1px solid #eef2f5;
+    margin-top: -20px;
+}
+
+.info-card {
+    background: #ffffff;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border-left: 4px solid #6c5ce7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.info-label {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #718096;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.full-span {
+    grid-column: span 2;
+}
+
+.job-id-font {
+    font-size: 12px;
+    color: #4a5568;
+    word-break: break-all;
+}
+
+.details-text {
+    font-weight: normal;
+    color: #4a5568;
+    font-size: 14px;
+}
+
+
+
+.empty-text {
+    font-size: 13px;
+    color: #a0aec0;
+    font-style: italic;
+}
+
+
+/* স্যাম্পল কার্ড ডিজাইন */
+.sample-item-card {
+    background: #f8f9fa;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #e9ecef;
+}
+
+/* পুরো ইউজার আইডেন্টিটি সেকশন */
+.user-identity-section {
+    text-align: center;
+    padding: 12px 0;
+    background-color: #f8f9fa;
+    margin-top: 45px;
+}
+
+/* ছোট লোগো সার্কেল (আগের ৮০ পিক্সেল থেকে কমিয়ে ছোট করা হয়েছে) */
+.user-logo-circle {
+    width: 65px !important;
+    height: 65px !important;
+    border-radius: 50%;
+    border: 2px solid #0d6efd;
+    display: inline-block;
+    margin-bottom: 6px;
+    background-color: #ffffff;
+    background-size: cover;
+    background-position: center;
+}
+
+/* ইউজার আইডি টেক্সট */
+.user-uid-display {
+    color: #6c7575;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* অ্যাকশন সেকশন কন্টেইনার */
+.technician-action-section {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    padding: 0 10px;
+    justify-content: center;
+}
+
+/* কমন বাটন ডিজাইন */
+.btn-action {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-bottom: 10px;
+}
+
+/* মেসেজ বাটনের স্টাইল (হালকা বা ভিন্ন রঙ) */
+.btn-message {
+    background-color: #e9ecef;
+    color: #495057;
+    border: 1px solid #ced4da;
+}
+
+.btn-message:hover {
+    background-color: #dde2e6;
+}
+
+/* এপ্লাই করুন বাটনের স্টাইল (প্রাইমারি ব্লু বা আকর্ষণীয় রঙ) */
+.btn-apply {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+.btn-apply:hover {
+    background-color: #0b5ed7;
+}
+
+/* নির্দেশনামূলক বক্সের স্টাইল */
+.job-instruction-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #fff3cd; /* হালকা হলুদ নোটিশ ব্যাকগ্রাউন্ড */
+    color: #664d03;
+    border: 1px solid #ffecb5;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 20px 10px 15px 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+    text-align: left;
+}
+
+/* আইকন কালার ও সাইজ */
+.job-instruction-box svg {
+    flex-shrink: 0;
+    color: #856404;
+}
+
+@media screen and (max-width: 818px) {
+    /* ৮১৮ পিক্সেল বা তার চেয়ে ছোট স্ক্রিনের জন্য আপনার স্টাইলগুলো এখানে লিখবেন */
+    
+    .user-identity-section {
+    
+    margin-top: 56px;
+}
+
+    .page-header {
+        top: 59px;
+    }
+}
+
+
+/* Modal Overlay */
+.chat-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content Box (স্ক্রিনের চেয়ে সামান্য ছোট এবং ফিক্সড সাইজ) */
+.chat-modal-content {
+    background: #ffffff;
+    width: 600px;
+    max-width: 90%;
+    height: 550px;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalScaleUp 0.3s ease;
+}
+
+@keyframes modalScaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Modal Header */
+.chat-modal-header {
+    background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.client-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;        /* গোল করার জন্য */
+    object-fit: cover;        /* ছবি যেন চ্যাপ্টা না হয়ে ঠিকভাবে বসে */
+    border: 2px solid #ffffff;  /* চারপাশের সুন্দর সাদা বর্ডার */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ছবির চারপাশে প্রিমিয়াম শ্যাডো */
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Modal Body */
+.chat-modal-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+
+/* চ্যাট ফুটার কন্টেইনার */
+.chat-modal-footer {
+    display: flex;
+    align-items: center; /* মূল পরিবর্তন: এটি বাটন এবং টেক্সটএরিয়াকে ঠিক লম্বালম্বি মাঝবরাবর (Vertical Center) ফিক্সড রাখবে */
+    gap: 8px; 
+    padding: 12px 15px;
+    background: #fff;
+    border-top: 1px solid #e2e8f0;
+}
+
+.chat-modal-footer input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+}
+
+.chat-modal-footer button {
+    background: #005088;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.send-icon-btn {
+    background: #005088;
+    color: white;
+    border: none;
+    width: 44px;         /* বাটনের সাইজ ফিক্সড থাকবে */
+    height: 44px;        /* বাটনের সাইজ ফিক্সড থাকবে */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+
+.send-icon-btn:hover {
+    background: #5b4cc4; /* হোভার কালার */
+}
+
+/* পুরো মেসেজ রো */
+.message {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* ইনকামিং মেসেজ বামে রাখতে */
+.message.incoming {
+    justify-content: flex-start;
+}
+
+/* আউটগোইং মেসেজ ডানে রাখতে */
+.message.outgoing {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: auto;
+    max-width: 75%;
+}
+
+/* কমন টেক্সট বক্স ডিজাইন এবং পজিশন relative (লেজ সেট করার জন্য এটি জরুরি) */
+.msg-text {
+    position: relative;
+    padding: 10px 14px;
+    border-radius: 12px;
+    word-break: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* ইনকামিং মেসেজের ব্যাকগ্রাউন্ড ও পজিশন */
+.message.incoming .msg-text {
+    background: #e2e8f0; /* ইনকামিং মেসেজ ব্যাকগ্রাউন্ড কালার */
+    color: #1e293b;
+    border-top-left-radius: 4px; /* লেজের সাথে মিল রেখে কোণা একটু সফট করা */
+    position: relative;
+}
+
+/* ইনকামিং মেসেজের সুচালো লেজ (বাম পাশের জন্য) */
+.message.incoming .msg-text::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* মাঝামাঝি পজিশন */
+    left: -8px; /* বক্সের ঠিক বাম বাইরে */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    /* বর্ডার ট্রিক দিয়ে সুচালো লেজ তৈরি করা */
+    border-style: solid;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #e2e8f0 transparent transparent;
+    z-index: 1;
+}
+
+/* আউটগোইং মেসেজের সুচালো লেজ (ডান পাশের জন্য) */
+.message.outgoing .msg-text {
+    background: #005088; /* আপনার মেসেজ ব্যাকগ্রাউন্ড কালার */
+    color: white;
+    grid-column: 1;
+    border-top-right-radius: 4px; /* লেজের সাথে মিল রেখে উপরের কোণা সফট করা */
+}
+
+/* মূল সিউডো-এলিমেন্ট দিয়ে লেজ তৈরি করা */
+.message.outgoing .msg-text::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* মাঝামাঝি পজিশন */
+    right: -8px; /* বক্সের ঠিক বাইরে */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    /* সুচালো আকার দেওয়ার জন্য বর্ডার ট্রিক */
+    border-style: solid;
+    border-width: 8px 0 8px 8px;
+    /* বর্ডার কালার এমনভাবে সেট করতে হবে যেন লেজটি মেসেজ বক্সের রঙের মতো হয় */
+    border-color: transparent transparent transparent #005088;
+    z-index: 1;
+}
+/* আউটগোইং ইমেজ পজিশন */
+.message.outgoing .msg-avatar {
+    grid-column: 2;
+}
+
+/* গোল সার্কেল ইমেজ (অ্যাভাটার) */
+.msg-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 1.5px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2px;
+}
+
+#chat-input-message {
+    flex: 1;
+    min-height: 45px;   /* শুরুর হাইট */
+    max-height: 100px;  /* নির্দিষ্ট সর্বোচ্চ হাইট */
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    /* বর্ডার রেডিয়াস শুধু বামপাশে গোল থাকবে, ডানে একদম সোজা হবে */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 0px;
+    outline: none;
+    resize: none; 
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: inherit;
+    word-break: break-word;
+    
+    /* মূল ম্যাজিক: হাইট অটো থাকবে, কিন্তু ম্যাক্স-হাইট পার হলেই নিজে থেকে স্ক্রলবার চলে আসবে */
+    height: auto; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+}
+
+/* স্ক্রলবার ডিজাইন (যেন দেখতে সুন্দর লাগে) */
+#chat-input-message::-webkit-scrollbar {
+    width: 5px;
+}
+#chat-input-message::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}

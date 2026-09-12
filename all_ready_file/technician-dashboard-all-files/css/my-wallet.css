@@ -1,0 +1,450 @@
+/* ল্যাপটপ থেকে হঠাৎ মোবাইল স্ক্রিনে গেলে বা ডানে-বামে অতিরিক্ত স্ক্রল হওয়া আটকাতে */
+html, body {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+.wallet-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* ১. হেডার সেকশন ট্যাব ফিক্সড করার জন্য */
+.header-section-tab {
+    position: fixed !important;
+    top: 0 !important;       /* আপনার নেভবারের উচ্চতা (Height) যত পিক্সেল, এখানে তত বসাবেন */
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 998 !important;
+    background-color: #ffffff !important; /* পেছনের লেখা যেন দেখা না যায় */
+    box-sizing: border-box !important;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+
+}
+
+/* ২. মোবাইল বা ৭৭০ পিক্সেলের নিচের স্ক্রিনের জন্য */
+@media (max-width: 770px) {
+    .header-section-tab {
+        top: 0 !important;       /* মোবাইলে নেভবার ছোট হলে সেই অনুযায়ী হাইট */
+    }
+}
+
+/* ৩. নিচের কন্টেন্ট যেন ওপরের ফিক্সড হেডার বা নেভবারের নিচে ঢাকা না পড়ে */
+body {
+    padding-top: 110px !important; /* নেভবার এবং এই হেডার ট্যাবের মোট উচ্চতার সমান এখানে প্যাডিং দিন */
+}
+
+.wallet-grid-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.wallet-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.wallet-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+/* ৮০০ পিক্সেল বা তার ছোট স্ক্রিনের জন্য রেসপনসিভ কোড */
+@media screen and (max-width: 800px) {
+    .wallet-grid-layout {
+        flex-direction: column; /* দুটো বক্স পাশাপাশি থেকে উপর-নিচ হয়ে যাবে */
+    }
+
+    .wallet-left, 
+    .wallet-right {
+        width: 100%; /* স্ক্রিনের পুরোটা জুড়ে থাকবে */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    /* ব্যালেন্স কার্ডের সাইজ ও প্যাডিং ছোট করা */
+    .balance-card {
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    /* বামের আইকন ছোট করা */
+    .balance-card .balance-icon,
+    .wallet-icon {
+        font-size: 24px !important;
+        padding: 8px !important;
+        border-radius: 8px;
+    }
+
+    /* ভেতরের টেক্সট বা লেবেল ছোট করা */
+    .balance-card .balance-info p {
+        font-size: 11px !important;
+    }
+
+    /* মূল টাকার অঙ্ক বা অ্যামাউন্ট ছোট করা */
+    .balance-card .balance-amount {
+        font-size: 18px !important;
+    }
+
+    /* ডিপোজিট বাটন আনুপাতিক হারে ছোট করা */
+    .balance-card .deposit-btn {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+}
+
+#amount-num.positive-val {
+    color: #27ae60 !important; /* সবুজ */
+}
+
+#amount-num.negative-val {
+    color: #c0392b !important; /* লাল */
+}
+
+#amount-num.zero-val {
+    color: #2c3e50 !important; /* নরমাল টেক্সট কালার */
+}
+
+#due-num.negative-val {
+    color: #c0392b !important; /* লাল */
+}
+
+#due-num.zero-val {
+    color: #2c3e50 !important; /* নরমাল কালার */
+}
+
+.header-section-tab {
+    border-bottom: 2px solid grey;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;       /* লম্বালম্বিভাবে মাঝে রাখা */
+    position: relative;        /* টেক্সট মাঝখানে পজিশন করার জন্য জরুরি */
+    padding: 10px 15px;
+}
+
+/* বাটনটি একদম বামে থাকবে */
+.arrow-btn {
+    /* আপনার বাটনের স্টাইল যদি থাকে */
+    position: relative;
+    z-index: 2;
+    background: transparent;
+    border: none;
+}
+
+/* হেডার টেক্সট একদম মাঝখানে থাকবে */
+.main-header {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px; /* আপনার পছন্দমতো সাইজ দিতে পারেন */
+    font-weight: bold;
+}
+
+/* ব্যালেন্স কার্ড */
+.balance-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.wallet-icon {
+    font-size: 35px;
+    background: #eef2f7;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.balance-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+.balance-amount {
+    margin: 5px 0 0 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+.deposit-btn {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+.deposit-btn:hover { background-color: #2471a3; }
+
+/* স্ট্যাটস গ্রিড */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.stat-box {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    text-align: center;
+}
+
+.stat-box p {
+    margin: 0;
+    font-size: 13px;
+    color: #7f8c8d;
+}
+
+.stat-box h3 {
+    margin: 8px 0 0 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.due-text { color: #e67e22; }
+
+/* বাম কলামের নিচের ট্যাব বাটন */
+.bottom-history-controls {
+    margin-top: auto;
+}
+
+.history-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.history-tab-btn {
+    flex: 1;
+    background-color: #eef2f7;
+    border: none;
+    padding: 11px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.history-tab-btn.active {
+    background-color: #16a085; /* সুন্দর ডিপ গ্রিন কালার */
+    color: white;
+}
+
+.history-field-tabs {
+    display: flex;
+    width: 100%;
+    background-color: #f1f5f9; /* পুরো ট্যাব বারের হালকা ধূসর ব্যাকগ্রাউন্ড */
+    border-radius: 8px 8px 0 0;
+    
+    margin: 10px 0 15px 0;
+    overflow: hidden;
+}
+
+.history-field-tab-btn {
+    flex: 1;
+    text-align: center;
+    background: #f1f5f9; /* ডিফল্ট বা আনসিলেক্টেড ট্যাবের ব্যাকগ্রাউন্ড ধূসর */
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+   
+}
+
+.history-field-tab-btn:hover:not(.active) {
+    background-color: #e2e8f0; /* হোভার করলে হালকা পরিবর্তন হবে */
+    color: #1e293b;
+    transform: none;
+}
+
+.history-field-tab-btn.active {
+    background-color: #ffffff; /* সিলেক্ট করা ট্যাবের ব্যাকগ্রাউন্ড একদম সাদা */
+    color: #0f172a;
+    border-bottom: 3px solid #2980b9; /* নিচে আন্ডারলাইন */
+}
+
+.history-tab-btn:not(.active):hover {
+    background-color: #d5dbdb;
+    color: #2c3e50;
+    transform: translateY(-2px);
+}
+/* ডান পাশের লম্বালম্বি হিস্ট্রি ফিল্ড */
+.history-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    box-sizing: border-box;
+    height: 100%;
+    border: 2px solid #cbd5e1;
+}
+
+/* হিস্ট্রি ফিল্ডের ওপরের হেডার */
+.history-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #ffffff; /* হেডার টেক্সট কালার সাদা করা হলো যাতে গ্রিডিয়েন্টে সুন্দর দেখায় */
+    padding: 12px 15px; /* চারপাশে সুন্দর প্যাডিং */
+    border-radius: 8px; /* কর্নার কিছুটা গোল করার জন্য */
+    
+    /* নিচের দাগ সরিয়ে ব্যাকগ্রাউন্ডে লাইট গ্রিডিয়েন্ট কালার দেওয়া হলো */
+    border-bottom: none; 
+   
+    border-radius: 6px;
+}
+
+.history-scroll-box {
+    max-height: 280px; /* আপনার প্রয়োজন অনুযায়ী উচ্চতা কম বা বেশি করতে পারেন */
+    min-height:200px ;
+    overflow-y: auto;  /* রেকর্ড বেশি হলে শুধু বক্সের ভেতরে স্ক্রল দেখাবে */
+    overflow-x: hidden;
+    padding-right: 5px;
+}
+.transaction-list {
+    background: #ffffff;
+}
+
+.tx-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 10px;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.tx-item:last-child { border-bottom: none; }
+
+.tx-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.tx-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+}
+
+.tx-date {
+    font-size: 11px;
+    color: #95a5a6;
+    margin-top: 3px;
+}
+
+.tx-amount {
+    font-size: 13px;
+    font-weight: bold;
+}
+.tx-amount.positive { color: #27ae60; }
+.tx-amount.negative { color: #c0392b; }
+
+
+.history-title-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 22px;
+}
+.history-header {
+    display: flex;
+    justify-content: center; /* লেখা বা ছোট বক্সটি ডানে-বামে একদম মাঝখানে আনবে */
+    align-items: center;     /* লেখা বা ছোট বক্সটি উপর-নিচে একদম মাঝখানে আনবে */
+    width: 100%;             /* পুরো জায়গা জুড়ে থাকবে */
+    min-height: 60px;        /* উপর-নিচে পর্যাপ্ত হাইট নিশ্চিত করবে */
+    padding: 10px;
+    border-radius: 8px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #3a506b, #475d78);
+    box-sizing: border-box;
+}
+
+.history-title {
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* পুরো প্রোফাইল সেকশনটি পাশাপাশি (Row) এবং মাঝখানে রাখার জন্য */
+.wallet-profile-container {
+    display: flex;
+    flex-direction: row; /* পাশাপাশি বা আড়াআড়ি রাখার জন্য */
+    align-items: center; /* লম্বালম্বিভাবে মাঝে রাখার জন্য */
+    justify-content: center; /* পুরো সেকশনটি মাঝখানে থাকবে */
+    gap: 11px; /* গোল ছবি ও নামের মাঝের দূরত্ব */
+    margin-bottom: 0;
+}
+
+/* গোল ছবি বা সার্কেল অংশ */
+.wallet-profile-pic-container {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.wallet-profile-circle-in-profile {
+    width: 55px; /* রেফারেন্স ছবির সাইজের সাথে সামঞ্জস্য রাখতে */
+    height: 55px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #3498db, #9b59b6, #e74c3c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 27px;
+    font-weight: bold;
+  /* গোল শেপ ঠিক রেখে গ্রেডিয়েন্ট বর্ডার দেওয়ার সহজ উপায় */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.8); /* এটি দিয়ে খুব সুন্দর গোল রিং বা বর্ডার তৈরি হবে */
+}
+
+/* নাম এবং ইউআইডি অংশ (বামে বা স্বাভাবিক অ্যালাইনমেন্ট) */
+.wallet-name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* লেখাগুলো বাম দিক থেকে শুরু হবে */
+    text-align: left;
+}
+
+.wallet-user-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2px;
+    margin-top: 8px !important;
+}
+
+.wallet-user-meta {
+    font-size: 11px;
+    color: #718096;
+}
+

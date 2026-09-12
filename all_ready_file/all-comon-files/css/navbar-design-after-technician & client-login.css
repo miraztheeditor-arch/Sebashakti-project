@@ -1,0 +1,493 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: sans-serif; background: #fff; }
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    
+   
+   
+    background-color: #f8f9fa; /* হালকা অফ-হোয়াইট রঙ */
+    border-bottom: 1px solid #dcdcdc;
+    box-sizing: border-box;
+    flex-wrap: nowrap;
+    border: 2px solid transparent;
+    margin-left: auto;
+    margin-right: auto;
+    /* সর্বনিম্ন ৫০px, আদর্শ ৭০px (স্ক্রিন বড় হলে), সর্বোচ্চ ৭০px */
+   /* ৭০px থেকে  heigশুরু হবে, এবং স্ক্রিনের ১% এর সাথে অনুপাতে কমতে থাকবে */
+   /* ৭০px থেকে শুরু হবে, এবং স্ক্রিনের ১% এর সাথে অনুপাতে কমতে থাকবে */
+    height: clamp(50px, 70px - 2vw, 70px);
+    /* position: fixed; এটা আপাতত মুছে ফেলুন */
+}
+.logo-wrapper {
+    display: flex;
+    justify-content: center; /* ইমেজ বামে থাকবে */
+    border: 2px solid transparent;
+    width: 30%;
+    height: 100%;
+    align-items: center;
+}
+
+   
+.logo-img {
+ width: auto;    /* এখানে সাইজ বাড়িয়ে বা কমিয়ে লোগো ছোট-বড় করতে পারবে */
+  height: 100%;
+    display: block;
+    margin-left: 0 !important;      /* বামদিকের মার্জিন জিরো */
+    margin-right: auto !important;  /* ডানদিকের মার্জিন অটো, যা লোগোকে বামে ঠেলে দেবে */
+    position: static;
+  
+   
+   
+}
+
+/* ন্যাভবার কন্টেইনারকে ফ্লেক্সিবল করার জন্য */
+.brand-container {
+    display: flex;
+    align-items: center;       /* আইকন এবং টেক্সটকে লম্বালম্বিভাবে একই লাইনে রাখতে */
+                  /* আইকন ও লেখার মাঝের দূরত্ব */
+  margin: 0;
+  padding: 0;
+  position: relative;
+    flex-shrink: 0;
+    border: 2px solid transparent !important;
+   height: 100%;
+   width: 20%;
+   justify-content: flex-start;
+   
+}
+
+.brand-text {
+    font-size: 18px;
+    font-weight: 1000;
+    color: #00264d;
+    margin-left: 0;
+    margin-bottom: 5px;
+
+    align-items: center;
+  margin-left: 5px;
+  border: .5px solid transparent;
+   
+    /* শ্যাডোর কোড */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.text-group {
+    display: flex;
+
+    width: 70%;
+    border: 2px solid transparent;
+    height: 100%;
+    align-items: flex-start;
+    position: relative;
+   
+justify-content: center;
+    flex-direction: column; /* নিচে নামানোর জন্য */
+    flex-wrap: wrap;        /* অতিরিক্ত প্রপার্টি যা বাধ্য করবে নিচে নামাতে */
+}
+.slogan-group {
+    height: 25%;
+    width: 97%;
+    border: .5px solid transparent;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+ 
+
+}
+/* স্লোগানটিকে জোর করে নতুন লাইনে নিতে */
+.slogan {
+    flex: 0 0 100%;         /* এটি স্লোগানকে পুরো লাইনের দখল নিতে বলবে */
+    display: block;         /* ব্লক লেভেল এলিমেন্ট করা */
+ 
+    font-size: 7px;
+ 
+}
+
+/* মেনু লিঙ্কের বেসিক স্টাইল */
+.nav-menu a {
+    text-decoration: none;
+    color: #333333;
+    padding: 10px 15px;
+    transition: all 0.3s ease; /* এটি ইফেক্টটিকে মসৃণ (smooth) করবে */
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    display: inline-block;
+    font-family: 'Segoe UI', Tahoma, sans-serif; /* আধুনিক ক্লিন ফন্ট */
+}
+
+/* হোভার ইফেক্ট */
+.nav-menu a:hover {
+    color: #ffffff;            /* মাউস নিলে টেক্সট কালার সাদা হবে */
+    background-color: #00264d; /* মাউস নিলে ব্যাকগ্রাউন্ড গাঢ় নীল হবে */
+    cursor: pointer;           /* কার্সারটি হাতের চিহ্ন দেখাবে */
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 12vw !important; /* এই সংখ্যাটি বাড়িয়ে বা কমিয়ে দূরত্ব ঠিক করতে পারবেন */    
+    font-size: 0.1rem !important;
+    flex-shrink: 1;
+    min-width: 0;
+    width: 50%;
+  border: 2px solid transparent;
+  margin-left: 0 !important;
+  margin-right: 9% !important;
+}
+.about-us {
+   
+    font-size: .7rem !important;
+}
+.home {
+   
+    font-size: .7rem !important;
+}
+.services-areas, .why-us {
+    
+    font-size: .7rem !important;
+}
+.nav-buttons{
+    margin-left: auto; 
+
+    /* বাটন কন্টেইনারের সাইজ কন্ট্রোল */
+    display: flex;
+    flex-shrink: 1;      /* স্ক্রিন ছোট হলে এটি ছোট হতে পারবে */
+    
+    /* অন্যান্য */
+    justify-content: space-between; /* কন্টেইনারের ভিতরের বাটনগুলোকে ডানে রাখবে */
+    gap: 2%;
+   /* ৭০px থেকে শুরু হবে, এবং স্ক্রিনের ১% এর সাথে অনুপাতে কমতে থাকবে */
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    border: 2px solid transparent;
+    height: 75%;
+    width: 30%;
+    align-items: center;
+    margin-right: 1%;
+    
+}
+
+
+/* পুরো ন্যাভবারকে আরেকটু প্রিমিয়াম করার জন্য */
+
+
+/* মেনু লিঙ্কের নিচে হালকা আন্ডারলাইন ইফেক্ট (মাউস নিলে আসবে) */
+.nav-menu a {
+    position: relative;
+}
+
+.nav-menu a::before {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #00264d;
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::before {
+    width: 100%; /* হোভার করলে নিচে দাগ আসবে */
+}
+
+    
+    
+    .nav-buttons button {
+        padding: 5px 8px; /* বাটন প্যাডিং কমান */
+        font-size: 0.7rem;
+        flex: 1;
+    }
+
+    .logo img {
+        width: 80px; /* লোগো ছোট করুন */
+    }
+   
+    
+/* পিসিতেও দেখার জন্য */
+.hamburger {
+    display: flex !important; /* মিডিয়া কোয়েরির ভেতরে থাকলে তা সরিয়ে দিন */
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px; /* লাইনগুলোর দূরত্ব */
+    width: 30px; 
+    height: 30px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    margin-right: 5px; /* লোগোর সাথে গ্যাপ */
+    order: -1; /* এটি নিশ্চিত করবে যে এটি সবকিছুর আগে (বামে) থাকবে */
+}
+
+/* লাইনগুলোর ডিজাইন */
+.hamburger span {
+    display: block !important; /* এটি থাকলেই লাইন আসবে */
+    width: 90%;
+    height: 3px;
+    background-color:#333333; /* রঙের জন্য কালো */
+    border-radius: 2px;
+}
+@media (min-width: 821px) {
+    
+/* ন্যাভবার কন্টেইনারকে ফ্লেক্সিবল করার জন্য */
+.brand-container {
+    display: flex;
+    align-items: center;       /* আইকন এবং টেক্সটকে লম্বালম্বিভাবে একই লাইনে রাখতে */
+                  /* আইকন ও লেখার মাঝের দূরত্ব */
+  margin: 0;
+  padding: 0;
+  position: relative;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+   height: 100%;
+   width: 20%;
+   justify-content: flex-start;
+}
+.logo-wrapper {
+    display: flex;
+    justify-content: center; /* ইমেজ বামে থাকবে */
+    border: 2px solid transparent;
+    width: 15%;
+    height: 100%;
+    align-items: center;
+}
+.brand-text {
+    font-size: 18px;
+    font-weight: 1000;
+    color: #00264d;
+    margin-left: 0;
+    margin-bottom: 5px;
+
+    align-items: center;
+  margin-left: 0;
+  border: .5px solid transparent;
+   
+    /* শ্যাডোর কোড */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.text-group {
+    display: flex;
+
+    width: 70%;
+    border: 2px solid transparent;
+    height: 100%;
+    align-items: flex-start;
+    position: relative;
+   
+justify-content: center;
+    flex-direction: column; /* নিচে নামানোর জন্য */
+    flex-wrap: wrap;        /* অতিরিক্ত প্রপার্টি যা বাধ্য করবে নিচে নামাতে */
+}
+.slogan-group {
+    height: 25%;
+    width: 97%;
+    border: .5px solid transparent;
+  position: absolute;
+  bottom: 0;
+ left: 0;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+ 
+
+}
+
+.hamburger span {
+  
+    display: none !important;
+   
+}
+
+}
+
+@media(max-width: 1115px) {
+    
+.nav-menu {
+   gap: 1vw;               /* মেনু আইটেমগুলোর মাঝখানের গ্যাপ কমিয়ে দিন */
+        margin-left: 2% !important;        /* মার্জিন কমিয়ে দিন যাতে বাটনটির জন্য জায়গা পায় */
+        width: auto;            /* ফিক্সড উইডথ না রেখে অটো করে দিন */
+        font-size: 14px;        /* ফন্ট সাইজ সামান্য কমিয়ে দেখতে পারেন */
+        margin-right: 6% !important;
+        gap: 50px !important;
+}
+}
+
+
+@media (max-width: 821px) {
+.services-areas {
+display: none !important;
+}
+.why-us {
+display: none !important;
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+   gap: 1vw;
+   margin-left: 9%;
+   
+    font-size: 2px;
+    flex-shrink: 1;
+    min-width: 0;
+    width: 30%;
+  border: 2px solid transparent;
+  margin-left: 8% !important;
+  margin-right: 0 !important;
+
+}
+.services, .home {
+   
+    font-size: .7rem !important;
+}
+
+}
+@media (max-width:359px) {
+    .nav-menu {
+        display: none;
+    }
+}
+@media (min-width:760px) {
+.nav-menu {
+    gap: 6vw;
+}
+}
+
+@media (max-width: 664px) {
+.about-us {
+    display: none !important;
+}
+}
+@media (max-width: 391px) {
+.nav-buttons {
+    margin-right: 5% !important;
+}
+}
+
+
+
+@media(max-width: 376px) {
+    
+.nav-menu {
+justify-content: center;
+align-items: center;
+margin-left: 12% !important;
+margin-right: 0 !important;
+font-size: 12px !important;
+}
+}
+@media (max-width: 361px) {
+.nav-buttons {
+    margin-right: 8% !important;
+}
+.nav-menu {
+    margin-left: 4% !important;
+}
+}
+
+.profile-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2ecc71, #3498db, #9b59b6, #e74c3c); /* আপনার আগের ব্যাকগ্রাউন্ড */
+    
+    /* গোল শেপ ঠিক রেখে গ্রেডিয়েন্ট বর্ডার দেওয়ার সহজ উপায় */
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.8); /* এটি দিয়ে খুব সুন্দর গোল রিং বা বর্ডার তৈরি হবে */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+   
+}
+
+/* টেক্সটের জন্য */
+.profile-text {
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center; /* টেক্সট মাঝখানে রাখার জন্য */
+}
+#avatar-letter {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+/* মাউস নিলে রঙ হালকা পরিবর্তন হবে */
+#bell-icon:hover {
+    background-color: #e0e0e0;
+}
+
+/* বেল আইকনের সাইজ */
+#bell-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #555;             /* আইকনের রঙ */
+}
+
+
+.nav-icon:hover {
+    background-color: #e0e0e0;
+}
+
+
+.nav-icon {
+    border-radius: 10px; /* চারকোনা কিন্তু কোণাগুলো হালকা বাঁকানো */
+    background-color: #f0f0f0; 
+    border: none;
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0; /* এটি বাটনগুলোকে চ্যাপ্টা হওয়া থেকে বাঁচাবে */
+    
+}
+
+/* বেল আইকন পজিশনিং ঠিক রাখা */
+#bell-icon {
+    position: relative; 
+    cursor: pointer;
+}
+
+/* লাল ব্যাজ বা সংখ্যার ডিজাইন */
+.notification-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: #ef4444; /* উজ্জ্বল লাল রঙ */
+    color: #ffffff;            /* লেখার রঙ সাদা */
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 50px;       /* গোল শেপ আনার জন্য */
+    min-width: 16px;
+    text-align: center;
+    line-height: 14px;
+    box-shadow: 0 0 0 2px #ffffff; /* চারপাশে হালকা হোয়াইট বর্ডার, দেখতে সুন্দর লাগে */
+}
+

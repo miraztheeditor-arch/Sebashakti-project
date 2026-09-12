@@ -1,0 +1,1007 @@
+html, body {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* মূল কন্টেইনার লেআউট */
+.find-jobs-wrapper {
+    background-color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh !important;
+    padding: 20px;
+    margin-top: 44px;
+    box-sizing: border-box;
+   
+}
+
+.jobs-top-header {
+    display: flex;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.page-title-box {
+    flex: 1;
+    background: #e2e8f0;
+    padding: 15px 25px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1e293b;
+    border-right: 1px solid #cbd5e1;
+    
+    max-width: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-category-display {
+    flex: 2;
+    padding: 15px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2563eb;
+    background: #ffffff;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jobs-main-body {
+    display: flex;
+    gap: 20px;
+}
+
+/* লেফট সাইডবার */
+.jobs-sidebar {
+    width: 280px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    height: fit-content;
+    
+}
+
+.sidebar-back-btn {
+    padding: 15px 20px;
+    background: #f1f5f9;
+    cursor: pointer;
+    font-weight: 600;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.sidebar-back-btn button {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+.sidebar-back-btn:hover {
+    background: #e2e8f0;
+}
+
+.left-sidebar-menu {
+    padding: 10px 10px 120px 10px !important; /* নিচের প্যাডিং বাড়িয়ে ১২০ পিক্সেল করা হলো, যাতে শেষ আইটেমটি স্ক্রল করে একদম উপরে তুলে আনা যায় */
+    height: calc(100vh - 40px) !important;  /* উচ্চতা কিছুটা কমিয়ে হিসাব করা হলো */
+    max-height: calc(100vh - 40px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    position: sticky !important;
+    top: 20px !important;
+    box-sizing: border-box !important;
+}
+.menu-category-item {
+    padding: 12px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.2s;
+}
+
+.menu-category-item:hover, .menu-category-item.active {
+    background: #eff6ff;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* ডান পাশের কন্টেন্ট এরিয়া */
+.jobs-content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.jobs-filter-bar {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.two-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.filter-tab-btn {
+    padding: 8px 20px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #475569;
+}
+
+.filter-tab-btn.active {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.jobs-search-box input {
+    padding: 8px 15px;
+    width: 250px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+}
+
+
+.job-item-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.job-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.job-client-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1e293b;
+}
+
+.job-location-text {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.job-service-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 10px;
+}
+
+.btn-details-action {
+    background: #7c3aed;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-details-action:hover {
+    background: #6d28d9;
+}
+
+.menu-category-item .menu-icon {
+    stroke: #64748b;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+
+.menu-category-item:hover .menu-icon,
+.menu-category-item.active .menu-icon {
+    stroke: #2563eb;
+}
+
+.jobs-search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 15px;
+    color: #94A3B8; /* আইকনের রঙ */
+    pointer-events: none;
+}
+
+.jobs-search-box input {
+    width: 100%;
+    padding: 10px 15px 10px 45px; /* বাম দিকে পেডিং বাড়ানো হয়েছে যাতে আইকনের ওপর টেক্সট না চলে যায় */
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+}
+
+#jobSearchInput {
+    width: 100%;
+    padding: 8px 12px 8px 38px; /* প্যাডিং একটু কমানো হলো যাতে ভেতরের জায়গা বাড়ে */
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+    font-size: 12px; /* ইনপুটের টেক্সট সাইজ ছোট করা হলো */
+}
+
+/* সরাসরি প্লেসহোল্ডারের ফন্ট সাইজ ছোট করার কোড */
+#jobSearchInput::placeholder {
+    font-size: 11px; /* ফন্ট সাইজ ছোট করে বক্সের ভেতর ফিট করা হলো */
+    color: #94A3B8;
+}
+
+/* পুরোনো ব্রাউজারের কম্প্যাটিবিলিটির জন্য */
+#jobSearchInput::-webkit-input-placeholder {
+    font-size: 11px;
+}
+#jobSearchInput::-moz-placeholder {
+    font-size: 11px;
+}
+#jobSearchInput:-ms-input-placeholder {
+    font-size: 11px;
+}
+
+/* ডিফল্ট বড় স্ক্রিনের জন্য */
+.find-jobs-wrapper {
+    background-color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: 44px;
+}
+/* ডিফল্ট বড় স্ক্রিনের জন্য */
+.find-jobs-wrapper {
+    background-color: #f8fafc;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+    margin-top: 44px;
+}
+/* ১. ১২০০ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 90% বা 0.9) */
+@media screen and (max-width: 1200px) {
+    .find-jobs-wrapper {
+        zoom: 90%;
+        height: calc(100vh / 0.9) !important;
+    }
+}
+
+/* ২. ৯৯২ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 75% বা 0.75) */
+@media screen and (max-width: 992px) {
+    .find-jobs-wrapper {
+        zoom: 85%;
+        margin-top: 55px;
+        height: calc(100vh / 0.75 - 55px) !important;
+    }
+    .filter-tab-btn {
+        font-size: 19px;
+    }
+
+    .page-title-box {
+        font-size: 24px;
+    }
+
+    .selected-category-display {
+        font-size: 21px;
+    }
+
+.jobs-search-box input {
+    width: 100% !important;
+    /* প্যাডিং ও ফন্ট সাইজ ব্যালেন্স করে দেওয়া হলো যাতে নিচে না নামে */
+    padding: 12px 16px 12px 48px !important; 
+    font-size: 16px !important; 
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box !important; /* যাতে প্যাডিংয়ের কারণে বক্স বাইরে না যায় */
+}
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 23px; /* আইকন ছোট থাকলে বড় করার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+/* ২. সার্চ আইকনটি বড় করা এবং ঠিক মাঝখানে রাখা */
+.jobs-search-box .search-icon,
+.jobs-search-box svg {
+    font-size: 18px !important; /* যদি ফন্ট-আসোম বা ইমোজি হয় */
+    width: 33px !important;     /* যদি SVG হয় */
+    height: 33px !important;
+    position: absolute;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* লম্বালম্বি একদম সেন্টারে রাখার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+
+/* প্লেসহোল্ডার টেক্সট বড় ও স্পষ্ট করার জন্য */
+#jobSearchInput::placeholder {
+    padding-left:8px ;
+    font-size: 14px !important;
+    color: #94A3B8 !important;
+}
+  /* ৩. আইকন এবং এসভিজিগুলোর জন্য নির্দিষ্ট বক্স বা উইডথ সেট করা */
+    .menu-category-item .icon,
+    .menu-category-item svg {
+        font-size: 27px !important;
+        width: 27px !important;
+        height: 27px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+    }
+}
+
+
+/* ২. ৯৯২ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 75% বা 0.75) */
+@media screen and (max-width: 822px) {
+    .find-jobs-wrapper {
+        zoom: 80%;
+        margin-top: 55px;
+        height: calc(100vh / 0.75 - 55px) !important;
+    }
+    .filter-tab-btn {
+        font-size: 19px;
+    }
+
+    .page-title-box {
+        font-size: 24px;
+    }
+
+    .selected-category-display {
+        font-size: 21px;
+    }
+
+.jobs-search-box input {
+    width: 100% !important;
+    /* প্যাডিং ও ফন্ট সাইজ ব্যালেন্স করে দেওয়া হলো যাতে নিচে না নামে */
+    padding: 12px 16px 12px 48px !important; 
+    font-size: 16px !important; 
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box !important; /* যাতে প্যাডিংয়ের কারণে বক্স বাইরে না যায় */
+}
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 23px; /* আইকন ছোট থাকলে বড় করার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+/* ২. সার্চ আইকনটি বড় করা এবং ঠিক মাঝখানে রাখা */
+.jobs-search-box .search-icon,
+.jobs-search-box svg {
+    font-size: 18px !important; /* যদি ফন্ট-আসোম বা ইমোজি হয় */
+    width: 33px !important;     /* যদি SVG হয় */
+    height: 33px !important;
+    position: absolute;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* লম্বালম্বি একদম সেন্টারে রাখার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+
+/* প্লেসহোল্ডার টেক্সট বড় ও স্পষ্ট করার জন্য */
+#jobSearchInput::placeholder {
+    padding-left:8px ;
+    font-size: 14px !important;
+    color: #94A3B8 !important;
+}
+  /* ৩. আইকন এবং এসভিজিগুলোর জন্য নির্দিষ্ট বক্স বা উইডথ সেট করা */
+    .menu-category-item .icon,
+    .menu-category-item svg {
+        font-size: 27px !important;
+        width: 27px !important;
+        height: 27px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+    }
+}
+
+
+/* ৩. ৭৬৮ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 60% বা 0.6) */
+@media screen and (max-width: 768px) {
+    .find-jobs-wrapper {
+        zoom: 75%;
+        margin-top: 77px;
+        height: calc(100vh / 0.6 - 77px) !important;
+    }
+    .filter-tab-btn {
+        font-size: 19px;
+    }
+
+    .page-title-box {
+        font-size: 24px;
+    }
+
+    .selected-category-display {
+        font-size: 21px;
+    }
+
+.jobs-search-box input {
+    width: 100% !important;
+    /* প্যাডিং ও ফন্ট সাইজ ব্যালেন্স করে দেওয়া হলো যাতে নিচে না নামে */
+    padding: 12px 16px 12px 48px !important; 
+    font-size: 16px !important; 
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box !important; /* যাতে প্যাডিংয়ের কারণে বক্স বাইরে না যায় */
+}
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 23px; /* আইকন ছোট থাকলে বড় করার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+/* ২. সার্চ আইকনটি বড় করা এবং ঠিক মাঝখানে রাখা */
+.jobs-search-box .search-icon,
+.jobs-search-box svg {
+    font-size: 18px !important; /* যদি ফন্ট-আসোম বা ইমোজি হয় */
+    width: 33px !important;     /* যদি SVG হয় */
+    height: 33px !important;
+    position: absolute;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* লম্বালম্বি একদম সেন্টারে রাখার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+
+/* প্লেসহোল্ডার টেক্সট বড় ও স্পষ্ট করার জন্য */
+#jobSearchInput::placeholder {
+    padding-left:8px ;
+    font-size: 14px !important;
+    color: #94A3B8 !important;
+}
+  /* ৩. আইকন এবং এসভিজিগুলোর জন্য নির্দিষ্ট বক্স বা উইডথ সেট করা */
+    .menu-category-item .icon,
+    .menu-category-item svg {
+        font-size: 25px !important;
+        width: 25px !important;
+        height: 25px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+    }
+}
+
+
+/* ৩. ৭৬৮ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 60% বা 0.6) */
+@media screen and (max-width: 696px) {
+    .find-jobs-wrapper {
+        zoom: 70%;
+        margin-top: 77px;
+        height: calc(100vh / 0.6 - 77px) !important;
+    }
+    .filter-tab-btn {
+        font-size: 19px;
+    }
+
+    .page-title-box {
+        font-size: 24px;
+    }
+
+    .selected-category-display {
+        font-size: 21px;
+    }
+
+.jobs-search-box input {
+    width: 100% !important;
+    /* প্যাডিং ও ফন্ট সাইজ ব্যালেন্স করে দেওয়া হলো যাতে নিচে না নামে */
+    padding: 12px 16px 12px 48px !important; 
+    font-size: 16px !important; 
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box !important; /* যাতে প্যাডিংয়ের কারণে বক্স বাইরে না যায় */
+}
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 23px; /* আইকন ছোট থাকলে বড় করার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+/* ২. সার্চ আইকনটি বড় করা এবং ঠিক মাঝখানে রাখা */
+.jobs-search-box .search-icon,
+.jobs-search-box svg {
+    font-size: 18px !important; /* যদি ফন্ট-আসোম বা ইমোজি হয় */
+    width: 33px !important;     /* যদি SVG হয় */
+    height: 33px !important;
+    position: absolute;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* লম্বালম্বি একদম সেন্টারে রাখার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+
+/* প্লেসহোল্ডার টেক্সট বড় ও স্পষ্ট করার জন্য */
+#jobSearchInput::placeholder {
+    padding-left:8px ;
+    font-size: 14px !important;
+    color: #94A3B8 !important;
+}
+  /* ৩. আইকন এবং এসভিজিগুলোর জন্য নির্দিষ্ট বক্স বা উইডথ সেট করা */
+    .menu-category-item .icon,
+    .menu-category-item svg {
+        font-size: 25px !important;
+        width: 25px !important;
+        height: 25px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+    }
+}
+
+
+/* ৩. ৭৬৮ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 60% বা 0.6) */
+@media screen and (max-width: 660px) {
+    .find-jobs-wrapper {
+        zoom: 65%;
+        margin-top: 77px;
+        height: calc(100vh / 0.6 - 77px) !important;
+    }
+}
+
+
+/* ৩. ৭৬৮ পিক্সেল বা এর কম স্ক্রিনের জন্য (zoom: 60% বা 0.6) */
+@media screen and (max-width: 604px) {
+    .find-jobs-wrapper {
+        zoom: 60%;
+        margin-top: 77px;
+        height: calc(100vh / 0.6 - 77px) !important;
+    }
+    
+    .filter-tab-btn {
+        font-size: 19px;
+    }
+
+    .page-title-box {
+        font-size: 24px;
+    }
+
+    .selected-category-display {
+        font-size: 21px;
+    }
+
+.jobs-search-box input {
+    width: 100% !important;
+    /* প্যাডিং ও ফন্ট সাইজ ব্যালেন্স করে দেওয়া হলো যাতে নিচে না নামে */
+    padding: 12px 16px 12px 48px !important; 
+    font-size: 16px !important; 
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box !important; /* যাতে প্যাডিংয়ের কারণে বক্স বাইরে না যায় */
+}
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 23px; /* আইকন ছোট থাকলে বড় করার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+/* ২. সার্চ আইকনটি বড় করা এবং ঠিক মাঝখানে রাখা */
+.jobs-search-box .search-icon,
+.jobs-search-box svg {
+    font-size: 18px !important; /* যদি ফন্ট-আসোম বা ইমোজি হয় */
+    width: 33px !important;     /* যদি SVG হয় */
+    height: 33px !important;
+    position: absolute;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* লম্বালম্বি একদম সেন্টারে রাখার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+
+/* প্লেসহোল্ডার টেক্সট বড় ও স্পষ্ট করার জন্য */
+#jobSearchInput::placeholder {
+    padding-left:8px ;
+    font-size: 14px !important;
+    color: #94A3B8 !important;
+}
+  /* ৩. আইকন এবং এসভিজিগুলোর জন্য নির্দিষ্ট বক্স বা উইডথ সেট করা */
+    .menu-category-item .icon,
+    .menu-category-item svg {
+        font-size: 27px !important;
+        width: 27px !important;
+        height: 27px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
+    }
+}
+
+@media screen and (max-width: 577px) {
+    /* ১. সাইডবারের উইডথ নির্দিষ্ট করা */
+    .jobs-sidebar {
+        width: 90px !important;
+        padding: 5px !important;
+    }
+
+    /* ২. মেনু আইটেম ফ্লেক্স এবং পারফেক্ট সেন্টার করা */
+    .menu-category-item {
+        font-size: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 12px 0 !important;
+        width: 100% !important;
+    }
+
+    /* ৩. আইকন এবং এসভিজিগুলোর জন্য নির্দিষ্ট বক্স বা উইডথ সেট করা */
+    .menu-category-item .icon,
+    .menu-category-item svg {
+        font-size: 29px !important;
+        width: 29px !important;
+        height: 29px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 auto !important;
+    }
+
+    .filter-tab-btn {
+        font-size: 18px;
+    }
+
+    .page-title-box {
+        font-size: 23px;
+    }
+
+    .selected-category-display {
+        font-size: 20px;
+    }
+
+.jobs-search-box input {
+    width: 100% !important;
+    /* প্যাডিং ও ফন্ট সাইজ ব্যালেন্স করে দেওয়া হলো যাতে নিচে না নামে */
+    padding: 12px 16px 12px 48px !important; 
+    font-size: 16px !important; 
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    box-sizing: border-box !important; /* যাতে প্যাডিংয়ের কারণে বক্স বাইরে না যায় */
+}
+.jobs-search-box .search-icon {
+    position: absolute;
+    left: 16px;
+    font-size: 23px; /* আইকন ছোট থাকলে বড় করার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+/* ২. সার্চ আইকনটি বড় করা এবং ঠিক মাঝখানে রাখা */
+.jobs-search-box .search-icon,
+.jobs-search-box svg {
+    font-size: 18px !important; /* যদি ফন্ট-আসোম বা ইমোজি হয় */
+    width: 33px !important;     /* যদি SVG হয় */
+    height: 33px !important;
+    position: absolute;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important; /* লম্বালম্বি একদম সেন্টারে রাখার জন্য */
+    color: #94A3B8;
+    pointer-events: none;
+}
+
+/* প্লেসহোল্ডার টেক্সট বড় ও স্পষ্ট করার জন্য */
+#jobSearchInput::placeholder {
+    padding-left:8px ;
+    font-size: 14px !important;
+    color: #94A3B8 !important;
+}
+}
+.full-width-profile-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.profile-row-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    border: 1px solid #eaeaea;
+    box-sizing: border-box;
+}
+
+/* বাম পাশের প্রোফাইল সার্কেল ও নাম */
+.row-left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1.5;
+}
+
+.row-circle-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background-color: #f0f2f5; /* প্রোফাইল ছবির জন্য ফাঁকা ব্যাকগ্রাউন্ড */
+    border: 1px solid #dcdde1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-circle-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.row-name-location .row-title {
+    margin: 0 0 3px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2f3640;
+}
+
+.row-name-location .row-location {
+    margin: 0;
+    font-size: 13px;
+    color: #718093;
+}
+
+/* মাঝের অংশ: ক্যাটেগরির আগে এসভিজি আইকন */
+.row-middle-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    justify-content: center;
+}
+
+.category-svg-icon {
+    display: flex;
+    align-items: center;
+    color: #7b2cbf; /* আপনার থিম কালার */
+}
+
+.row-category {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2f3640;
+}
+
+.row-unit {
+    font-size: 13px;
+    color: #718093;
+}
+
+/* ডান পাশের বাটন */
+.row-right-action {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+}
+
+.row-details-link {
+    background-color: #7b2cbf;
+    color: #ffffff;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.row-details-link:hover {
+    background-color: #5a189a;
+}
+
+/* লোগোর জন্য গোল সার্কেল বক্স */
+.row-circle-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%; /* একদম গোল করার জন্য */
+    background-color: #e4e7eb; /* লোগো আসার আগের ফাঁকা ব্যাকগ্রাউন্ড কালার */
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row-circle-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* বাম পাশের লেআউট ফ্লেক্স */
+.row-left-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1.5;
+}
+
+.row-middle-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1.2;
+}
+
+.category-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-svg-icon {
+    display: flex;
+    align-items: center;
+    color: #7b2cbf;
+}
+
+.row-category {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2f3640;
+}
+
+.row-unit {
+    font-size: 13px;
+    color: #718093;
+}
+
+/* ডেট এবং টাইমের ডিজাইন */
+.row-date-time {
+    font-size: 11px;
+    color: #a4b0be;
+    font-weight: 400;
+    padding-left: 23px; /* আইকনের সাথে সোজা রাখার জন্য */
+}
+
+/* মোবাইল বা ছোট স্ক্রিনে (433px বা তার নিচে) এসভিজি আইকন হাইড করার জন্য */
+@media (max-width: 433px) {
+    .category-svg-icon {
+        display: none !important;
+    }
+    
+    /* আইকন চলে যাওয়ার পর যদি টেক্সটের পেডিং সরাতে চান */
+    .row-date-time {
+        padding-left: 0 !important;
+    }
+
+    /* পুরো রো-এর বাম দিকের সেকশন */
+.row-left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* লোগো এবং নাম-লোকেশন এর মাঝের গ্যাপ কমিয়ে ১০ পিক্সেল করা হলো */
+    flex: 1.5;
+    padding-left: 0; /* বাম পাশের অতিরিক্ত কোনো প্যাডিং বা স্পেস থাকলে তা জিরো করা হলো */
+    margin-left: 0;
+}
+
+/* লোগোর গোল সার্কেল একদম বামে সেঁটে রাখার জন্য */
+.row-circle-avatar {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background-color: #e4e7eb;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -12px !important; /* কোনো মার্জিন যেন না থাকে */
+}
+
+/* নাম এবং লোকেশনের ভেতরের গ্যাপ কমানো */
+.row-name-location {
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* নাম ও লোকেশনের ঠিক মাঝের ফাঁকা দূরত্ব কমিয়ে ১ পিক্সেল করা হলো */
+}
+
+.row-name-location .row-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2f3640;
+}
+
+.row-name-location .row-location {
+    margin: 0;
+    font-size: 13px;
+    color: #718093;
+}
+}
+
+/* ডিফল্ট বা ডেস্কটপ ভিউ */
+#jobsCardsGrid {
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+    padding-bottom: 40px !important;
+}
+
+/* মোবাইল বা ছোট স্ক্রিনের জন্য (যেমন ৭৬৮ পিক্সেল বা এর কম) */
+@media screen and (max-width: 768px) {
+    #jobsCardsGrid {
+        max-height: 140vh !important;   /* মোবাইলের ছোট স্ক্রিন অনুযায়ী উচ্চতা অ্যাডজাস্ট করা */
+        overflow-y: auto !important;   /* কার্ড বেশি হলেই স্ক্রলবার চলে আসবে */
+        overflow-x: hidden !important;
+        padding-right: 4px !important;
+        padding-bottom: 40px !important;
+    }
+}

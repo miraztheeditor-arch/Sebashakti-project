@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>সেবাশক্তি</title>
+    <link rel="stylesheet" href="../../all-comon-files/css/navbar-design-after-technician & client-login.css">
+      <link rel="stylesheet" href="../css/chat-modal-technician.css">
+      <link rel="stylesheet" href="../css/job-details-technician.css">
+      <link rel="stylesheet" href="../css/technician-profile-icon-click.css">
+      <link rel="stylesheet" href="../css/technician-logout-modal.css">
+</head>
+<body>
+
+        <nav class="navbar">
+        <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+      <div class="brand-container">
+    <div class="logo-wrapper">
+        <img src="../../../images/logo_icon.png" alt="Logo" class="logo-img">
+    </div> 
+    <div class="text-group">
+        <span class="brand-text">সেবাশক্তি</span>
+       <div class="slogan-group">
+              <span class="slogan">সমাধান আপনার হাতের মুঠোয়</span>
+        </div>
+       
+    </div>
+</div>
+
+<div class="nav-menu">
+    <a href="../../index.html" class="home">হোম</a>
+        <a href="services-areas.html" class="services-areas">সার্ভিস এরিয়া</a>
+        <a href="about-us.html" class="about-us">আমাদের সম্পর্কে</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-icon" id="jobs-btn" title="Available Jobs">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span class="btn-text">Find Jobs</span>
+    </button>
+     <button class="nav-icon" id="bell-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span class="notification-badge">২</span>
+    </button>
+<div class="profile-container" id="profile-btn" onclick="toggleSidebar()">
+    <div class="profile-circle" id="profile-avatar">
+        <span id="avatar-letter">U</span>
+    </div>
+</div>
+
+
+
+<div id="profileSidebar" class="sidebar">
+
+  <div class="sidebar-header-fixed">
+    <div class="sidebar-header">
+        <div class="profile-pic-container">
+            <div class="profile-circle-in-profile" id="profile-avatar">
+                <span id="profile-avatar-letter">U</span>
+                </div>
+            
+        </div>
+        <div class="name-container">
+            <span class="user-name" id="user-name">User...</span>
+            <p class="user-meta" id="user-id-profile">UID: #XXXX</p>
+        </div>
+        <div class="button-container">
+            <button class="close-btn" onclick="toggleSidebar()">
+                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18l6-6-6-6"/>
+                 </svg>
+            </button>
+        </div>
+    </div>
+
+        
+        <div class="sidebar-header-title">
+            <h3>অ্যাকাউন্ট মেনু</h3>
+        </div>
+
+        <div class="tech-info-box">
+            <div class="info-item">
+                 <span class="dot"></span> ওয়ার্কিং স্ট্যাটাস: <span class="status-text">অনলাইন</span>
+            </div>
+            <div class="info-item">
+                <span>📍</span> সার্ভিস এরিয়া: মিরপুর, ঢাকা
+            </div>
+        </div>
+      </div>
+
+    <div class="sidebar-scrollable" style="flex-grow: 1; overflow-y: auto;">
+
+        <div class="sidebar-menu">
+             <div class="menu-group">
+                <a href="profile.html" class="menu-item"><span>👤</span> প্রোফাইল</a>
+                <a href="technician-dashboard.html" class="menu-item"><span>🏠</span> ড্যাশবোর্ড</a>
+                <a href="my-wallet.html" class="menu-item"><span>💼</span> মাই ওয়ালেট</a>
+                <a href="my-work.html?active=recent-request" class="menu-item"><span>🛠️</span> আমার কাজ</a>
+               
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                <a href="payment-history.html?active=recent-request" class="menu-item"><span>💳</span> পেমেন্ট হিস্ট্রি</a>
+                <a href="#" class="menu-item"><span>💰</span> উইথড্র রিকোয়েস্ট</a>
+                <a href="settings.html" class="menu-item"><span>⚙️</span> সেটিংস</a>
+                <a href="support.html" class="menu-item"><span>🎧</span> সাপোর্ট</a>
+            </div>
+
+            <hr class="menu-divider">
+
+            <div class="menu-group">
+                            <a href="#" class="menu-item logout" onclick="showLogoutModal(event)"><span class="icon">🚪</span> লগ আউট</a>
+                
+ <!-- লগ আউট কনফার্মেশন পপআপ মডাল (প্রথমে হাইড থাকবে) -->
+<div id="logoutModal" class="logout-modal-overlay" style="display: none;">
+    <div class="logout-modal-box">
+        <div class="logout-icon">⚠️</div>
+        <h3>আপনি কি লগ আউট করতে চান?</h3>
+        <p>লগ আউট করলে আপনার বর্তমান সেশন শেষ হয়ে যাবে এবং পুনরায় লগইন করতে হবে।</p>
+        
+        <div class="logout-modal-buttons">
+            <button type="button" class="btn-cancel" onclick="hideLogoutModal()">বাতিল</button>
+            <button type="button" class="btn-confirm" onclick="executeLogout()">লগ আউট</button>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+ <div id="overlay"></div>
+
+
+ 
+    </nav>
+
+<div class="job-details-container">
+        <!-- হেডার সেকশন -->
+        <div class="page-header">
+          <!-- ব্যাক বাটনটি যেভাবে আপডেট করবেন -->
+<a href="#" onclick="history.back(); return false;" class="back-circle-btn" title="ফিরে যান">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+</a>
+            <h2>জব বিবরণী ও আবেদন</h2>
+            <div class="header-right-placeholder"></div>
+        </div>
+
+        <!-- নতুন লোগো ও ইউজার আইডি সেকশন -->
+<div class="user-identity-section">
+    <!-- ফাঁকা লোগো সার্কেল (ছোট সাইজ) -->
+    <!-- পুরানো কোড: <div class="user-logo-circle"></div> -->
+<!-- নতুন কোড: লোগো সার্কেল (img ট্যাগ সহ) -->
+<div class="user-logo-circle">
+    <img id="client-profile-pic" src="" alt="লোগো" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+</div>
+    
+    <!-- ইউজারের ইউআইডি -->
+    <div class="user-uid-display">
+        UID: <span id="clientUidDisplay"></span>
+    </div>
+</div>
+
+        <!-- জবের মূল তথ্যগুলো (দুটি আলাদা লোকেশন সহ) -->
+        <div class="info-grid-box">
+            <div class="info-card">
+                <span class="info-label">পোস্টকারী (User Name)</span>
+                <span id="lbl-username" class="info-value">-</span>
+            </div>
+            <div class="info-card">
+                <span class="info-label">ক্যাটেগরি (Work Category)</span>
+                <span id="lbl-category" class="info-value">-</span>
+            </div>
+            
+            <!-- বর্তমান লোকেশন -->
+            <div class="info-card">
+                <span class="info-label">বর্তমান লোকেশন (Current Location)</span>
+                <span id="lbl-current-location" class="info-value">-</span>
+            </div>
+
+            <!-- ফিক্সড লোকেশন -->
+            <div class="info-card">
+                <span class="info-label">ফিক্সড লোকেশন (Fixed Location)</span>
+                <span id="lbl-fixed-location" class="info-value">-</span>
+            </div>
+
+            <div class="info-card">
+                <span class="info-label">পরিমাণ (Unit Count)</span>
+                <span id="lbl-units" class="info-value">-</span>
+            </div>
+            <div class="info-card">
+                <span class="info-label">পোস্টের তারিখ (Created At)</span>
+                <span id="lbl-date" class="info-value">-</span>
+            </div>
+            <div class="info-card full-span">
+                <span class="info-label">জব আইডি (Job ID)</span>
+                <span id="lbl-jobid" class="info-value job-id-font">-</span>
+            </div>
+            <div class="info-card full-span">
+                <span class="info-label">সমস্যার বিবরণ (Problem Details)</span>
+                <span id="lbl-details" class="info-value details-text">-</span>
+            </div>
+        </div>
+
+        <!-- নির্দেশনামূলক মেসেজ বক্স -->
+<div class="job-instruction-box">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="8" x2="12" y2="12"></line>
+        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span>এপ্লাই করার পূর্বে অবশ্যই জব পোস্টকারী ক্লায়েন্টের সাথে চ্যাট বক্সে কথা বলে কাজ সম্পর্কে বিস্তারিত জেনে নিন এবং বাজেট ফিক্স করে নিন।</span>
+</div>
+
+
+<!-- টেকনিশিয়ান অ্যাকশন বাটন সেকশন -->
+<div class="technician-action-section">
+    <!-- ক্লাইন্টের সাথে মেসেজ করুন বাটন -->
+    <button class="btn-action btn-message" id="chat-with-client-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            path d="M21 15a2 2 0 0 1-2 7H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+        ক্লাইন্টের সাথে মেসেজ করুন
+    </button>
+
+    <!-- এপ্লাই করুন বাটন -->
+    <button class="btn-action btn-apply" >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        এপ্লাই করুন
+    </button>
+</div>
+
+<!-- Chat Modal Overlay -->
+<div id="chat-modal" class="chat-modal-overlay" style="display: none;">
+    <div class="chat-modal-content">
+        <!-- Modal Header -->
+        <div class="chat-modal-header">
+            <div class="client-info">
+                <img id="modal-client-img"  alt="Client" class="client-avatar">
+                <span id="modal-client-name">ক্লায়েন্টের নাম</span>
+            </div>
+            <button id="close-chat-modal" class="modal-close-btn">&times;</button>
+        </div>
+        
+     <div class="chat-modal-body" id="chat-messages-container">
+    
+    <!-- Incoming Message (বামে ছবি এবং ডানে টেক্সট বক্স) -->
+    <div class="message incoming">
+        <img src="assets/client.png" alt="Client" class="msg-avatar">
+        <div class="msg-text">হ্যালো! কাজটি নিয়ে কি কিছু জানতে চান?</div>
+    </div>
+    
+    <!-- Outgoing Message (বামে টেক্সট বক্স এবং ডানে ছবি) -->
+    <div class="message outgoing">
+        <div class="msg-text">জি, আমি লোকেশন সম্পর্কে একটু কনফার্ম হতে চাচ্ছিলাম।</div>
+        <img src="assets/tech.png" alt="Tech" class="msg-avatar">
+    </div>
+
+</div>
+
+        <!-- Chat Footer / Input Area -->
+        <div class="chat-modal-footer">
+            <textarea id="chat-input-message" placeholder="এখানে মেসেজ লিখুন..."></textarea>
+            <button id="send-chat-btn" class="send-icon-btn" style=" border: none; width: 48px; height: 48px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 22px;">
+    ➤
+</button>
+        </div>
+    </div>
+</div>
+
+</div>
+    
+     <script src="../../all-comon-files/js/api.js"></script>
+    <script src="../../all-comon-files/js/technician-find-job-api.js"></script>
+    <script src="../../all-comon-files/js/auth-guard.js"></script>
+    <script src="../js/job-details-technician.js"></script>
+</body>
+</html>
