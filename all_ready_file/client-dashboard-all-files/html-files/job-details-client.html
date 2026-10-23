@@ -6,6 +6,8 @@
     <title>সেবাশক্তি</title>
     <link rel="stylesheet" href="../../all-comon-files/css/navbar-design-after-technician & client-login.css">
       <link rel="stylesheet" href="../css-files/job-details-client.css">
+      <link rel="stylesheet" href="../css-files/chat-modal-client.css">
+      <link rel="stylesheet" href="../css-files/Applicant-details-modal.css">
       <link rel="stylesheet" href="../css-files/client-profile-icon-click.css">
       <link rel="stylesheet" href="../css-files/client-logout-modal.css">
 </head>
@@ -205,9 +207,11 @@
 
 <!-- ১. কাস্টমার বা ইনকোয়ারি মেসেজ সেকশন -->
 <div class="section-box">
-    <h3>💬 কাস্টমার বা ইনকোয়ারি মেসেজ</h3>
-    <!-- নির্দেশনামূলক টেক্সট -->
-    <p class="section-instruction">ℹ️ নিচের মেসেজগুলোতে ক্লিক করে সরাসরি টেকনিশিয়ানের সাথে চ্যাট করুন।</p>
+    <!-- এই অংশটি সবসময় স্থির থাকবে -->
+    <div class="section-header-sticky">
+        <h3>💬 কাস্টমার বা ইনকোয়ারি মেসেজ</h3>
+        <p class="section-instruction">ℹ️ নিচের মেসেজগুলোতে ক্লিক করে সরাসরি টেকনিশিয়ানের সাথে চ্যাট করুন।</p>
+    </div>
     
     <div id="messages-container">
         <!-- স্যাম্পল মেসেজ কার্ড ১ -->
@@ -222,53 +226,20 @@
             <span class="card-time">১০ মিনিট আগে</span>
         </div>
 
-        <!-- স্যাম্পল মেসেজ কার্ড ২ -->
-        <div class="sample-item-card">
-            <div class="card-left">
-                <span class="card-icon">👤</span>
-                <div>
-                    <h4 class="card-title">Karim Ahmed</h4>
-                    <p class="card-subtitle">আমি এই কাজটি আপনার বাজেটের মধ্যেই করে দিতে পারব।</p>
-                </div>
-            </div>
-            <span class="card-time">২০ মিনিট আগে</span>
-        </div>
     </div>
 </div>
 
 <!-- ২. এপ্লিকেশন তালিকা সেকশন -->
 <div class="section-box">
-    <h3>👥 এপ্লিকেশন তালিকা (Applicants)</h3>
-    <!-- নির্দেশনামূলক সতর্কবার্তা -->
-    <p class="section-instruction warning-color">⚠️ টেকনিশিয়ানের আবেদন রিসিভ করার পূর্বে অবশ্যই চ্যাটে কথা বলে বাজেট ও সময় ফিক্সড করে নিন। বাজেট ফিক্সড না করে একসেপ্ট করবেন না।</p>
-    
-    <div id="applicants-container">
-        <!-- স্যাম্পল এপ্লিকেশন কার্ড -->
-        <div class="sample-item-card">
-            <div class="card-left">
-                <span class="card-icon">👨‍🔧</span>
-                <div>
-                    <h4 class="card-title">Karim Ahmed <span class="badge">টেকনিশিয়ান</span></h4>
-                    <p class="card-subtitle">বাজেট: <strong>৫০০ টাকা</strong> | সময়: <strong>১ দিন</strong></p>
-                </div>
-            </div>
-            <button class="preview-btn">বিস্তারিত</button>
-        </div>
+    <!-- ১. এটি ফিক্সড হেডার বা টাইটেল অংশ হিসেবে থাকবে -->
+    <div class="section-header-sticky">
+        <h3>এপ্লিকেশন তালিকা (Applicants)</h3>
+        <p class="section-instruction warning-color">⚠️ টেকনিশিয়ানের আবেদন রিসিভ করার পূর্বে অবশ্যই চ্যাটে কথা বলে বাজেট ও সময় ফিক্সড করে নিন। বাজেট ফিক্সড না করে একসেপ্ট করবেন না।</p>
+    </div>
 
-           
+    <!-- ২. আসল কার্ডগুলো এই কন্টেইনারের ভেতরে থাকবে, যা মেসেজের মতো স্ক্রোল করবে -->
     <div id="applicants-container">
-        <!-- স্যাম্পল এপ্লিকেশন কার্ড -->
-        <div class="sample-item-card">
-            <div class="card-left">
-                <span class="card-icon">👨‍🔧</span>
-                <div>
-                    <h4 class="card-title">Karim Ahmed <span class="badge">টেকনিশিয়ান</span></h4>
-                    <p class="card-subtitle">বাজেট: <strong>৫০০ টাকা</strong> | সময়: <strong>১ দিন</strong></p>
-                </div>
-            </div>
-            <button class="preview-btn">বিস্তারিত</button>
-        </div>
-
+        <!-- ডায়নামিক কার্ডগুলো এখানে রেন্ডার হবে -->
     </div>
 </div>
 
@@ -296,10 +267,118 @@
             <button id="modal-confirm-delete-btn" class="btn-delete-confirm">ডিলিট</button>
         </div>
     </div>
+
+ <!-- Applicant Details Modal -->
+<div id="applicantDetailsModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+        <!-- Header: Image, Name, UID & Close Button -->
+        <div class="modal-header">
+            <div class="tech-profile-info">
+                <img id="modalTechImage" src="" alt="Tech Image" class="tech-avatar">
+                <div>
+                    <h3 id="modalTechName">টেকনিশিয়ানের নাম</h3>
+                    <p id="modalTechUid" class="tech-uid">UID: -</p>
+                </div>
+            </div>
+            <button onclick="closeDetailsModal()" class="close-btn">&times;</button>
+        </div>
+
+        <!-- Body: All Proposal Fields Form -->
+        <div class="modal-body">
+
+                        <!-- Status Message Added Here -->
+           <div class="proposal-status-msg" style="background-color: #e3f2fd; color: #0d47a1; padding: 10px 15px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+               <i class="fas fa-info-circle"></i> আপনার এই কাজটি করতে আগ্রহী এবং তিনি এই কাজটি করার জন্য আবেদন করেছেন।
+           </div>
+
+                        <!-- Job ID Field Inserted Here -->
+            <div class="form-group">
+                <label>জব আইডি:</label>
+                <input type="text" id="modalJobId" readonly class="static-input">
+            </div>
+
+            <div class="form-group">
+                <label>আবেদনের তারিখ ও সময়:</label>
+                <input type="text" id="modalAppliedTime" readonly class="static-input">
+            </div>
+            
+            <div class="form-group">
+                <label>মজুরী বা সার্ভিস চার্জ:</label>
+                <input type="text" id="modalLaborCost" readonly class="static-input">
+            </div>
+
+            <div class="form-group">
+                <label>মালামাল কেনার খরচ:</label>
+                <input type="text" id="modalMaterialCost" readonly class="static-input">
+            </div>
+
+            <div class="form-group">
+                <label>ক্যান্সেলেশন বা ভিজিটিং ফি (যদি কর্মস্থলে কাজ বাতিল হয়):</label>
+                <input type="text" id="modalCancellationFee" readonly class="static-input">
+            </div>
+
+            <div class="form-group">
+                <label>কাজ শেষ করতে কত সময় লাগবে?:</label>
+                <input type="text" id="modalEstimatedTime" readonly class="static-input">
+            </div>
+
+            <div class="form-group">
+                <label>কভার লেটার বা সংক্ষিপ্ত নোট:</label>
+                <textarea id="modalCoverLetter" readonly class="static-textarea"></textarea>
+            </div>
+        </div>
+
+        <!-- Footer: Accept & Reject Buttons -->
+        <div class="modal-footer">
+            <button onclick="handleReject()" class="btn-reject">রিজেক্ট</button>
+            <button onclick="handleAccept()" class="btn-accept">এক্সেপ্ট</button>
+        </div>
+    </div>
+</div>
+
+<!-- Chat Modal Overlay -->
+<div id="chat-modal" class="chat-modal-overlay" style="display: none;">
+    <div class="chat-modal-content">
+        <!-- Modal Header -->
+        <div class="chat-modal-header">
+            <div class="client-info">
+                <img id="modal-client-img"  alt="Client" class="client-avatar">
+                <span id="modal-client-name">ক্লায়েন্টের নাম</span>
+            </div>
+            <button id="close-chat-modal" class="modal-close-btn">&times;</button>
+        </div>
+        
+     <div class="chat-modal-body" id="chat-messages-container">
+    
+    <!-- Incoming Message (বামে ছবি এবং ডানে টেক্সট বক্স) -->
+    <div class="message incoming">
+        <img src="assets/client.png" alt="Client" class="msg-avatar">
+        <div class="msg-text">হ্যালো! কাজটি নিয়ে কি কিছু জানতে চান?</div>
+    </div>
+    
+    <!-- Outgoing Message (বামে টেক্সট বক্স এবং ডানে ছবি) -->
+   
+
+</div>
+
+        <!-- Chat Footer / Input Area -->
+        <div class="chat-modal-footer">
+            <textarea id="chat-input-message" placeholder="এখানে মেসেজ লিখুন..."></textarea>
+            <button id="send-chat-btn" class="send-icon-btn" style=" border: none; width: 48px; height: 48px; border-radius: 6px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 22px;">
+    ➤
+</button>
+        </div>
+    </div>
+</div>
+
+
 </div>
     
      <script src="../../all-comon-files/js/api.js"></script>
     <script src="../../all-comon-files/js/job-api.js"></script>
+    <script src="../../all-comon-files/js/messages-api.js"></script>
+    <script src="../../all-comon-files/js/notifications-api.js"></script>
+    <script src="../../all-comon-files/js/global-notifications-count.js"></script>
     <script src="../../all-comon-files/js/auth-guard.js"></script>
     <script src="../js-files/job-details-client.js"></script>
 </body>

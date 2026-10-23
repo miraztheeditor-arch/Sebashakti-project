@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../all-comon-files/css/navbar-design-after-technician & client-login.css">
       <link rel="stylesheet" href="../css/chat-modal-technician.css">
       <link rel="stylesheet" href="../css/job-details-technician.css">
+      <link rel="stylesheet" href="../css/apply-modal.css">
       <link rel="stylesheet" href="../css/technician-profile-icon-click.css">
       <link rel="stylesheet" href="../css/technician-logout-modal.css">
 </head>
@@ -225,22 +226,35 @@
         <line x1="12" y1="8" x2="12" y2="12"></line>
         <line x1="12" y1="16" x2="12.01" y2="16"></line>
     </svg>
-    <span>এপ্লাই করার পূর্বে অবশ্যই জব পোস্টকারী ক্লায়েন্টের সাথে চ্যাট বক্সে কথা বলে কাজ সম্পর্কে বিস্তারিত জেনে নিন এবং বাজেট ফিক্স করে নিন।</span>
+    <span>এপ্লাই করার পূর্বে অবশ্যই জব পোস্টকারী ক্লায়েন্টের সাথে চ্যাট বক্সে কথা বলে কাজ সম্পর্কে বিস্তারিত জেনে নিন এবং বাজেট ফিক্স করে নিন। মনে রাখবেন: প্রতিটি জবে এপ্লাই করার জন্য আপনি একবারই সুযোগ পাবেন।</span>
 </div>
 
 
 <!-- টেকনিশিয়ান অ্যাকশন বাটন সেকশন -->
+<!-- টেকনিশিয়ান অ্যাকশন সেকশন -->
 <div class="technician-action-section">
-    <!-- ক্লাইন্টের সাথে মেসেজ করুন বাটন -->
+
+    <!-- ১. আগের এপ্লাই বাটনের ক্লাস ঠিক রেখে শুধু নাম এবং ফাংশন পরিবর্তন করা হলো -->
+ <button class="btn-action btn-wishlist" id="wishlist-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        </svg>
+        কাজটি উইশলিস্টে রাখুন
+    </button>
+
+    <!-- ২. ক্লাইন্টের সাথে মেসেজ করুন বাটন (যেমন ছিল তেমনই আছে) -->
     <button class="btn-action btn-message" id="chat-with-client-btn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            path d="M21 15a2 2 0 0 1-2 7H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
         </svg>
         ক্লাইন্টের সাথে মেসেজ করুন
     </button>
 
-    <!-- এপ্লাই করুন বাটন -->
-    <button class="btn-action btn-apply" >
+</div>
+
+<!-- ৩. সবার নিচে ফুল উইডথ (Full Width) নিয়ে নতুন আসল 'এপ্লাই করুন' বাটন -->
+<div class="full-apply-container">
+    <button class="btn-action btn-apply" id="applyBtn">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
@@ -269,10 +283,7 @@
     </div>
     
     <!-- Outgoing Message (বামে টেক্সট বক্স এবং ডানে ছবি) -->
-    <div class="message outgoing">
-        <div class="msg-text">জি, আমি লোকেশন সম্পর্কে একটু কনফার্ম হতে চাচ্ছিলাম।</div>
-        <img src="assets/tech.png" alt="Tech" class="msg-avatar">
-    </div>
+   
 
 </div>
 
@@ -287,10 +298,82 @@
 </div>
 
 </div>
+
+<!-- Apply Modal -->
+<!-- Apply Modal -->
+<div id="applyModal" class="apply-modal-overlay">
+    <div class="apply-modal-box">
+        
+        <!-- Modal Header -->
+        <div class="apply-modal-header">
+            <h3>কাজের জন্য প্রপোজাল বা আবেদন জমা দিন</h3>
+            <button id="closeApplyModal" class="apply-close-btn">&times;</button>
+        </div>
+
+        <!-- Modal Form -->
+        <form id="applyForm">
+            <!-- মজুরী বা সার্ভিস চার্জ (ডানপাশে টাকার সাইন, কোনো ড্রপডাউন বা অ্যারো নেই) -->
+            <div class="apply-form-group">
+                <label>মজুরী বা সার্ভিস চার্জ:</label>
+                <div class="currency-input-wrapper">
+                    <input type="number" id="laborCost" placeholder="যেমন: ১০০০" required>
+                    <span class="currency-symbol">৳</span>
+                </div>
+            </div>
+
+            <!-- মালামাল খরচ কে বহন করবে (ড্রপডাউন) -->
+            <div class="apply-form-group">
+                <label>মালামাল কেনার খরচ:</label>
+                <select id="materialResponsibility" class="apply-form-control" required>
+                    <option value="">সিলেক্ট করুন</option>
+                    <option value="client">ক্লায়েন্ট নিজে মালামাল কিনে দিবে</option>
+                    <option value="technician">টেকনিশিয়ান কিনে আনবে (বিল ক্লায়েন্ট দিবে)</option>
+                </select>
+            </div>
+
+            <!-- ক্যান্সেলেশন বা ভিজিটিং ফি (ডানপাশে টাকার সাইন, কোনো ড্রপডাউন বা অ্যারো নেই) -->
+            <div class="apply-form-group">
+                <label>ক্যান্সেলেশন বা ভিজিটিং ফি (যদি কর্মস্থলে কাজ বাতিল হয়):</label>
+                <div class="currency-input-wrapper">
+                    <input type="number" id="cancellationFee" placeholder="যেমন: ২০০" required>
+                    <span class="currency-symbol">৳</span>
+                </div>
+            </div>
+
+            <!-- কাজ শেষ করতে কত দিন সময় লাগবে (ড্রপডাউন সেকশন) -->
+            <div class="apply-form-group">
+                <label>কাজ শেষ করতে কত সময় লাগবে?</label>
+                <select id="estimatedTime" class="apply-form-control" required>
+                    <option value="">সময় সিলেক্ট করুন</option>
+                    <option value="1_hour">১ ঘণ্টার মধ্যে</option>
+                    <option value="few_hours">কয়েক ঘণ্টার মধ্যে</option>
+                    <option value="1_day">১ দিন</option>
+                    <option value="2_days">২ দিন</option>
+                    <option value="3_days">৩ দিন</option>
+                    <option value="1_week">১ সপ্তাহ</option>
+                </select>
+            </div>
+
+            <!-- কভার লেটার বা নোট -->
+            <div class="apply-form-group">
+                <label>কভার লেটার বা সংক্ষিপ্ত নোট:</label>
+                <textarea id="coverLetter" class="apply-form-control" rows="3" placeholder="কেন আপনি এই কাজের জন্য উপযুক্ত তা সংক্ষেপে লিখুন..." required style="resize: vertical;"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="apply-submit-btn">প্রপোজাল সাবমিট করুন</button>
+        </form>
+
+    </div>
+</div>
     
      <script src="../../all-comon-files/js/api.js"></script>
     <script src="../../all-comon-files/js/technician-find-job-api.js"></script>
+    <script src="../../all-comon-files/js/technician-job-api.js"></script>
+    <script src="../../all-comon-files/js/messages-api.js"></script>
     <script src="../../all-comon-files/js/auth-guard.js"></script>
+    <script src="../../all-comon-files/js/notifications-for-tech-api.js"></script>
+<script src="../../all-comon-files/js/global-notifications-count-for-tech.js"></script>
     <script src="../js/job-details-technician.js"></script>
 </body>
 </html>

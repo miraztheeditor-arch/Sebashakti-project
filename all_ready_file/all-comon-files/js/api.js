@@ -1148,6 +1148,15 @@ linkUserWithId: async (phone, name, password, role, userId) => {
             userId: userId
         };
 
+        if (role === "technician") {
+    data[cleanPhone].myWallet = {
+        balance: 0,
+        totalCommission: 0,
+        dueAdjustment: 0,
+        balanceCheckFlag: 3 // এখানে ফ্ল্যাগের ভ্যালু ৩ হিসেবে সেট করা হলো
+    };
+}
+
         localStorage.setItem('userMasterData', JSON.stringify(data));
         return { success: true };
     } catch (error) {

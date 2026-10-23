@@ -1,0 +1,132 @@
+.apply-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.apply-modal-box {
+    background: #fff;
+    width: 90%;
+    max-width: 500px;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.apply-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* লেখা বড় হলে ওপরের দিকে সমান রাখবে */
+    margin-bottom: 20px;
+    gap: 10px; /* লেখা ও ক্রস বাটনের মাঝে ফাঁক রাখবে */
+}
+
+.apply-modal-header h3 {
+    margin: 0;
+    font-size: 16px; /* মোবাইলের জন্য ফন্ট সাইজ একটু ছোট করা যেতে পারে */
+    color: #333;
+    line-height: 1.4;
+    flex: 1; /* হেডার টেক্সট জায়গা নিয়ে নিবে */
+}
+
+.apply-close-btn {
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    line-height: 1;
+    flex-shrink: 0; /* ক্রস বাটন ছোট হবে না */
+}
+
+.apply-form-group {
+    margin-bottom: 15px;
+}
+
+.apply-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+.apply-form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+.apply-form-control:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* টাকার সাইন যুক্ত ইনপুটের র‍্যাপার এবং ব্রাউজারের ডিফল্ট স্পিনার/ড্রপডাউন রিমুভ করার কোড */
+.currency-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-input-wrapper input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 35px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: #fff;
+}
+
+/* ক্রোম, সাফারি ও এজ ব্রাউজারের নাম্বার ইনপুট অ্যারো বা ড্রপডাউন হাইড করতে */
+.currency-input-wrapper input::-webkit-outer-spin-button,
+.currency-input-wrapper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ফায়ারফক্স ব্রাউজারের জন্য */
+.currency-input-wrapper input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.currency-symbol {
+    position: absolute;
+    right: 12px;
+    color: #666;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.apply-submit-btn {
+    width: 100%;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.apply-submit-btn:hover {
+    background: #43A047;
+}

@@ -128,20 +128,66 @@ body, html {
 
 }
 
-/* ২. ছোট স্ক্রিনের জন্য (যেখানে সাইডবার বা স্ক্রিন ছোট হয়) */
+
+/* মোবাইল বা ৬০০ পিক্সেলের কম স্ক্রিনের জন্য */
 @media screen and (max-width: 500px) {
-    .arrow-btn {
-        width: 35px !important; /* বাটন ছোট হবে */
-        height: 35px !important;
+    
+   /* পুরো সাইডবারের উইথ ৬০ পিক্সেল ফিক্সড থাকবে */
+.left-sidebar {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+        flex: 0 0 60px !important;
+        position: relative !important;
+        overflow: visible !important;
+        background-color: lightskyblue;
         
     }
-     .tab-btn {
-        font-size: 10px !important; /* এখানে আপনার পছন্দমতো সাইজ দিন */
-       
+
+    /* ২. লাল হেডারটি শুধু নিজের জায়গায় বড় হবে, কিন্তু ফ্লো নষ্ট করবে না */
+    .left-sidebar-header {
+        width: 120px !important; /* আপনার ইচ্ছেমতো সাইজ */
+        
+        position: relative !important;
+        z-index: 100;
     }
 
+    /* ৩. নিচের আইকনগুলো যাতে কোনোভাবেই ডানে জায়গা না টানে */
+    .sidebar-items {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
 
+    /* ৪. প্রতিটি নেভ বাটন বা আইকন কন্টেইনার строго ৬০ পিক্সেল রাখবে */
+    .left-sidebar .nav-btn {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+        box-sizing: border-box !important;
+        margin-left: -10px;
+        margin-top:5px;
+    }
+    /* টেক্সট লুকিয়ে শুধু আইকন দৃশ্যমান রাখা */
+    .nav-btn {
+        font-size: 0px !important; 
+        text-indent: -9999px;      
+        padding: 12px !important;
+        text-align: center;
+    }
+    
+    .nav-btn svg {
+        margin: 0 auto !important;
+        display: block !important;
+        text-indent: 0px; 
+
+        width: 25px !important;    /* আইকনের নতুন চওড়া */
+        height: 25px !important;   /* আইকনের নতুন উচ্চতা */
+        min-width: 25px !important;
+        min-height: 25px !important;
+    }
 }
+
 
 
 /* ভেতরের এলিমেন্টগুলোর সাইজ (আগের মতোই থাকবে) */

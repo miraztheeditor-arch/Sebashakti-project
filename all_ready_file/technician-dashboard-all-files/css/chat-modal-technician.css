@@ -142,16 +142,19 @@
 /* ইনকামিং মেসেজ বামে রাখতে */
 .message.incoming {
     justify-content: flex-start;
+    padding-right: 30%;
 }
 
 /* আউটগোইং মেসেজ ডানে রাখতে */
+/* আউটগোয়িং: মেসেজ ডানে রাখতে */
 .message.outgoing {
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    margin-left: auto;
-    max-width: 75%;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    padding-left: 30%;
 }
 
 /* কমন টেক্সট বক্স ডিজাইন এবং পজিশন relative (লেজ সেট করার জন্য এটি জরুরি) */
@@ -176,12 +179,12 @@
 .message.incoming .msg-text::before {
     content: "";
     position: absolute;
-    top: 50%; /* মাঝামাঝি পজিশন */
-    left: -8px; /* বক্সের ঠিক বাম বাইরে */
-    transform: translateY(-50%);
+    bottom: 10px; /* নিচ থেকে দূরত্ব ফিক্সড করে দেওয়া হলো */
+    top: auto;   /* আগের 50% বাদ দেওয়া হলো */
+    transform: none;
+    left: -7px;
     width: 0;
     height: 0;
-    /* বর্ডার ট্রিক দিয়ে সুচালো লেজ তৈরি করা */
     border-style: solid;
     border-width: 8px 8px 8px 0;
     border-color: transparent #e2e8f0 transparent transparent;
@@ -200,18 +203,19 @@
 .message.outgoing .msg-text::after {
     content: "";
     position: absolute;
-    top: 50%; /* মাঝামাঝি পজিশন */
-    right: -8px; /* বক্সের ঠিক বাইরে */
-    transform: translateY(-50%);
+    bottom: 10px; /* নিচ থেকে নির্দিষ্ট দূরত্ব */
+    top: auto;
+    transform: none;
+    right: -7px;
     width: 0;
     height: 0;
-    /* সুচালো আকার দেওয়ার জন্য বর্ডার ট্রিক */
     border-style: solid;
     border-width: 8px 0 8px 8px;
-    /* বর্ডার কালার এমনভাবে সেট করতে হবে যেন লেজটি মেসেজ বক্সের রঙের মতো হয় */
     border-color: transparent transparent transparent #005088;
     z-index: 1;
 }
+
+
 /* আউটগোইং ইমেজ পজিশন */
 .message.outgoing .msg-avatar {
     grid-column: 2;
@@ -267,3 +271,4 @@
     cursor: not-allowed;
     opacity: 0.6;
 }
+

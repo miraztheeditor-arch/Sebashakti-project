@@ -281,3 +281,4 @@ const cardHTML = `
 document.addEventListener("DOMContentLoaded", () => {
     renderDynamicJobs();
 });
+

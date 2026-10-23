@@ -332,3 +332,145 @@ body, html {
     flex: 0 0 300px; /* কার্ডের সাইজ নির্দিষ্ট থাকবে */
     margin: 0 !important; /* জেএস এর মার্জিন সরিয়ে দিল */
 }
+
+/* মোবাইল বা ৬০০ পিক্সেলের কম স্ক্রিনের জন্য */
+@media screen and (max-width: 500px) {
+    
+   /* পুরো সাইডবারের উইথ ৬০ পিক্সেল ফিক্সড থাকবে */
+.left-sidebar {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+        flex: 0 0 60px !important;
+        position: relative !important;
+        overflow: visible !important;
+        
+    }
+
+    /* ২. লাল হেডারটি শুধু নিজের জায়গায় বড় হবে, কিন্তু ফ্লো নষ্ট করবে না */
+    .left-sidebar-header {
+        width: 120px !important; /* আপনার ইচ্ছেমতো সাইজ */
+        
+        position: relative !important;
+        z-index: 100;
+    }
+
+    /* ৩. নিচের আইকনগুলো যাতে কোনোভাবেই ডানে জায়গা না টানে */
+    .sidebar-items {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+
+    /* ৪. প্রতিটি নেভ বাটন বা আইকন কন্টেইনার строго ৬০ পিক্সেল রাখবে */
+    .left-sidebar .nav-btn {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+        box-sizing: border-box !important;
+        margin-left: -10px;
+        margin-top:5px;
+    }
+    /* টেক্সট লুকিয়ে শুধু আইকন দৃশ্যমান রাখা */
+    .nav-btn {
+        font-size: 0px !important; 
+        text-indent: -9999px;      
+        padding: 12px !important;
+        text-align: center;
+    }
+    
+    .nav-btn svg {
+        margin: 0 auto !important;
+        display: block !important;
+        text-indent: 0px; 
+
+        width: 25px !important;    /* আইকনের নতুন চওড়া */
+        height: 25px !important;   /* আইকনের নতুন উচ্চতা */
+        min-width: 25px !important;
+        min-height: 25px !important;
+    }
+}
+
+/* উইশলিস্ট বাটন কন্টেইনার */
+.wishlist-actions-row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin-top: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* প্রতিটি বাটন সমান ৫০% জায়গা এবং ওপরের কার্ডের মতো হাইট নেবে */
+.wishlist-btn-half {
+    flex: 0 0 48.5% !important;
+    width: 48.5% !important;
+    max-width: 48.5% !important;
+    padding: 10px 10px !important;
+    border: none !important;
+    border-radius: 4px !important;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+}
+
+/* Delete বাটন স্টাইল */
+.wishlist-btn-delete {
+    background-color: #ff4d4d !important;
+    color: #fff !important;
+}
+.wishlist-btn-delete:hover {
+    background-color: #e60000 !important;
+}
+
+/* Details বাটন স্টাইল */
+.wishlist-btn-details {
+    background-color: #6c5ce7 !important;
+    color: #fff !important;
+}
+.wishlist-btn-details:hover {
+    background-color: #5849db !important;
+}
+
+/* ২. ৬০০ পিক্সেলের নিচে (মোবাইল ও ছোট ট্যাবলেটের জন্য কুয়েরি) */
+@media screen and (max-width: 600px) {
+    .wishlist-actions-row {
+        gap: 6px !important;
+    }
+    
+    .wishlist-btn-half {
+        padding: 8px 6px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* ২. ৪৫০ পিক্সেল বা তার নিচের স্ক্রিনের জন্য রেসপনসিভ কুয়েরি */
+@media screen and (max-width: 450px) {
+    .wishlist-actions-row {
+        gap: 6px !important;
+        margin-top: 10px !important;
+    }
+    
+    .wishlist-btn-half {
+        padding: 8px 4px !important;
+        font-size: 12px !important;
+    }
+}
+
+/* ৩. ৪৩৫ পিক্সেল বা তার নিচের স্ক্রিনের জন্য অতিরিক্ত সুনির্দিষ্ট কুয়েরি */
+@media screen and (max-width: 435px) {
+    .wishlist-actions-row {
+        gap: 4px !important;
+    }
+    
+    .wishlist-btn-half {
+        padding: 7px 2px !important;
+        font-size: 10px !important;
+        margin-top: -5px;
+    }
+}

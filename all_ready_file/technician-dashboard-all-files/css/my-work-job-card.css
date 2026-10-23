@@ -10,7 +10,7 @@
     flex-shrink: 0; /* এটি কার্ডকে ছোট হতে বাধা দিবে */
     border-radius: 15px;
     padding: 15px;
-    width: 300px;
+    width: 31%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -151,6 +151,11 @@
     background: #a08040; /* মাউস নিলে রঙ পরিবর্তন */
 }
 
+.client-uid {
+    font-size: 14px;
+   
+}
+
 @media screen and (max-width: 977px) {
     /* কন্টেইনার এবং কার্ডের হাইটকে auto করে দিন */
     .scroll-container {
@@ -164,19 +169,59 @@
         padding: 12px; /* প্যাডিং ছোট করুন */
     }
 
+        .job-title {
+    font-size: 18px;
+    margin-top: -8px !important;
+    text-align: left; /* বামেই থাকবে */
+    color: #333;
+    display: flex; /* আইকন এবং টেক্সটকে পাশাপাশি রাখার জন্য */
+    align-items: center; /* লম্বালম্বি মাঝখানে রাখার জন্য */
+}
+
+        /* টেক্সট সাইজ আরও ছোট করা */
+    .job-card-gold .client-name {
+        font-size: 13px !important;
+        margin-left: -5px;
+        margin-top: -4px;
+    }
+    .top-right-live-box {
+    margin-top: -10px;
+    margin-right: -5px;
+}
+.live-date-row {
+    font-size: 12px !important;
+}
+
+   .location {
+    font-size: 11px;
+    margin-top: 2px;
+    margin-left: -9px !important;
+    display: flex;          /* এটি যোগ করুন যাতে gap প্রপার্টি কাজ করে */
+    align-items: center;    /* আইকন এবং লেখা সোজাসুজি মাঝ বরাবর রাখবে */
+    gap: 2px;               /* আইকন ও লেখার মাঝের গ্যাপ এখান থেকে কন্ট্রোল করুন */
+}
+.client-uid {
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+/* যদি এসভিজির নিজস্ব কোনো রাইট মার্জিন থাকে তা জিরো করার জন্য */
+.location svg {
+    margin-right: 0 !important;
+}
     /* ফন্ট সাইজ এবং বাটন সব একসাথে ছোট করা */
     .job-card-gold h4, .job-card-gold .client-name {
         font-size: 13px;
     }
 
     .job-card-gold h3, .job-card-gold .job-title {
-        font-size: 11px;
+        font-size: 13px;
         margin: 5px 0;
     }
 
     .btn-details {
         font-size: 11px;
         padding: 6px 10px;
+        margin-bottom: -5px !important;
     }
     /* আগের কোডগুলো থাকবে, সাথে এটি যোগ করুন */
     .no-job-card {
@@ -198,9 +243,39 @@
 
     /* কার্ডের প্রস্থ কমিয়ে ফেলুন */
     .job-card-gold {
-        width: 180px; /* কার্ড আরও ছোট করে দিলাম */
+        width: 47%; /* কার্ড আরও ছোট করে দিলাম */
         padding: 8px;
          border-radius: 10px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
+    }
+
+        .job-title {
+    font-size: 14px;
+    margin-top: -8px !important;
+    text-align: left; /* বামেই থাকবে */
+    color: #333;
+    display: flex; /* আইকন এবং টেক্সটকে পাশাপাশি রাখার জন্য */
+    align-items: center; /* লম্বালম্বি মাঝখানে রাখার জন্য */
+}
+    
+ 
+    /* টেক্সট সাইজ আরও ছোট করা */
+    .job-card-gold .client-name {
+        font-size: 12px !important;
+        margin-left: -5px;
+        margin-top: -4px;
+    }
+
+    .top-right-live-box {
+    margin-top: -12px;
+    margin-right: -7px;
+}
+.live-date-row {
+    font-size: 10px !important;
+}
+
+  .job-card-gold h3, .job-card-gold .job-title {
+        font-size: 12px !important;
+        margin: 3px 0;
     }
 
     /* ফন্ট আরও ছোট করা */
@@ -225,9 +300,32 @@
         height: 35px !important;
     }
 
-    .location {
-        font-size: 10px;
+   .location {
+    font-size: 11px;
+    margin-top: 2px;
+    margin-left: -7px;
+    display: flex;          /* এটি যোগ করুন যাতে gap প্রপার্টি কাজ করে */
+    align-items: center;    /* আইকন এবং লেখা সোজাসুজি মাঝ বরাবর রাখবে */
+    gap: 2px;               /* আইকন ও লেখার মাঝের গ্যাপ এখান থেকে কন্ট্রোল করুন */
+}
+
+    /* বাটনটিকে একদম ছোট করা */
+    .btn-details {
+        font-size: 11px !important;
+        
+        margin-bottom: 2px !important;
+        margin-top: 1px;
     }
+
+.client-uid {
+    font-size: 11px;
+    margin-bottom: 12px;
+}
+
+/* যদি এসভিজির নিজস্ব কোনো রাইট মার্জিন থাকে তা জিরো করার জন্য */
+.location svg {
+    margin-right: 0 !important;
+}
 
     .job-header h3 { 
     font-size: 10px; 
@@ -258,10 +356,30 @@
 
     /* কার্ডের প্রস্থ কমিয়ে ফেলুন */
     .job-card-gold {
-        width: 170px; /* কার্ড আরও ছোট করে দিলাম */
+        width:49.5%; /* কার্ড আরও ছোট করে দিলাম */
         padding: 8px;
          border-radius: 9px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
+         margin-left: -12px !important;
+         
+         
     }
+
+    .job-title {
+    font-size: 14px;
+    margin-top: -8px !important;
+    text-align: left; /* বামেই থাকবে */
+    color: #333;
+    display: flex; /* আইকন এবং টেক্সটকে পাশাপাশি রাখার জন্য */
+    align-items: center; /* লম্বালম্বি মাঝখানে রাখার জন্য */
+}
+    
+    /* টেক্সট সাইজ আরও ছোট করা */
+    .job-card-gold .client-name {
+        font-size: 10px !important;
+        margin-left: -5px;
+        margin-top: -4px;
+    }
+
 
     /* ফন্ট আরও ছোট করা */
     .job-card-gold h4, .job-card-gold .client-name {
@@ -272,6 +390,41 @@
         font-size: 9px;
         margin: 3px 0;
     }
+
+    .top-right-live-box {
+    margin-top: -12px;
+    margin-right: -9px;
+}
+.live-date-row {
+    font-size: 10px !important;
+}
+
+
+    
+  .location {
+    font-size: 9px;
+    margin-top: 2px;
+    margin-left: -7px;
+    display: flex;          /* এটি যোগ করুন যাতে gap প্রপার্টি কাজ করে */
+    align-items: center;    /* আইকন এবং লেখা সোজাসুজি মাঝ বরাবর রাখবে */
+    gap: 2px;               /* আইকন ও লেখার মাঝের গ্যাপ এখান থেকে কন্ট্রোল করুন */
+}
+
+    /* বাটনটিকে একদম ছোট করা */
+    .btn-details {
+        font-size: 10px !important;
+        
+        margin-bottom: 2px !important;
+        margin-top: -1px;
+    }
+
+.client-uid {
+    font-size: 10px;
+    margin-bottom: 9px;
+}
+/* যদি এসভিজির নিজস্ব কোনো রাইট মার্জিন থাকে তা জিরো করার জন্য */
+.location svg {
+    margin-right: 0 !important;
 
     /* বাটনটি একদম কমপ্যাক্ট করে দেওয়া */
     .btn-details {
@@ -296,6 +449,9 @@
     .no-job-card p {
         font-size: 10px !important; /* টেক্সট আরও ছোট করা */
     }
+
+
+}
 }
 @media screen and (max-width: 521px) {
     /* কন্টেইনারের সাইড গ্যাপ সামান্য কমানো */
@@ -306,29 +462,60 @@
 
     /* কার্ডের প্রস্থ কমিয়ে মোবাইল ফ্রেন্ডলি করা */
     .job-card-gold {
-        width: 160px !important; /* কার্ড ছোট করে দিলাম */
+        width: 49% !important; /* কার্ড ছোট করে দিলাম */
         padding: 5px !important;
         border-radius: 8px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
+        margin-left: -10px !important;
     }
 
     /* টেক্সট সাইজ আরও ছোট করা */
     .job-card-gold .client-name {
         font-size: 10px !important;
+        margin-left: -6px;
     }
 
     .job-card-gold .job-title {
-        font-size: 9px !important;
-        margin: 2px 0 !important;
+        font-size: 11px !important;
+        margin-top: -8px !important;
+        
     }
 
-    .location {
-        font-size: 10px;
+    .live-text {
+        font-size: 9px;
     }
+
+  .location {
+    font-size: 9px;
+    margin-top: 2px;
+    margin-left: -7px;
+    display: flex;          /* এটি যোগ করুন যাতে gap প্রপার্টি কাজ করে */
+    align-items: center;    /* আইকন এবং লেখা সোজাসুজি মাঝ বরাবর রাখবে */
+    gap: 2px;               /* আইকন ও লেখার মাঝের গ্যাপ এখান থেকে কন্ট্রোল করুন */
+}
+
+.client-uid {
+    font-size: 10px;
+    margin-bottom: 9px !important;
+}
+
+    /* বাটনটিকে একদম ছোট করা */
+    .btn-details {
+        font-size: 10px !important;
+        
+        margin-bottom: 2px !important;
+        margin-top: -1px;
+    }
+
+/* যদি এসভিজির নিজস্ব কোনো রাইট মার্জিন থাকে তা জিরো করার জন্য */
+.location svg {
+    margin-right: 0 !important;
+    
 
     /* বাটনটিকে একদম ছোট করা */
     .btn-details {
         font-size: 9px !important;
         padding: 3px 5px !important;
+        margin-bottom: 3px !important;
     }
     
     /* যদি লোগো বা আইকন থাকে, সেটিও ছোট করে দিন */
@@ -358,6 +545,16 @@
 
 }
 
+.top-right-live-box {
+    margin-top: -12px;
+    margin-right: -9px;
+}
+.live-date-row {
+    font-size: 9px !important;
+}
+
+}
+
 @media screen and (max-width: 500px) {
     /* কন্টেইনারের সাইড গ্যাপ সামান্য কমানো */
     .scroll-container {
@@ -367,7 +564,7 @@
 
     /* কার্ডের প্রস্থ কমিয়ে মোবাইল ফ্রেন্ডলি করা */
     .job-card-gold {
-        width: 140px !important; /* কার্ড ছোট করে দিলাম */
+        width: 47% !important; /* কার্ড ছোট করে দিলাম */
         padding: 5px !important;
         border-radius: 8px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
     }
@@ -375,21 +572,43 @@
     /* টেক্সট সাইজ আরও ছোট করা */
     .job-card-gold .client-name {
         font-size: 10px !important;
+        margin-left: -6px;
     }
 
     .job-card-gold .job-title {
-        font-size: 9px !important;
-        margin: 2px 0 !important;
+        font-size: 11px !important;
+        margin-top: -10px !important;
     }
 
-    .location {
-        font-size: 10px;
+        .live-text {
+        font-size: 9px;
     }
+
+    
+
+
+ .location {
+    font-size: 9px;
+    margin-top: 2px;
+    margin-left: -7px;
+    display: flex;          /* এটি যোগ করুন যাতে gap প্রপার্টি কাজ করে */
+    align-items: center;    /* আইকন এবং লেখা সোজাসুজি মাঝ বরাবর রাখবে */
+    gap: 2px;               /* আইকন ও লেখার মাঝের গ্যাপ এখান থেকে কন্ট্রোল করুন */
+}
+
+.client-uid {
+    font-size: 10px;
+   margin-bottom: 12px;
+}
+
+/* যদি এসভিজির নিজস্ব কোনো রাইট মার্জিন থাকে তা জিরো করার জন্য */
+.location svg {
+    margin-right: 0 !important;
 
     /* বাটনটিকে একদম ছোট করা */
     .btn-details {
         font-size: 9px !important;
-        padding: 3px 5px !important;
+        
     }
     
     /* যদি লোগো বা আইকন থাকে, সেটিও ছোট করে দিন */
@@ -417,6 +636,22 @@
     }
 }
 
+.top-right-live-box {
+    margin-top: -12px;
+    margin-right: -9px;
+}
+.live-date-row {
+    font-size: 9px !important;
+}
+    /* বাটনটিকে একদম ছোট করা */
+    .btn-details {
+        font-size: 9px !important;
+        
+        margin-bottom: 2px !important;
+        margin-top: -3px;
+    }
+}
+
 @media screen and (max-width: 460px) {
     /* কন্টেইনারের সাইড গ্যাপ সামান্য কমানো */
     .scroll-container {
@@ -426,31 +661,61 @@
 
     /* কার্ডের প্রস্থ কমিয়ে মোবাইল ফ্রেন্ডলি করা */
     .job-card-gold {
-        width: 116px !important; /* কার্ড ছোট করে দিলাম */
+        width: 49% !important; /* কার্ড ছোট করে দিলাম */
         padding: 4px !important;
         border-radius: 7px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
+        margin-left: -8px !important;
+        margin-top: -6px !important;
        
     }
 
     /* টেক্সট সাইজ আরও ছোট করা */
     .job-card-gold .client-name {
-        font-size: 8px !important;
-    }
-
-    .job-card-gold .job-title {
-        font-size: 7px !important;
-        margin: 1px 0 !important;
-    }
-
-    .location {
-        font-size: 7px;
+        font-size: 9px !important;
+        margin-left:-4px;
         margin-top: 2px;
     }
 
+    .job-card-gold .job-title {
+        font-size: 11px !important;
+        margin-top: -4px !important;
+    }
+
+    .live-text {
+        font-size: 9px;
+    }
+
+ .location {
+    font-size: 8px;
+    margin-top: 2px !important;
+    margin-left: -6px;
+    display: flex;          /* এটি যোগ করুন যাতে gap প্রপার্টি কাজ করে */
+    align-items: center;    /* আইকন এবং লেখা সোজাসুজি মাঝ বরাবর রাখবে */
+    gap: 2px;               /* আইকন ও লেখার মাঝের গ্যাপ এখান থেকে কন্ট্রোল করুন */
+}
+.client-uid {
+    font-size: 10px;
+    margin-bottom: 6px;
+}
+
+/* যদি এসভিজির নিজস্ব কোনো রাইট মার্জিন থাকে তা জিরো করার জন্য */
+.location svg {
+    margin-right: 0 !important;
+}
+.top-right-live-box {
+    margin-top: -12px;
+    margin-right: -9px;
+}
+.live-date-row {
+    font-size: 9px !important;
+}
+
     /* বাটনটিকে একদম ছোট করা */
     .btn-details {
-        font-size: 8px !important;
-        padding: 1px 1px !important;
+        font-size: 9px !important;
+        
+        margin-bottom: 2px !important;
+        margin-top: 1px;
     }
     
     /* যদি লোগো বা আইকন থাকে, সেটিও ছোট করে দিন */
@@ -468,7 +733,7 @@
 }
  /* আগের কোডগুলো থাকবে, সাথে এটি যোগ করুন */
     .no-job-card {
-        width: 116px !important; /* job-card-gold এর সাইজের সাথে মিলিয়ে */
+        width: 145px !important; /* job-card-gold এর সাইজের সাথে মিলিয়ে */
         height: auto;
         padding: 2px !important;
          border-radius: 7px !important; /* বর্ডার রেডিয়াস কিছুটা কমানো */
@@ -476,7 +741,6 @@
     .no-job-card p {
         font-size: 7px !important; /* টেক্সট ছোট করা */
     }
-
 }
 
 .no-job-card {
@@ -555,5 +819,42 @@
     color: #666;
     margin: 0;
     line-height: 1.4; /* লাইনগুলো যেন ঘিঞ্জি না লাগে */
+}
+
+/* কার্ডের পজিশন রিলেটিভ করা যাতে অ্যাবসলুট ঠিকমতো কাজ করে */
+.job-card-gold, .card-today {
+    position: relative; 
+}
+
+.top-right-live-box {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* ডানপাশে অ্যালাইন করার জন্য */
+}
+
+.live-top-row {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #28a745;
+    margin-bottom: 3px;
+}
+
+.live-green-dot {
+    width: 7px;
+    height: 7px;
+    background-color: #28a745;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.live-date-row {
+    font-size: 11px;
+    color: #6c757d; /* একটু হালকা কালার যাতে সুন্দর লাগে */
+    font-weight: 500;
 }
 

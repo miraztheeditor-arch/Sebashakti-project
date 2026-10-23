@@ -247,3 +247,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    // এপিআই থেকে ওয়ালেটের ডেটা ফেচ করা
+    const walletData = window.WalletAPI.getTechnicianWalletData();
+
+    if (walletData) {
+        // ১. বর্তমান ব্যালেন্স বসানো (id="amount-num")
+        const amountNumEl = document.getElementById('amount-num');
+        if (amountNumEl) {
+            amountNumEl.innerText = walletData.balance !== undefined ? walletData.balance : 0;
+        }
+
+        // ২. মোট কাটা কমিশন বসানো (এটির জন্য এইচটিএমএলে h3 ট্যাগে id="commission-num" যুক্ত করে নিতে পারেন)
+        const commissionEl = document.getElementById('commission-num');
+        if (commissionEl) {
+            commissionEl.innerText = (walletData.totalCommission !== undefined ? walletData.totalCommission : 0) + "৳";
+        }
+
+        // ৩. বকেয়া অ্যাডজাস্টমেন্ট বসানো (id="due-num")
+        const dueNumEl = document.getElementById('due-num');
+        if (dueNumEl) {
+            dueNumEl.innerText = walletData.dueAdjustment !== undefined ? walletData.dueAdjustment : 0;
+        }
+
+        console.log("ওয়ালেট ডেটা সফলভাবে বাইন্ড করা হয়েছে:", walletData);
+    }
+});

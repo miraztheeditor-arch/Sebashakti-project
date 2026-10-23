@@ -423,7 +423,7 @@ reader.onload = async function(uploadEvent) {
         }
     };
 };
-reader.readAsDataURL(file);
+
 
         reader.readAsDataURL(file);
     });

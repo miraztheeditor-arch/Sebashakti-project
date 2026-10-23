@@ -1,0 +1,142 @@
+/* --- Applicant Details Modal CSS --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    width: 95%;
+    max-width: 650px;       /* মোডালের চওড়া বা উইডথ বাড়ানো হয়েছে */
+    height: auto;
+    max-height: 85vh;       /* মোডালের হাইট বা উচ্চতা বড় করা হয়েছে */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    background-color: #63127c; /* হেডারের ব্যাকগ্রাউন্ড কালার ভিন্ন (ডার্ক শেড) করা হয়েছে */
+    color: #ffffff;
+    padding: 18px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tech-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.tech-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffffff;
+}
+
+.tech-profile-info h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.tech-uid {
+    margin: 3px 0 0 0;
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 25px;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 6px;
+}
+
+.static-input, .static-textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #555555;
+    box-sizing: border-box;
+}
+
+.static-textarea {
+    resize: none;
+    height: 80px;
+}
+
+.modal-footer {
+    padding: 15px 25px;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-reject {
+    background-color: #ff4d4d;
+    color: #ffffff;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-reject:hover {
+    background-color: #e03e3e;
+}
+
+.btn-accept {
+    background-color: #00b074;
+    color: #ffffff;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.btn-accept:hover {
+    background-color: #009661;
+}

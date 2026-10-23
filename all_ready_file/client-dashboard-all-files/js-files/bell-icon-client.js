@@ -124,3 +124,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+// notifications-main.js
+
+// notifications-main.js ফাইলের শেষের অংশটি এভাবে আপডেট করুন:
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.notifications-body');
+    
+    // নোটিফিকেশন লোড এবং রেন্ডার করার ফাংশন
+    function updateNotifications() {
+        if (container) {
+            const cardsHTML = NotificationAPI.fetchChatNotifications();
+            // যদি নতুন কার্ড বা কোনো পরিবর্তন থাকে কেবল তখনই কন্টেইনার আপডেট হবে
+            container.innerHTML = cardsHTML;
+        }
+    }
+
+    // পেজ লোড হওয়ার সাথে সাথেই একবার কল হবে
+    updateNotifications();
+
+    // প্রতি ২.৫ সেকেন্ড পর পর (২৫০০ মিলিসেকেন্ড) অটোমেটিক পোলিং চলবে
+    setInterval(() => {
+        updateNotifications();
+    }, 2500);
+});
+

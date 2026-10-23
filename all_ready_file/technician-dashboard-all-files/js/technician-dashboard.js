@@ -247,3 +247,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+function updateWishlistDashboardCount() {
+    let jobsArray = TechnicianWishlistAPI.getWishlistJobs();
+    let countBadge = document.getElementById('wishlist-count-badge');
+    if (countBadge) {
+        countBadge.innerText = jobsArray.length;
+    }
+}
+
+// পেজ লোড হওয়ার পর এবং উইশলিস্ট রেন্ডার করার সময় এটি কল করতে হবে
+document.addEventListener('DOMContentLoaded', () => {
+    updateWishlistDashboardCount();
+});

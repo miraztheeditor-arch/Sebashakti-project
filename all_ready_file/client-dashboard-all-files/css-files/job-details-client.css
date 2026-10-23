@@ -118,8 +118,38 @@ html, body {
 
 /* সেকশন ডিজাইন */
 .section-box {
-    padding: 20px;
+    max-height: 360px; /* আপনার প্রয়োজনমতো উচ্চতা সেট করতে পারেন, যাতে ৩টি কার্ডের বেশি একসাথে না দেখায় */
+    overflow-y: hidden;
+    transition: max-height 0.3s ease-in-out;
+    padding: 15px;
     border-bottom: 1px solid #eef2f5;
+}
+
+.section-box.expanded {
+    overflow-y: auto;
+    max-height: 650px; /* এক্সপ্যান্ড হলে যতটুকো দেখাতে চান */
+}
+
+/* হেডার অংশটি সবসময় স্থির বা উপরে থাকবে */
+.section-header-sticky {
+    position: sticky;
+    top: 0;
+    background-color: #fff; /* স্ক্রল করার সময় পেছনের লেখা যেন দেখা না যায় */
+    z-index: 10;
+    padding-bottom:5px;
+}
+
+.see-more-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 5px;
 }
 
 .section-box h3 {
@@ -351,3 +381,4 @@ html, body {
     box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4); /* সুন্দর গ্লোয়িং শ্যাডো */
     transform: translateY(-2px); /* হালকা উপরে উঠবে */
 }
+

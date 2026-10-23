@@ -957,3 +957,1213 @@ document.addEventListener("DOMContentLoaded", () => {
         let matchesArea = (selectedAreaType === 'all');
         return matchesCategory && matchesArea;
     });
+
+
+    localStorage.removeItem('messages_db');
+
+    // ১. নির্দিষ্ট জব আইডির সাথে লোকাল স্টোরেজ ম্যাচ করে ডাইনামিক কার্ড বানানোর ফাংশন
+function renderDynamicInquiryCard(jobId) {
+    // আপনার এইচটিএমএলের যে জায়গায় কার্ডটি দেখাতে চান সেই কন্টেইনার ধরুন
+    const messagesContainer = document.getElementById('messages-container'); // আপনার কন্টেইনার আইডি দিন
+    if (!messagesContainer) return;
+
+    // কন্টেইনারটি প্রথমে খালি করে নেব (যাতে হার্ডকোডেড কার্ড রিমুভ হয়ে যায়)
+    messagesContainer.innerHTML = '';
+
+    // MessagesAPI ব্যবহার করে লোকাল স্টোরেজ থেকে নির্দিষ্ট জব আইডির চ্যাট ডাটা আনা
+    const chatData = MessagesAPI.getChatData(jobId); 
+
+    // যদি এই জব আইডির বিপরীতে কোনো চ্যাট বা মেসেজ ডেটা না থাকে
+    if (!chatData || !chatData.messages || chatData.messages.length === 0) {
+        messagesContainer.innerHTML = `<p class="no-msg" style="padding: 15px; color: #777;">এই জবের জন্য কোনো ইনকোয়ারি মেসেজ নেই।</p>`;
+        return;
+    }
+
+    // মেসেজ অ্যারে থেকে একদম সর্বশেষ মেসেজটি বের করা
+    const messages = chatData.messages;
+    const lastMessage = messages[messages.length - 1];
+    
+    // senderInfo থেকে নাম ও ছবি নেওয়া
+    const senderInfo = chatData.senderInfo || {};
+    const senderName = senderInfo.senderName || 'Technician';
+    const senderAvatar = senderInfo.senderAvatar || 'assets/tech.png';
+    const lastText = lastMessage.text || '';
+    const timeAgo = formatTimeAgo(lastMessage.timestamp);
+
+    // ডাইনামিক কার্ডের এইচটিএমএল স্ট্রাকচার তৈরি করা
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'sample-item-card'; // আপনার আগের ক্লাসের নাম ঠিক রাখা হলো
+    
+    // কার্ডে ক্লিক করলে যেন চ্যাট মোডাল ওপেন হয়
+    cardDiv.onclick = function() {
+        if (typeof openChatModal === 'function') {
+            openChatModal(jobId);
+        }
+    };
+
+    cardDiv.innerHTML = `
+        <div class="card-left">
+            <img src="${senderAvatar}" alt="${senderName}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 12px;">
+            <div>
+                <h4 class="card-title">${escapeHtml(senderName)}</h4>
+                <p class="card-subtitle">${escapeHtml(lastText)}</p>
+            </div>
+        </div>
+        <span class="card-time">${timeAgo}</span>
+    `;
+
+    // কন্টেইনারে ডাইনামিক কার্ডটি অ্যাপেন্ড করা
+    messagesContainer.appendChild(cardDiv);
+}
+
+
+chatBtn.addEventListener('click', function() {
+    
+    
+    startChatPolling(currentJobId, currentUserId);
+    chatModal.style.display = 'flex';
+    loadExistingMessages(currentJobId, currentUserId);
+});
+
+sendBtn.addEventListener('click', function() {
+    const messageText = chatInput.value.trim();
+    if (messageText === "") return;
+
+       
+
+    // সেন্ডার ইনফো অবজেক্ট
+    const senderInfo = {
+        senderUid: currentUserId || sessionStorage.getItem('liveUserid') || 'unknown_id',
+        senderName: typeof userName !== 'undefined' ? userName : 'Technician',  
+        senderAvatar: typeof loggedInUserAvatar !== 'undefined' ? loggedInUserAvatar : 'assets/tech.png'
+    };
+
+    // এপিআই কল করে সেভ করা
+    MessagesAPI.saveMessage(currentJobId, senderInfo, messageText);
+
+    // ইউআই রেন্ডারিং এবং ইনপুট ক্লিয়ার করার কোড...
+    // (আপনার আগের মতোই থাকবে)
+    // ২. ইনস্ট্যান্ট স্ক্রিনে রেন্ডার করা (বা আপনার রেন্ডারিং ফাংশন কল করা)
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message', 'outgoing');
+    messageDiv.innerHTML = `
+        <div class="msg-text">${escapeHtml(messageText)}</div>
+        <img src="${loggedInUserAvatar}" alt="Tech" class="msg-avatar">
+    `;
+    chatContainer.appendChild(messageDiv);
+
+// নতুন পাঠানো মেসেজের জন্য লং-প্রেস ফাংশন যুক্ত করুন
+const messageId = 'temp_' + Date.now(); // সার্ভার থেকে আইডি আসলে সেটি, না হলে টেম্পোরারি আইডি
+attachLongPressEvent(messageDiv, index, 'outgoing');
+
+    // ৩. ইনপুট রিসেট এবং স্ক্রোল বটমে নেওয়া
+    chatInput.value = "";
+    chatInput.style.height = 'auto';
+    chatInput.style.overflowY = 'hidden';
+    sendBtn.disabled = true;
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+});
+
+// এন্টার প্রেস করলে সেন্ড হওয়ার লজিক (বাটন ডিজেবল না থাকলে কাজ করবে)
+chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        if (!sendBtn.disabled) {
+            sendBtn.click();
+        }
+    }
+});
+
+// আগের মোট মেসেজ সংখ্যা ট্র্যাক করার জন্য একটি ভেরিয়েবল রাখতে পারেন (অথবা লেংথ চেক)
+let previousMessageCount = 0;
+
+function loadExistingMessages(jobId, userId, forceScroll = false) {
+    const chatContainer = document.getElementById('chat-messages-container');
+    if (!chatContainer) return; // এখানে বানান ঠিক করে নেবেন
+    
+    chatContainer.innerHTML = ""; 
+
+    // সঠিক জব আইডি এবং কারেন্ট ইউজারের আইডি পাস করা হচ্ছে
+    const chatData = MessagesAPI.getChatData(jobId, userId);
+
+    if (!chatData || !chatData.messages || !Array.isArray(chatData.messages)) {
+        console.log("এই ইউজারের জন্য এই জব আইডিতে কোনো চ্যাট নেই।");
+        return;
+    }
+
+    const avatar = chatData.senderInfo?.senderAvatar || 'assets/tech.png';
+    const name = chatData.senderInfo?.senderName || 'User';
+
+    // ১. ইনকামিং মেসেজের জন্য currentJob.logo এবং আউটগোয়িং বা ফলব্যাকের জন্য ডিফল্ট ছবি সেট করা
+const incomingAvatar = (typeof currentJob !== 'undefined' && currentJob.logo) ? currentJob.logo : 'assets/tech.png';
+
+chatData.messages.forEach((msg, index) => {
+    const messageDiv = document.createElement('div');
+    
+    // সঠিক সেন্ডার ক্লাস নির্ধারণ
+    const senderClass = (msg.sender === 'incoming') ? 'incoming' : 'outgoing';
+    messageDiv.classList.add('message', senderClass);
+
+    // ইনকামিং হলে currentJob.logo, অন্যথায় সাধারণ avatar ব্যবহার করা
+    const currentAvatar = (msg.sender === 'incoming') ? incomingAvatar : (chatData.senderInfo?.senderAvatar || 'assets/client.png');
+    const currentName = chatData.senderInfo?.senderName || 'User';
+
+    if (msg.sender === 'incoming') {
+        messageDiv.innerHTML = `
+            <img src="${escapeHtml(currentAvatar)}" alt="${escapeHtml(currentName)}" class="msg-avatar" onerror="this.src='assets/tech.png'">
+            <div class="msg-text">${escapeHtml(msg.text || '')}</div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="msg-text">${escapeHtml(msg.text || '')}</div>
+            <img src="${escapeHtml(currentAvatar)}" alt="${escapeHtml(currentName)}" class="msg-avatar" onerror="this.src='assets/client.png'">
+        `;
+    }
+
+    chatContainer.appendChild(messageDiv);
+    attachLongPressEvent(messageDiv, msg.id, msg.sender);
+    
+});
+
+ saveMessage: function(jobId, senderInfoObj, messageText) {
+        let db = {};
+        const rawData = localStorage.getItem('messages_db');
+        if (rawData) {
+            try { db = JSON.parse(rawData); } catch (e) { db = {}; }
+        }
+
+        if (!db.allMessages || typeof db.allMessages !== 'object') {
+            db.allMessages = {};
+        }
+
+        const techUid = senderInfoObj.senderUid; 
+        const chatKey = this.getChatKey(jobId, techUid);
+
+        if (!db.allMessages[chatKey]) {
+            db.allMessages[chatKey] = {
+                senderInfo: {
+                    senderUid: senderInfoObj.senderUid,
+                    senderName: senderInfoObj.senderName,
+                    senderAvatar: senderInfoObj.senderAvatar || 'assets/tech.png'
+                },
+                messages: []
+            };
+        }
+
+        db.allMessages[chatKey].messages.push({
+            sender: senderInfoObj.senderRole || 'outgoing',
+            text: messageText,
+            timestamp: Date.now()
+        });
+
+        localStorage.setItem('messages_db', JSON.stringify(db));
+    }
+};
+
+
+// আপনার এপিআই ফাইলের ভেতরে যেভাবে যোগ করতে পারেন:
+updateMessage: function(jobId, senderUid, messageIndex, newText) {
+    let db = {};
+    const rawData = localStorage.getItem('messages_db');
+    if (rawData) {
+        try { db = JSON.parse(rawData); } catch (e) { db = {}; }
+    }
+
+    const chatKey = this.getChatKey(jobId, senderUid);
+    if (db.allMessages && db.allMessages[chatKey] && db.allMessages[chatKey].messages[messageIndex]) {
+        // নির্দিষ্ট ইনডেক্সের টেক্সট এবং টাইম আপডেট করা
+        db.allMessages[chatKey].messages[messageIndex].text = newText;
+        db.allMessages[chatKey].messages[messageIndex].timestamp = Date.now();
+
+        // ডাটাবেজে সেভ করা
+        localStorage.setItem('messages_db', JSON.stringify(db));
+    }
+},
+
+deleteMessage: function(jobId, senderUid, messageIndex) {
+    let db = {};
+    const rawData = localStorage.getItem('messages_db');
+    if (rawData) {
+        try { db = JSON.parse(rawData); } catch (e) { db = {}; }
+    }
+
+    const chatKey = this.getChatKey(jobId, senderUid);
+    if (db.allMessages && db.allMessages[chatKey] && db.allMessages[chatKey].messages) {
+        db.allMessages[chatKey].messages.splice(messageIndex, 1);
+        localStorage.setItem('messages_db', JSON.stringify(db));
+        return true;
+    }
+    return false;
+},
+
+sendBtn.addEventListener('click', function() {
+    const messageText = chatInput.value.trim();
+    if (messageText === "") return;
+
+       
+
+    // সেন্ডার ইনফো অবজেক্ট
+    const senderInfo = {
+        senderUid: currentUserId || sessionStorage.getItem('liveUserid') || 'unknown_id',
+        senderName: typeof userName !== 'undefined' ? userName : 'Technician',  
+        senderAvatar: typeof loggedInUserAvatar !== 'undefined' ? loggedInUserAvatar : 'assets/tech.png'
+    };
+    if (editingIndex !== null) {
+    // --- এডিট মোড: এপিআই এর মাধ্যমে আপডেট করা ---
+    const senderUid = senderInfo.senderUid;
+    
+    // এপিআই ফাংশন কল (যা সরাসরি লোকালস্টোরেজে আপডেট করে দেবে)
+    MessagesAPI.updateMessage(currentJobId, senderUid, editingIndex, messageText);
+
+    // এডিট শেষ, ইনডেক্স রিসেট করা
+    editingIndex = null;
+
+    // চ্যাট লিস্ট রি-রেন্ডার করা
+    loadExistingMessages(currentJobId, senderUid, true);
+    
+    // ইনপুট বক্স ও অন্যান্য রিসেট
+    chatInput.value = "";
+    chatInput.style.height = 'auto';
+    chatInput.style.overflow = 'hidden';
+    sendBtn.disabled = true;
+
+    } else {
+        // --- নতুন মেসেজ মোড: নরমাল সেভ করা ---
+        MessagesAPI.saveMessage(currentJobId, senderInfo, messageText);
+
+        // নতুন মেসেজ ডিভে রেন্ডার করে নিচে যুক্ত করা (আপনার কোডের মতো)
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', 'outgoing');
+        messageDiv.innerHTML = `
+            <div class="msg-text">${escapeHtml(messageText)}</div>
+            <img src="${escapeHtml(loggedInUserAvatar)}" alt="Tech" class="msg-avatar">
+        `;
+        chatContainer.appendChild(messageDiv);
+        
+        
+
+    // চ্যাট লিস্ট রি-রেন্ডার করা (এটাই সবচেয়ে নিরাপদ ও নিখুঁত উপায়, এতে নতুন মেসেজ ও তার সঠিক ইনডেক্স অটোমেটিক লোড হয়ে যাবে)
+    const senderUid = senderInfo.senderUid;
+    loadExistingMessages(currentJobId, senderUid, true);
+        
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    // ইনপুট ফিল্ড ক্লিয়ার ও রিসেট করা
+    chatInput.value = "";
+    chatInput.style.height = 'auto';
+    chatInput.style.overflow = 'hidden';
+    sendBtn.disabled = true;
+});
+
+// এডিট ও ডিলিট মেনু তৈরির ফাংশন
+function showEditDeleteMenu(messageElement, messageId, event) {
+    // পুরনো কোনো মেনু খোলা থাকলে তা আগে রিমুভ করা
+    const existingMenu = document.getElementById('chat-action-menu');
+    if (existingMenu) existingMenu.remove();
+
+    const menu = document.createElement('div');
+    menu.id = 'chat-action-menu';
+    menu.className = 'chat-action-menu';
+    
+    // এখানে ${messageId}-কে সিঙ্গেল কোটেশনের ভেতরে রাখা বাধ্যতামূলক
+    menu.innerHTML = `
+        <div class="action-item" onclick="handleEditMessage('${messageId}')">✏️ Edit</div>
+        <div class="action-item" onclick="handleDeleteMessage('${messageId}')">🗑️ Delete</div>
+    `;
+
+    // পজিশন সেট করার কোড...
+    const clientX = event.clientX || (event.touches ? event.touches[0].clientX : 0);
+    const clientY = event.clientY || (event.touches ? event.touches[0].clientY : 0);
+
+    menu.style.position = 'fixed';
+    menu.style.top = `${clientY}px`;
+    menu.style.left = `${clientX}px`;
+    menu.style.zIndex = '9999';
+
+    document.body.appendChild(menu);
+
+    // মেনুর বাইরে কোথাও ক্লিক করলে মেনু বন্ধ হয়ে যাবে
+    setTimeout(() => {
+        document.addEventListener('click', function closeMenu(e) {
+            if (!menu.contains(e.target)) {
+                menu.remove();
+                document.removeEventListener('click', closeMenu);
+            }
+        }, { once: true });
+    }, 100);
+}
+
+function handleEditMessage(messageId) {
+    console.log("Edit message ID:", messageId);
+
+    // যদি messageId ভুলবশত undefined আসে
+    if (messageId === undefined || messageId === 'undefined') {
+        console.error("Message ID is undefined!");
+        return;
+    }
+
+    // লোকালস্টোরেজ থেকে ডাটা রিড করা
+    let db = {};
+    const rawData = localStorage.getItem('messages_db');
+    if (rawData) {
+        try { db = JSON.parse(rawData); } catch (e) { db = {}; }
+    }
+
+    const senderUid = currentUserId || sessionStorage.getItem('liveUserid');
+    const chatKey = MessagesAPI.getChatKey(currentJobId, senderUid);
+
+    // নির্দিষ্ট চ্যাটের মেসেজ থেকে টেক্সট বের করা
+    if (db.allMessages && db.allMessages[chatKey] && db.allMessages[chatKey].messages) {
+        const targetMessage = db.allMessages[chatKey].messages[messageId];
+        
+        if (targetMessage) {
+            const chatInput = document.getElementById('chat-input-message');
+            if (chatInput) {
+                chatInput.value = targetMessage.text;
+                chatInput.focus();
+                
+                // ইনপুট ইভেন্ট ট্রিগার করা যাতে সেন্ড বাটনটি এনাবল হয়ে যায়
+                chatInput.dispatchEvent(new Event('input'));
+            }
+            
+            // এডিটিং ইনডেক্স সেট করা
+            editingIndex = messageId;
+        }
+    }
+
+    // মেনু রিমুভ করা
+    const menu = document.getElementById('chat-action-menu');
+    if (menu) menu.remove();
+}
+
+function showEditDeleteMenu(messageElement, messageId, event) {
+    // পুরনো কোনো মেনু খোলা থাকলে তা আগে রিমুভ করা
+    const existingMenu = document.getElementById('chat-action-menu');
+    if (existingMenu) existingMenu.remove();
+
+    const menu = document.createElement('div');
+    menu.id = 'chat-action-menu';
+    menu.className = 'chat-action-menu';
+    
+    // এখানে ${messageId}-কে সিঙ্গেল কোটেশনের ভেতরে রাখা বাধ্যতামূলক
+    menu.innerHTML = `
+        <div class="action-item" onclick="handleEditMessage('${messageId}')">✏️ Edit</div>
+        <div class="action-item" onclick="handleDeleteMessage('${messageId}')">🗑️ Delete</div>
+    `;
+
+    // পজিশন সেট করার কোড...
+    const clientX = event.clientX || (event.touches ? event.touches[0].clientX : 0);
+    const clientY = event.clientY || (event.touches ? event.touches[0].clientY : 0);
+
+    menu.style.position = 'fixed';
+    menu.style.top = `${clientY}px`;
+    menu.style.left = `${clientX}px`;
+    menu.style.zIndex = '9999';
+
+    document.body.appendChild(menu);
+
+    // মেনুর বাইরে কোথাও ক্লিক করলে মেনু বন্ধ হয়ে যাবে
+    setTimeout(() => {
+        document.addEventListener('click', function closeMenu(e) {
+            if (!menu.contains(e.target)) {
+                menu.remove();
+                document.removeEventListener('click', closeMenu);
+            }
+        }, { once: true });
+    }, 100);
+}
+
+if (msg.isEdited && !msg.isDeleted) {
+    // ডিফল্ট আউটগোয়িং এর জন্য right: 0px রেখে দিচ্ছি
+    editTagHtml = `<div style="position: absolute; bottom: -14px; right: 0px; font-size: 9px; color: #8c8c8c; font-style: italic; white-space: nowrap;">Edited</div>`;
+}
+
+if (msg.sender === 'incoming') {
+    // ইনকামিংয়ের জন্য right: 0px কে left: 0px করে দেওয়া হলো
+    const incomingEditTag = editTagHtml.replace('right: 0px;', 'left: 0px;');
+
+    messageDiv.innerHTML = `
+        <img src="${escapeHtml(currentAvatar)}" alt="${escapeHtml(currentName)}" class="msg-avatar" onerror="this.onerror=null;this.src='assets/tech.png';">
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div class="msg-text" style="${messageStyle}; position: relative; margin-bottom: 4px;">
+                ${escapeHtml(displayText)}
+                ${incomingEditTag}
+            </div>
+        </div>
+    `;
+} else {
+    messageDiv.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+            <div class="msg-text" style="${messageStyle}" position: relative; margin-bottom: 4px;">
+                ${escapeHtml(displayText)}
+                ${editTagHtml}
+            </div>
+        </div>
+        <img src="${escapeHtml(currentAvatar)}" alt="${escapeHtml(currentName)}" class="msg-avatar" onerror="this.onerror=null;this.src='assets/client.png';">
+    `;
+}
+    chatContainer.appendChild(messageDiv);
+    attachLongPressEvent(messageDiv, msg.id, msg.sender, msg.isDeleted);
+    
+});
+
+const NotificationAPI = {
+    fetchChatNotifications: function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetUserId = urlParams.get('id');
+
+        if (!targetUserId) return '';
+
+        const userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        const messagesDb = JSON.parse(localStorage.getItem('messages_db')) || { allMessages: {} };
+
+        let matchedAccountKey = null;
+
+        for (const key in userMasterData) {
+            if (userMasterData[key].userId === targetUserId) {
+                matchedAccountKey = key;
+                break;
+            }
+        }
+
+        if (!matchedAccountKey) return '';
+
+        const accountData = userMasterData[matchedAccountKey];
+        const postedJobs = accountData.jobSection?.postedJobs || {};
+
+        let allNotifications = [];
+        const allChats = messagesDb.allMessages || {};
+
+        // সব চ্যাট থেকে unread নোটিফিকেশনগুলো একটি অ্যারেতে সংগ্রহ করা
+        for (const chatKey in allChats) {
+            const chatData = allChats[chatKey];
+            const messages = chatData.messages || [];
+
+            let belongsToUser = false;
+            let matchedJobId = null;
+
+            for (const jobId in postedJobs) {
+                if (chatKey.includes(jobId)) {
+                    belongsToUser = true;
+                    matchedJobId = jobId;
+                    break;
+                }
+            }
+
+            if (belongsToUser) {
+                const unreadMessages = messages.filter(msg => msg.isSeen === false && msg.sender === 'outgoing');
+
+                if (unreadMessages.length > 0) {
+                    const lastUnreadMsg = unreadMessages[unreadMessages.length - 1];
+                    const senderName = chatData.senderInfo?.senderName || 'গ্রাহক';
+                    
+                    // নাম বা মেসেজ বড় হলে লিমিట్ করে তিন ডট (...) দেওয়ার ফাংশন
+                    const truncateText = (text, limit) => {
+                        return text.length > limit ? text.substring(0, limit) + '...' : text;
+                    };
+
+                    const formattedSenderName = truncateText(senderName, 20); // নামের জন্য সর্বোচ্চ ২০ ক্যারেক্টার
+                    const formattedMessage = truncateText(lastUnreadMsg.text, 45); // মেসেজের জন্য সর্বোচ্চ ৪৫ ক্যারেক্টার
+
+                    const diff = Math.floor((Date.now() - lastUnreadMsg.timestamp) / 60000);
+                    let timeAgo = 'এই মাত্র';
+                    if (diff >= 1 && diff < 60) timeAgo = `${diff} মিনিট আগে`;
+                    else if (diff >= 60) timeAgo = `${Math.floor(diff / 60)} ঘণ্টা আগে`;
+
+                    // অ্যারেতে পুশ করে রাখা যাতে পরে টাইম অনুযায়ী সর্ট করা যায়
+                    allNotifications.push({
+                        timestamp: lastUnreadMsg.timestamp,
+                        html: `
+                            <div class="notification-card" onclick="window.location.href='chat.html?jobId=${matchedJobId}'" style="cursor: pointer;">
+                                <div class="notification-icon-box">💬</div>
+                                <div class="notification-content">
+                                    <h4>নতুন চ্যাট মেসেজ এসেছে</h4>
+                                    <p><strong>${formattedSenderName}</strong> আপনাকে একটি মেসেজ পাঠিয়েছেন: "${formattedMessage}"</p>
+                                    <span class="notification-time">${timeAgo}</span>
+                                </div>
+                            </div>
+                        `
+                    });
+                }
+            }
+        }
+
+        // নতুন মেসেজগুলো (যেগুলোর টাইম লেটেস্ট বা কম সময় আগে) উপরে দেখানোর জন্য সর্ট করা (Descending order)
+        allNotifications.sort((a, b) => b.timestamp - a.timestamp);
+
+        // সাজানো কার্ডগুলোর এইচটিএমএল এক সাথে যুক্ত করা
+        let notificationCardsHTML = '';
+        allNotifications.forEach(notif => {
+            notificationCardsHTML += notif.html;
+        });
+
+        return notificationCardsHTML;
+    }
+};
+
+
+
+function loadExistingMessages(forceScroll = false) {
+    const messagesContainer = document.getElementById('chat-messages-container');
+    if (!messagesContainer) return;
+
+    messagesContainer.innerHTML = '';
+
+    try {
+        const jobChats = (typeof MessagesAPI !== 'undefined' && typeof MessagesAPI.getJobAllChats === 'function') 
+            ? MessagesAPI.getJobAllChats(currentJobId) 
+            : {};
+
+        const chatKey = `${currentJobId}_${currentTechUid}`;
+        const chatData = jobChats ? jobChats[chatKey] : null;
+
+        // যদি চ্যাট ডাটা বা মেসেজ না থাকে
+        if (!chatData || !Array.isArray(chatData.messages) || chatData.messages.length === 0) {
+            messagesContainer.innerHTML = `<p style="text-align: center; color: #888; margin-top: 20px;">কোনো মেসেজ নেই</p>`;
+            return;
+        }
+
+        const messages = chatData.messages;
+        const techAvatar = chatData.senderInfo && chatData.senderInfo.senderAvatar 
+            ? chatData.senderInfo.senderAvatar 
+            : 'assets/tech.png';
+
+        // মেসেজগুলো রেন্ডার করার লুপ
+     messages.forEach(msg => {
+    let messageDiv = document.createElement('div');
+    
+    // ডিলিট এবং এডিট হ্যান্ডেল করার জন্য লোকাল ভেরিয়েবল
+    let displayText = msg.text;
+    let messageStyle = '';
+    let editTagHtml = '';
+
+    if (msg.isDeleted) {
+        displayText = `🚫 এই মেসেজটি ডিলিট করা হয়েছে`;
+        messageStyle = 'background-color: #e4e6eb !important; color: #555 !important; font-style: italic; border: 1px dashed #ccd0d5;';
+    }
+
+ if (msg.isEdited && !msg.isDeleted) {
+    editTagHtml = `<div style="position: absolute; bottom: -14px; right: 0px; font-size: 9px; color: #8c8c8c; font-style: italic; white-space: nowrap;">Edited</div>`;
+}
+   if (msg.sender === 'incoming') {
+    // ডাটাবেজে incoming থাকলে ক্লায়েন্টের স্ক্রিনে outgoing (ডান দিক) দেখাবে
+    messageDiv.className = 'message outgoing';
+    messageDiv.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+            <div class="msg-text" style="${messageStyle}; position: relative; margin-bottom: 4px;">
+                ${escapeHtml(displayText)}
+                ${editTagHtml}
+            </div>
+        </div>
+        <img src="${escapeHtml(savedImageString)}" alt="Avatar" class="msg-avatar">
+    `;
+    
+    messageDiv.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        showActionPopup(e.clientX, e.clientY, msg.id);
+    });
+    
+    messagesContainer.appendChild(messageDiv);
+} else {
+    // অন্যথায় incoming (বাম দিক) দেখাবে, তাই এখানে এডিট ট্যাগটি বাম দিকে থাকবে
+    const incomingEditTag = editTagHtml.replace('right: 0px;', 'left: 0px;');
+    
+    messageDiv.className = 'message incoming';
+    messageDiv.innerHTML = `
+        <img src="${escapeHtml(techAvatar)}" alt="Tech" class="msg-avatar">
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div class="msg-text" style="${messageStyle}; position: relative; margin-bottom: 4px;">
+                ${escapeHtml(displayText)}
+                ${incomingEditTag}
+            </div>
+        </div>
+    `;
+    messagesContainer.appendChild(messageDiv);
+}
+ 
+    
+});
+        
+    
+    // যদি নতুন কোনো মেসেজ না থাকে অথবা মেসেজ সংখ্যা আগের সমান থাকে
+    const hasNewMessages = messages.length !== previousMessageCount;
+    previousMessageCount = messages.length;
+
+    // মেসেজগুলো রেন্ডার করার কোড...
+    
+    // শুধু তখনই স্ক্রোল নিচে নামবে যখন নতুন মেসেজ আসবে অথবা একদম প্রথমে মোডাল ওপেন হবে
+    if (forceScroll || hasNewMessages) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+
+    } catch (error) {
+        console.error("Error loading messages:", error);
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // এপিআই ফাইল থেকে কার্ডের এইচটিএমএল ডেটা নিয়ে আসা
+    const cardsHTML = NotificationAPI.fetchChatNotifications();
+
+    // মেইন ফাইলের নোটিফিকেশন কন্টেইনারে কার্ডগুলো রেন্ডার করা
+    const container = document.querySelector('.notifications-body');
+    if (container && cardsHTML) {
+        container.innerHTML += cardsHTML;
+    }
+});
+
+getUnreadCountOnly: function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const targetUserId = urlParams.get('id');
+    if (!targetUserId) return 0;
+
+    const userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+    const messagesDb = JSON.parse(localStorage.getItem('messages_db')) || { allMessages: {} };
+
+    let matchedAccountKey = null;
+    for (const key in userMasterData) {
+        if (userMasterData[key].userId === targetUserId) {
+            matchedAccountKey = key;
+            break;
+        }
+    }
+
+    if (!matchedAccountKey) return 0;
+
+    const accountData = userMasterData[matchedAccountKey];
+    
+    // সেফ চেক যেন postedJobs আনইটারেবল (non-iterable) হয়ে এরর না দেয়
+    const rawPostedJobs = accountData.jobSection?.postedJobs;
+    const postedJobs = Array.isArray(rawPostedJobs) 
+        ? rawPostedJobs 
+        : (rawPostedJobs ? Object.keys(rawPostedJobs) : []);
+        
+    const allChats = messagesDb.allMessages || {};
+
+    let totalUnreadCount = 0;
+
+    for (const chatKey in allChats) {
+        const chatData = allChats[chatKey];
+        const messages = chatData.messages || [];
+
+        let belongsToUser = false;
+        for (const jobId of postedJobs) {
+            if (chatKey.includes(jobId)) {
+                belongsToUser = true;
+                break;
+            }
+        }
+
+        if (belongsToUser) {
+            const unreadMessages = messages.filter(msg => 
+                msg.isSeen === false && 
+                msg.isDeleted !== true && 
+                msg.sender === 'outgoing'
+            );
+            totalUnreadCount += unreadMessages.length;
+        }
+    }
+
+    return totalUnreadCount;
+}
+
+    // এটি এপিআই ফাইলের ভেতরে নতুন একটি ফাংশন হিসেবে যোগ করুন (টেকনিশিয়ানের ফাংশন অপরিবর্তিত থাকবে)
+saveClientMessage: function(jobId, techUid, messageText) {
+    let db = {};
+    const rawData = localStorage.getItem('messages_db');
+    if (rawData) {
+        try { db = JSON.parse(rawData); } catch (e) { db = {}; }
+    }
+
+    if (!db.allMessages || typeof db.allMessages !== 'object') {
+        db.allMessages = {};
+    }
+
+    const chatKey = this.getChatKey(jobId, techUid);
+
+    // যদি চ্যাট কি আগে থেকে না থাকে, তবে ইনিশিয়ালাইজ করে নেওয়া
+    if (!db.allMessages[chatKey]) {
+        db.allMessages[chatKey] = {
+            senderInfo: { senderUid: techUid },
+            messages: []
+        };
+    }
+
+    // ক্লায়েন্টের পাঠানো মেসেজ ডাটাবেজে সবসময় সরাসরি "incoming" হিসেবে সেভ হবে
+db.allMessages[chatKey].messages.push({
+    id: 'msg_' + Date.now() + Math.random().toString(36).substr(2, 9), // ইউনিক আইডি যুক্ত করা হলো
+    sender: "incoming",
+    text: messageText,
+    timestamp: Date.now(),
+    isDeleted: false, // সফট ডিলিটের জন্য ডিফ্ল্ট ফ্ল্যাগ
+    isSeen: false // নতুন মেসেজের জন্য আনরিড বা অদেখা ফ্ল্যাগ যুক্ত করা হলো
+    
+});
+
+    localStorage.setItem('messages_db', JSON.stringify(db));
+},
+
+let previousMessageCount = 0;
+
+function loadExistingMessages(jobId, userId, forceScroll = false) {
+    const chatContainer = document.getElementById('chat-messages-container');
+    if (!chatContainer) return; // এখানে বানান ঠিক করে নেবেন
+    
+    chatContainer.innerHTML = ""; 
+
+    // সঠিক জব আইডি এবং কারেন্ট ইউজারের আইডি পাস করা হচ্ছে
+    const chatData = MessagesAPI.getChatData(jobId, userId);
+
+    if (!chatData || !chatData.messages || !Array.isArray(chatData.messages)) {
+        console.log("এই ইউজারের জন্য এই জব আইডিতে কোনো চ্যাট নেই।");
+        return;
+    }
+
+    // আপনার loadExistingMessages ফাংশনের ভেতরে কল করার সময়:
+if (typeof MessagesAPI !== 'undefined' && typeof MessagesAPI.markChatMessagesAsSeenTechnician === 'function') {
+    MessagesAPI.markChatMessagesAsSeenTechnician(jobId, userId); // এখানে currentTechUid এর পরিবর্তে jobId এবং userId পাস করে দিন
+}
+
+    const avatar = chatData.senderInfo?.senderAvatar || 'assets/tech.png';
+    const name = chatData.senderInfo?.senderName || 'User';
+
+    // ১. ইনকামিং মেসেজের জন্য currentJob.logo এবং আউটগোয়িং বা ফলব্যাকের জন্য ডিফল্ট ছবি সেট করা
+const incomingAvatar = (typeof currentJob !== 'undefined' && currentJob.logo) ? currentJob.logo : 'assets/tech.png';
+
+chatData.messages.forEach((msg, index) => {
+    const messageDiv = document.createElement('div');
+    
+    // সঠিক সেন্ডার ক্লাস নির্ধারণ
+    const senderClass = (msg.sender === 'incoming') ? 'incoming' : 'outgoing';
+    messageDiv.classList.add('message', senderClass);
+
+    // ইনকামিং হলে currentJob.logo, অন্যথায় সাধারণ avatar ব্যবহার করা
+    const currentAvatar = (msg.sender === 'incoming') ? incomingAvatar : (chatData.senderInfo?.senderAvatar || 'assets/client.png');
+    const currentName = chatData.senderInfo?.senderName || 'User';
+
+    // মেসেজ টেক্সট এবং স্টাইল নির্ধারণ করার লজিক
+let displayText = msg.text;
+let messageStyle = '';
+let editTagHtml = '';
+
+if (msg.isDeleted) {
+    displayText = `🚫 এই মেসেজটি ডিলিট করা হয়েছে`;
+    // এখানে ব্যাকগ্রাউন্ড হালকা ছাই রঙের এবং টেক্সট কালার ও ইটালিক একসাথে সেট করা হলো
+    messageStyle = 'background-color: #e4e6eb !important; color: #555 !important; font-style: italic; border: 1px dashed #ccd0d5;';
+}
+
+if (msg.isEdited && !msg.isDeleted) {
+    // ডিফল্ট আউটগোয়িং এর জন্য right: 0px রেখে দিচ্ছি
+    editTagHtml = `<div style="position: absolute; bottom: -14px; right: 0px; font-size: 9px; color: #8c8c8c; font-style: italic; white-space: nowrap;">Edited</div>`;
+}
+
+if (msg.sender === 'incoming') {
+    // ইনকামিংয়ের জন্য right: 0px কে left: 0px করে দেওয়া হলো
+    const incomingEditTag = editTagHtml.replace('right: 0px;', 'left: 0px;');
+
+    messageDiv.innerHTML = `
+        <img src="${escapeHtml(currentAvatar)}" alt="${escapeHtml(currentName)}" class="msg-avatar" onerror="this.onerror=null;this.src='assets/tech.png';">
+        <div style="display: flex; flex-direction: column; align-items: flex-start;">
+            <div class="msg-text" style="${messageStyle}; position: relative; margin-bottom: 4px;">
+                ${escapeHtml(displayText)}
+                ${incomingEditTag}
+            </div>
+        </div>
+    `;
+} else {
+    messageDiv.innerHTML = `
+        <div style="display: flex; flex-direction: column; align-items: flex-end;">
+            <div class="msg-text" style="${messageStyle}" position: relative; margin-bottom: 4px;">
+                ${escapeHtml(displayText)}
+                ${editTagHtml}
+            </div>
+        </div>
+        <img src="${escapeHtml(currentAvatar)}" alt="${escapeHtml(currentName)}" class="msg-avatar" onerror="this.onerror=null;this.src='assets/client.png';">
+    `;
+}
+    chatContainer.appendChild(messageDiv);
+    attachLongPressEvent(messageDiv, msg.id, msg.sender, msg.isDeleted);
+    
+});
+
+    const messages = chatData.messages;
+    
+    // যদি নতুন কোনো মেসেজ না থাকে অথবা মেসেজ সংখ্যা আগের সমান থাকে
+    const hasNewMessages = messages.length !== previousMessageCount;
+    previousMessageCount = messages.length;
+
+    // মেসেজগুলো রেন্ডার করার কোড...
+    
+    // শুধু তখনই স্ক্রোল নিচে নামবে যখন নতুন মেসেজ আসবে অথবা একদম প্রথমে মোডাল ওপেন হবে
+    if (forceScroll || hasNewMessages) {
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
+}
+
+const applyModal = document.getElementById('applyModal');
+const applyBtn = document.getElementById('applyBtn'); // আপনার এপ্লাই বাটনের আইডি
+const closeApplyModal = document.getElementById('closeApplyModal');
+
+if (applyBtn) {
+    applyBtn.addEventListener('click', () => {
+        applyModal.style.display = 'flex';
+    });
+}
+
+if (closeApplyModal) {
+    closeApplyModal.addEventListener('click', () => {
+        applyModal.style.display = 'none';
+    });
+}
+
+window.addEventListener('click', (e) => {
+    if (e.target === applyModal) {
+        applyModal.style.display = 'none';
+    }
+});
+
+const applyForm = document.getElementById('applyForm');
+if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const laborCost = document.getElementById('laborCost').value;
+        const materialResponsibility = document.getElementById('materialResponsibility').value;
+        const cancellationFee = document.getElementById('cancellationFee').value;
+        const coverLetter = document.getElementById('coverLetter').value;
+
+        console.log({
+            laborCost,
+            materialResponsibility,
+            cancellationFee,
+            coverLetter
+        });
+
+        alert('আপনার প্রপোজাল সফলভাবে জমা হয়েছে!');
+        applyModal.style.display = 'none';
+        applyForm.reset();
+    });
+}
+
+// ফর্ম সাবমিট ইভেন্ট
+if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // উদাহরণস্বরূপ: আপনার মোডাল বা পেজ থেকে বর্তমান জব আইডিটি যেভাবে ধরেন
+        // ধরা যাক jobId ভেরিয়েবলে জব আইডিটি রয়েছে (যেমন: job_1789366418904_456)
+        const jobId = applyForm.getAttribute('data-job-id') || window.currentJobId; 
+
+        const proposalData = {
+            laborCost: document.getElementById('laborCost').value,
+            materialResponsibility: document.getElementById('materialResponsibility').value,
+            cancellationFee: document.getElementById('cancellationFee').value,
+            estimatedTime: document.getElementById('estimatedTime').value,
+            coverLetter: document.getElementById('coverLetter').value,
+            appliedAt: new Date().toISOString()
+        };
+
+        // এপিআই ফাংশনে প্রপোজাল ডেটার সাথে জব আইডিটি পাস করা হচ্ছে
+        const isSuccess = window.TechnicianApplyAPI.submitProposal(proposalData, jobId);
+
+        if (isSuccess) {
+            applyModal.style.display = 'none';
+            applyForm.reset();
+        }
+    });
+}
+
+
+  submitProposal: function(proposalData) {
+    // ১. প্রথমে এনআইডি বা অন্যান্য চেক
+    const checkResult = this.checkTechnicianNid();
+
+    if (!checkResult.isValid) {
+        if (typeof showToast === 'function') {
+            showToast(checkResult.message, "error");
+        } else {
+            alert(checkResult.message);
+        }
+        return false;
+    }
+
+    const targetUserKey = checkResult.userKey;
+    let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+    const targetUser = userMasterData[targetUserKey];
+
+    // ২. এবার ওয়ালেটের ব্যালেন্স এবং balanceCheckFlag চেক করা
+    if (targetUser && targetUser.myWallet) {
+        const wallet = targetUser.myWallet;
+        const currentBalance = Number(wallet.balance) || 0;
+        const balanceFlag = Number(wallet.balanceCheckFlag) !== undefined ? Number(wallet.balanceCheckFlag) : 3;
+
+        // শর্ত: ব্যালেন্স এবং balanceCheckFlag দুটোই যদি ০ বা মাইনাস (<= 0) হয়
+        if (currentBalance <= 0 && balanceFlag <= 0) {
+            if (typeof showToast === 'function') {
+                showToast("আপনার ওয়ালেটে পর্যাপ্ত ব্যালেন্স নেই। দয়া করে ব্যালেন্স রিচার্জ করুন।", "error");
+            } else {
+                alert("আপনার ওয়ালেটে পর্যাপ্ত ব্যালেন্স নেই। দয়া করে ব্যালেন্স রিচার্জ করুন।");
+            }
+            return false; // সাবমিশন আটকে যাবে
+        }
+    }
+
+    // ৩. আগের মতো জব সেকশনে ডেটা সেভ করার লজিক
+    if (!targetUser.jobSection) {
+        targetUser.jobSection = {};
+    }
+    
+    targetUser.jobSection.appliedProposal = proposalData;
+    userMasterData[targetUserKey] = targetUser;
+    localStorage.setItem('userMasterData', JSON.stringify(userMasterData));
+
+    if (typeof showToast === 'function') {
+        showToast("আপনার প্রপোজাল সফলভাবে জমা হয়েছে!", "success");
+    }
+
+    return true;
+}
+
+let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+
+// সব ইউজারের appliedProposal সেকশন খালি করে দেওয়া
+for (let userKey in userMasterData) {
+    if (userMasterData[userKey].jobSection) {
+        userMasterData[userKey].jobSection.appliedProposal = {};
+    }
+}
+
+// লোকালস্টোরেজে আপডেট ডেটা সেভ করা
+localStorage.setItem('userMasterData', JSON.stringify(userMasterData));
+
+console.log("সকল ইউজারের অ্যাপ্লাইড প্রপোজাল সফলভাবে মুছে ফেলা হয়েছে!");
+
+
+
+if (applyBtn) {
+    applyBtn.addEventListener('click', () => {
+        // এপিআই অবজেক্টের মাধ্যমে প্রোফাইল ও এনআইডি চেক করা
+        const checkResult = window.TechnicianApplyAPI.checkTechnicianNid();
+
+        if (!checkResult.isValid) {
+            if (typeof showToast === 'function') {
+                showToast(checkResult.message);
+            } else {
+                alert(checkResult.message);
+            }
+            return; // তথ্য না থাকলে মোডাল ওপেন হবে না
+        }
+
+        // সব ঠিক থাকলে মোডাল ওপেন হবে
+        applyModal.style.display = 'flex';
+    });
+}
+
+if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // ফাইলের নিজস্ব ভেরিয়েবল থেকে সরাসরি currentJobId নেওয়া হচ্ছে
+        const jobId = window.currentJobId || currentJobId;
+
+        // ড্রপডাউনের সিলেক্ট করা অপশনের পুরো বাংলা টেক্সট বা লেখাটি পাওয়ার জন্য:
+        const materialSelect = document.getElementById('materialResponsibility');
+        const materialResponsibilityValue = materialSelect && materialSelect.selectedIndex > 0 
+            ? materialSelect.options[materialSelect.selectedIndex].text 
+            : "";
+
+        const proposalData = {
+            laborCost: document.getElementById('laborCost').value,
+            // মেটেরিয়াল রেসপনসিবিলিটি এর সঠিক ভ্যালু নিশ্চিত করার জন্য:            
+            materialResponsibility: materialResponsibilityValue,
+            cancellationFee: document.getElementById('cancellationFee').value,
+            estimatedTime: document.getElementById('estimatedTime').value,
+            coverLetter: document.getElementById('coverLetter').value,
+            appliedAt: new Date().toISOString()
+        };
+
+        // সঠিক jobId সহ এপিআই ফাংশন কল করা
+        const isSuccess = window.TechnicianApplyAPI.submitProposal(proposalData, jobId);
+
+        if (isSuccess) {
+            applyModal.style.display = 'none';
+            applyForm.reset();
+        }
+    });
+}
+
+window.TechnicianWishlistAPI = {
+    // উইশলিস্টের সব জব ফেচ বা গেট করার এপিআই
+    getWishlistJobs: function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlUserId = urlParams.get('id');
+        
+        if (!urlUserId) return [];
+
+        let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        let targetUserKey = null;
+
+        for (let key in userMasterData) {
+            if (userMasterData[key].userId === urlUserId || key === urlUserId) {
+                targetUserKey = key;
+                break;
+            }
+        }
+
+        if (targetUserKey && userMasterData[targetUserKey].jobSection && userMasterData[targetUserKey].jobSection.wishlistJobs) {
+            return Object.values(userMasterData[targetUserKey].jobSection.wishlistJobs);
+        }
+
+        return [];
+    },
+
+    // উইশলিস্ট থেকে জব ডিলিট করার এপিআই
+    removeWishlistJob: function(jobId) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlUserId = urlParams.get('id');
+        let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        
+        for (let key in userMasterData) {
+            if (userMasterData[key].userId === urlUserId || key === urlUserId) {
+                if (userMasterData[key].jobSection && userMasterData[key].jobSection.wishlistJobs) {
+                    delete userMasterData[key].jobSection.wishlistJobs[jobId];
+                    localStorage.setItem('userMasterData', JSON.stringify(userMasterData));
+                    if (typeof showToast === 'function') {
+                        showToast("উইশলিস্ট থেকে সফলভাবে ডিলিট করা হয়েছে!", "success");
+                    }
+                    return true;
+                }
+                break;
+            }
+        }
+        return false;
+    }
+    
+};
+
+function getAppliedProposalsList() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlUserId = urlParams.get('id');
+        
+        if (!urlUserId) {
+            console.warn("ইউআরএল-এ কোনো আইডি পাওয়া যায়নি!");
+            return {};
+        }
+
+        const userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        let targetUserKey = null;
+
+        // নির্দিষ্ট ইউজারের চাবি বা কি (key) খুঁজে বের করা
+        for (let key in userMasterData) {
+            const user = userMasterData[key];
+            if (key === urlUserId || (user && user.userId === urlUserId)) {
+                targetUserKey = key;
+                break;
+            }
+        }
+
+        // যদি সঠিক ইউজার পাওয়া যায় এবং তার জব সেকশনে প্রপোজাল থাকে
+        if (targetUserKey && userMasterData[targetUserKey].jobSection && userMasterData[targetUserKey].jobSection.appliedProposal) {
+            return userMasterData[targetUserKey].jobSection.appliedProposal;
+        }
+
+        return {};
+    } catch (error) {
+        console.error("প্রপোজাল ডেটা ফেচ করতে সমস্যা হয়েছে:", error);
+        return {};
+    }
+}
+
+// Main File: রিজেক্ট বাটন হ্যান্ডলার
+function handleReject() {
+    const { jobId, applicantId } = window.currentActionData || {};
+    if (!jobId || !applicantId) return;
+
+    // API ফাইলের ফাংশন কল করা
+    const response = rejectProposal(jobId, applicantId);
+    console.log("Reject API Response:", response); // কনসোলে রেসপন্স চেক করার জন্য
+
+    // মেসেজ টেক্সট বের করে নেওয়া (যাতে অবজেক্ট হোক বা স্ট্রিং হোক সমস্যা না হয়)
+    let messageText = "সফলভাবে প্রসেস করা হয়েছে";
+    let isSuccess = false;
+
+    if (response) {
+        if (typeof response === 'object') {
+            messageText = response.message || messageText;
+            isSuccess = response.success === true;
+        } else if (typeof response === 'boolean') {
+            isSuccess = response;
+        }
+    }
+
+    // টোস্ট কল করার চেষ্টা করা, না থাকলে কনসোল বা অ্যালার্ট দেখানো
+    if (typeof showToast === 'function') {
+        showToast(messageText, isSuccess ? "success" : "error");
+    } else {
+        alert(messageText);
+    }
+
+    closeDetailsModal();
+
+}
+
+function rejectProposal(jobId, applicantId) {
+    try {
+        let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        let updated = false;
+
+        // ১. সব ইউজারের ওপর লুপ চালানো
+        for (let userKey in userMasterData) {
+            let userData = userMasterData[userKey];
+            
+            if (userData.jobSection && userData.jobSection.appliedProposal) {
+                let proposals = userData.jobSection.appliedProposal;
+                
+                // ২. appliedProposal এর ভেতরের প্রতিটা আইটেম চেক করা (চাবি যাই হোক না কেন)
+                for (let propKey in proposals) {
+                    let proposal = proposals[propKey];
+                    
+                    // কনসোল লগ অনুযায়ী যে অবজেক্ট আসছে তার ভেতরের jobId অথবা propKey মিলিয়ে দেখা
+                    let currentJobId = proposal.jobId || propKey;
+                    
+                    if (currentJobId === jobId) {
+                        // applicantId ম্যাচ করছে কি না চেক করা (যদি applicantId পাঠানো হয়)
+                        let targetAppId = proposal.applicantIdentification ? proposal.applicantIdentification.userId : null;
+                        
+                        if (!applicantId || targetAppId === applicantId || propKey === jobId) {
+                            proposal.isAccepted = false; // মান false করে দেওয়া
+                            updated = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (updated) break;
+        }
+
+        // ৩. লোকালস্টোরেজ আপডেট করা
+        if (updated) {
+            localStorage.setItem('userMasterData', JSON.stringify(userMasterData));
+            return { success: true, message: "টেকনিশিয়ানের আবেদন সফলভাবে রিজেক্ট করা হয়েছে!" };
+        } else {
+            return { success: false, message: "সংশ্লিষ্ট প্রপোজালটি খুঁজে পাওয়া যায়নি!" };
+        }
+
+    } catch (error) {
+        console.error("API Error rejecting proposal:", error);
+        return { success: false, message: "সার্ভার বা লোকালস্টোরেজ ত্রুটি।" };
+    }
+}
+
+// এক্সেপ্ট বাটন হ্যান্ডলার
+function handleAccept() {
+    const { jobId, applicantId } = window.currentActionData || {};
+    if (!jobId || !applicantId) return;
+
+    console.log(`Job ${jobId} accepted for applicant ${applicantId}`);
+    alert("টেকনিশিয়ানের আবেদন সফলভাবে এক্সেপ্ট করা হয়েছে!");
+    closeDetailsModal();
+}

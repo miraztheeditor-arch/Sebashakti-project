@@ -363,3 +363,222 @@ window.deleteJobById = function(targetUserId, targetJobId) {
         return { success: false, message: "ডিলিট করতে গিয়ে সমস্যা হয়েছে।" };
     }
 };
+
+function getApplicantsByJobId(targetJobId) {
+    try {
+        const masterDataStr = localStorage.getItem('userMasterData');
+        if (!masterDataStr) return [];
+
+        const masterData = JSON.parse(masterDataStr);
+        let matchedApplicants = [];
+
+        for (const [userKey, userObj] of Object.entries(masterData)) {
+            // সেফ চেক: ইউজার অবজেক্ট, রোল এবং জব সেকশন নিরাপদ রাখা
+            if (userObj && userObj.role === 'technician' && userObj.jobSection && userObj.jobSection.appliedProposal) {
+                const appliedProposals = userObj.jobSection.appliedProposal;
+
+                // যদি নির্দিষ্ট জব আইডি মিলে যায়
+                if (appliedProposals && appliedProposals[targetJobId]) {
+                    const proposalData = appliedProposals[targetJobId];
+
+                    // চেক করুন: যদি isAccepted স্ট্যাটাস false হয়, তবে এটি লিস্টে দেখাবে না
+    if (proposalData.isAccepted !== false && proposalData.isAccepted !== "false" && proposalData.isAccepted !== true && proposalData.isAccepted !== "true") {
+                    
+                    // সেফ ডেটা এক্সট্রাকশন (ডাটা না থাকলেও যেন এরর না দেয়)
+                    const applicantInfo = proposalData.applicantIdentification || {};
+                    const propDetails = proposalData.proposalDetails || proposalData; // যদি সরাসরি প্রপোজালের ভেতরেই প্রপার্টি থাকে
+
+                    const name = applicantInfo.name || userObj.profileSection?.name || userObj.name || "টেকনিশিয়ান";
+                    
+                    // ইমেজ সেফ চেক
+                    const profileImg = applicantInfo.profileImage?.imageString 
+                        || userObj.profileSection?.profileImage?.imageString 
+                        || 'images/default-avatar.png';
+
+// প্রপোজাল ডিটেলস থেকে সব ডেটা সঠিকভাবে সংগ্রহ করে পুশ করা
+        const laborCost = propDetails.laborCost || "";
+        const materialCost = propDetails.materialCost || propDetails.materialResponsibility || "";
+        const cancellationFee = propDetails.cancellationFee || "";
+        const estimatedTime = propDetails.estimatedTime || "";
+        const coverLetter = propDetails.coverLetter || "";
+        const appliedAt = propDetails.appliedAt || "";
+
+        matchedApplicants.push({
+            applicantId: userKey,
+            applicantIdentification: { 
+                name: name, 
+                userId: applicantInfo.userId, // সঠিক টেকনিশিয়ান আইডি (UID) নেওয়ার জন্য
+                profileImage: profileImg 
+            },
+            proposalDetails: { 
+                laborCost, 
+                materialCost, 
+                cancellationFee, 
+                estimatedTime, 
+                coverLetter, 
+                appliedAt
+            }
+        });
+                }
+            }
+        }
+    }
+
+        return matchedApplicants;
+    } catch (error) {
+        console.error("আবেদনকারী ডেটা ফেচ করতে সমস্যা হয়েছে:", error);
+        return [];
+    }
+}
+
+window.updateProposalReadStatus = function(jobId, applicantId) {
+    try {
+        let masterDataStr = localStorage.getItem('userMasterData');
+        if (!masterDataStr) return;
+
+        let masterData = JSON.parse(masterDataStr);
+        let isUpdated = false;
+
+        // সমস্ত ইউজারের ডেটার মধ্যে লুপ চালিয়ে জবের প্রপোজাল খুঁজে বের করা
+        for (let userKey in masterData) {
+            let userObj = masterData[userKey];
+            
+            // চেক করা হচ্ছে ইউজার অবজেক্টের ভেতর jobSection এবং appliedProposal আছে কি না
+            if (userObj && userObj.jobSection && userObj.jobSection.appliedProposal) {
+                let appliedProposals = userObj.jobSection.appliedProposal;
+                
+                // যদি নির্দিষ্ট jobId মিলে যায়
+                if (appliedProposals[jobId]) {
+                    let proposal = appliedProposals[jobId];
+                    
+                    // applicantIdentification অথবা সরাসরি ইউজার আইডি দিয়ে ম্যাচ করানো
+                    if (proposal.applicantIdentification && 
+                        (proposal.applicantIdentification.userId === applicantId || userKey === applicantId)) {
+                        
+                        proposal.isRead = true;
+                        isUpdated = true;
+                    }
+                }
+            }
+        }
+
+        // যদি আপডেট সফল হয়, তবে লোকাল স্টোরেজে সেভ করা
+        if (isUpdated) {
+            localStorage.setItem('userMasterData', JSON.stringify(masterData));
+            console.log("Proposal read status updated successfully!");
+        }
+    } catch (error) {
+        console.error("Error updating proposal read status:", error);
+    }
+};
+
+function rejectProposal(jobId, applicantId) {
+    try {
+        let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        let updated = false;
+
+        // ১. সব ইউজারের ওপর লুপ চালানো
+        for (let userKey in userMasterData) {
+            let userData = userMasterData[userKey];
+
+            if (userData.jobSection && userData.jobSection.appliedProposal) {
+                let proposals = userData.jobSection.appliedProposal;
+
+                // ২. appliedProposal এর প্রতিটা আইটেম চেক করা
+                for (let propKey in proposals) {
+                    let proposal = proposals[propKey];
+                    let currentJobId = proposal.jobId || propKey;
+
+                    // ৩. জব আইডি মিলে গেলে
+                    if (currentJobId === jobId) {
+                        
+                        // ৪. ইউজারের মূল কী (userKey) অথবা প্রপোজালের ভেতরের applicantIdentification.userId এর সাথে মেলানো
+                        let targetAppId = proposal.applicantIdentification ? proposal.applicantIdentification.userId : null;
+
+                        // নির্দিষ্ট applicantId বা userKey এর সাথে মিললে তবেই রিজেক্ট হবে
+                        if (!applicantId || targetAppId === applicantId || userKey === applicantId || proposal.applicantId === applicantId) {
+                            proposal.isAccepted = false; // মান false করে দেওয়া
+                            updated = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (updated) break;
+        }
+
+        // ৫. লোকালস্টোরেজ আপডেট করা
+        if (updated) {
+            localStorage.setItem('userMasterData', JSON.stringify(userMasterData));
+            return { success: true, message: "টেকনিশিয়ানের আবেদন সফলভাবে রিজেক্ট করা হয়েছে!" };
+        } else {
+            return { success: false, message: "সংশ্লিষ্ট প্রপোজালটি খুঁজে পাওয়া যায়নি!" };
+        }
+    } catch (error) {
+        console.error("API Error rejecting proposal:", error);
+        return { success: false, message: "সার্ভার বা লোকালস্টোরেজে ত্রুটি!" };
+    }
+}
+
+function acceptProposal(jobId, applicantId) {
+    try {
+        let userMasterData = JSON.parse(localStorage.getItem('userMasterData')) || {};
+        let updated = false;
+
+        // ১. সব ইউজারের ওপর লুপ চালানো
+        for (let userKey in userMasterData) {
+            let userData = userMasterData[userKey];
+
+            if (userData.jobSection && userData.jobSection.appliedProposal) {
+                let proposals = userData.jobSection.appliedProposal;
+
+                // ২. appliedProposal এর প্রতিটা আইটেম চেক করা
+                for (let propKey in proposals) {
+                    let proposal = proposals[propKey];
+                    let currentJobId = proposal.jobId || propKey;
+
+                    // ৩. জব আইডি মিলে গেলে
+                    if (currentJobId === jobId) {
+                        
+                        // ৪. ইউজারের মূল কী (userKey) অথবা প্রপোজালের ভেতরের applicantIdentification.userId এর সাথে মেলানো
+                        let targetAppId = proposal.applicantIdentification ? proposal.applicantIdentification.userId : null;
+
+                        // নির্দিষ্ট applicantId বা userKey এর সাথে মিললে তবেই রিজেক্ট হবে
+                        if (!applicantId || targetAppId === applicantId || userKey === applicantId || proposal.applicantId === applicantId) {
+                            proposal.isAccepted = true; // মান true করে দেওয়া
+
+                            // নতুন acceptedDetails অবজেক্ট তৈরি
+                            const now = new Date();
+                            proposal.acceptedDetails = {
+                                acceptedAt: now.toISOString(),
+                                date: now.toLocaleDateString(),
+                                time: now.toLocaleTimeString()
+                            };
+
+                            // runningJobs চেক ও ডেটা সেভ করার লজিক
+                        if (!userData.jobSection.runningJobs) {
+                                userData.jobSection.runningJobs = {};
+                            }
+                            userData.jobSection.runningJobs[jobId] = { ...proposal };
+
+                            updated = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (updated) break;
+        }
+
+        // ৫. লোকালস্টোরেজ আপডেট করা
+        if (updated) {
+            localStorage.setItem('userMasterData', JSON.stringify(userMasterData));
+            return { success: true, message: "টেকনিশিয়ানের আবেদন সফলভাবে Accept করা হয়েছে!" };
+        } else {
+            return { success: false, message: "সংশ্লিষ্ট প্রপোজালটি খুঁজে পাওয়া যায়নি!" };
+        }
+    } catch (error) {
+        console.error("API Error rejecting proposal:", error);
+        return { success: false, message: "সার্ভার বা লোকালস্টোরেজে ত্রুটি!" };
+    }
+}

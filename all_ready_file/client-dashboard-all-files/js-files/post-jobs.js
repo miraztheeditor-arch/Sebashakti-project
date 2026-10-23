@@ -240,7 +240,9 @@ function showToast(message, type = 'error') {
         toast.style.opacity = '0';
         toast.style.transform = 'translateX(-50%) translateY(-20px)';
     }, 3500);
-}// ফর্ম সাবমিট ইভেন্ট লিসেনার ও ভ্যালিডেশন চেক
+}
+
+// ফর্ম সাবমিট ইভেন্ট লিসেনার ও ভ্যালিডেশন চেক
 const postJobForm = document.getElementById('postJobForm');
 if (postJobForm) {
     postJobForm.addEventListener('submit', async function(e) {

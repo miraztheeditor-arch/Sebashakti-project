@@ -1,0 +1,271 @@
+
+
+/* Modal Overlay */
+.chat-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Content Box (স্ক্রিনের চেয়ে সামান্য ছোট এবং ফিক্সড সাইজ) */
+.chat-modal-content {
+    background: #ffffff;
+    width: 600px;
+    max-width: 90%;
+    height: 550px;
+    max-height: 85vh;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: modalScaleUp 0.3s ease;
+}
+
+@keyframes modalScaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Modal Header */
+.chat-modal-header {
+    background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.client-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;        /* গোল করার জন্য */
+    object-fit: cover;        /* ছবি যেন চ্যাপ্টা না হয়ে ঠিকভাবে বসে */
+    border: 2px solid #ffffff;  /* চারপাশের সুন্দর সাদা বর্ডার */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* ছবির চারপাশে প্রিমিয়াম শ্যাডো */
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* Modal Body */
+.chat-modal-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+
+/* চ্যাট ফুটার কন্টেইনার */
+.chat-modal-footer {
+    display: flex;
+    align-items: center; /* মূল পরিবর্তন: এটি বাটন এবং টেক্সটএরিয়াকে ঠিক লম্বালম্বি মাঝবরাবর (Vertical Center) ফিক্সড রাখবে */
+    gap: 8px; 
+    padding: 12px 15px;
+    background: #fff;
+    border-top: 1px solid #e2e8f0;
+}
+
+.chat-modal-footer input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    outline: none;
+}
+
+.chat-modal-footer button {
+    background: #005088;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.send-icon-btn {
+    background: #005088;
+    color: white;
+    border: none;
+    width: 44px;         /* বাটনের সাইজ ফিক্সড থাকবে */
+    height: 44px;        /* বাটনের সাইজ ফিক্সড থাকবে */
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+
+.send-icon-btn:hover {
+    background: #5b4cc4; /* হোভার কালার */
+}
+
+/* পুরো মেসেজ রো */
+.message {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* ইনকামিং মেসেজ বামে রাখতে */
+.message.incoming {
+    justify-content: flex-start;
+    padding-right: 30%;
+}
+
+/* আউটগোইং মেসেজ ডানে রাখতে */
+/* আউটগোয়িং: মেসেজ ডানে রাখতে */
+.message.outgoing {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    padding-left: 30%;
+}
+
+/* কমন টেক্সট বক্স ডিজাইন এবং পজিশন relative (লেজ সেট করার জন্য এটি জরুরি) */
+.msg-text {
+    position: relative;
+    padding: 10px 14px;
+    border-radius: 12px;
+    word-break: break-word;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* ইনকামিং মেসেজের ব্যাকগ্রাউন্ড ও পজিশন */
+.message.incoming .msg-text {
+    background: #e2e8f0; /* ইনকামিং মেসেজ ব্যাকগ্রাউন্ড কালার */
+    color: #1e293b;
+    border-top-left-radius: 4px; /* লেজের সাথে মিল রেখে কোণা একটু সফট করা */
+    position: relative;
+}
+
+/* ইনকামিং মেসেজের সুচালো লেজ (বাম পাশের জন্য) */
+.message.incoming .msg-text::before {
+    content: "";
+    position: absolute;
+    bottom: 10px; /* নিচ থেকে দূরত্ব ফিক্সড করে দেওয়া হলো */
+    top: auto;   /* আগের 50% বাদ দেওয়া হলো */
+    transform: none;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 8px 8px 0;
+    border-color: transparent #e2e8f0 transparent transparent;
+    z-index: 1;
+}
+
+/* আউটগোইং মেসেজের সুচালো লেজ (ডান পাশের জন্য) */
+.message.outgoing .msg-text {
+    background: #005088; /* আপনার মেসেজ ব্যাকগ্রাউন্ড কালার */
+    color: white;
+    grid-column: 1;
+    border-top-right-radius: 4px; /* লেজের সাথে মিল রেখে উপরের কোণা সফট করা */
+}
+
+/* মূল সিউডো-এলিমেন্ট দিয়ে লেজ তৈরি করা */
+.message.outgoing .msg-text::after {
+    content: "";
+    position: absolute;
+    bottom: 10px; /* নিচ থেকে নির্দিষ্ট দূরত্ব */
+    top: auto;
+    transform: none;
+    right: -7px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 8px 0 8px 8px;
+    border-color: transparent transparent transparent #005088;
+    z-index: 1;
+}
+/* আউটগোইং ইমেজ পজিশন */
+.message.outgoing .msg-avatar {
+    grid-column: 2;
+}
+
+/* গোল সার্কেল ইমেজ (অ্যাভাটার) */
+.msg-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 1.5px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2px;
+}
+
+#chat-input-message {
+    flex: 1;
+    min-height: 45px;   /* শুরুর হাইট */
+    max-height: 100px;  /* নির্দিষ্ট সর্বোচ্চ হাইট */
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    /* বর্ডার রেডিয়াস শুধু বামপাশে গোল থাকবে, ডানে একদম সোজা হবে */
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 0px;
+    outline: none;
+    resize: none; 
+    font-size: 14px;
+    line-height: 1.4;
+    font-family: inherit;
+    word-break: break-word;
+    
+    /* মূল ম্যাজিক: হাইট অটো থাকবে, কিন্তু ম্যাক্স-হাইট পার হলেই নিজে থেকে স্ক্রলবার চলে আসবে */
+    height: auto; 
+    overflow-y: auto; 
+    box-sizing: border-box;
+}
+
+/* স্ক্রলবার ডিজাইন (যেন দেখতে সুন্দর লাগে) */
+#chat-input-message::-webkit-scrollbar {
+    width: 5px;
+}
+#chat-input-message::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* সেন্ড বাটন ডিজেবল থাকা অবস্থলার স্টাইল */
+#send-chat-btn:disabled {
+    background-color: #cbd5e1; /* হালকা ছাই কালার */
+    cursor: not-allowed;
+    opacity: 0.6;
+}

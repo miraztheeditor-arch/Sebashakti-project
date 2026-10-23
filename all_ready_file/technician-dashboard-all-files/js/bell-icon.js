@@ -125,3 +125,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.querySelector('.notifications-body');
+
+    function updateTechnicianNotifications() {
+        if (container && typeof NotificationAPI !== 'undefined' && typeof NotificationAPI.fetchTechnicianChatNotifications === 'function') {
+            const cardsHTML = NotificationAPI.fetchTechnicianChatNotifications();
+            container.innerHTML = cardsHTML;
+        }
+    }
+
+    updateTechnicianNotifications(); // পেজ লোড হওয়ার সাথে সাথে একবার কল হবে
+    setInterval(updateTechnicianNotifications, 2500); // প্রতি ২.৫ সেকেন্ড পর পর পোলing চলবে
+});
